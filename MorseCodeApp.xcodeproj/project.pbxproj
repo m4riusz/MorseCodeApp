@@ -181,6 +181,7 @@
 				6F66AA91223C39E90069FEE4 /* Resources */,
 				E1D01F4E2088ABB4B832873A /* [CP] Embed Pods Frameworks */,
 				6FC91EB9223C418D004E1451 /* ShellScript */,
+				6FC91EBA223C45D0004E1451 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -367,6 +368,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n";
+		};
+		6FC91EBA223C45D0004E1451 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 		CF5B9247B0AAD640DAC8170F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
