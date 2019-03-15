@@ -9,8 +9,10 @@ target 'MorseCodeApp' do
   pod 'Alamofire'
   pod 'SnapKit'
   pod 'RealmSwift'
-  pod "RxRealm"
-  pod 'Firebase'
+  pod 'RxRealm'
+  pod 'Firebase/Core'
+  pod 'Fabric', '~> 1.9.0'
+  pod 'Crashlytics', '~> 3.12.0'
 
   # Pods for MorseCodeApp
 

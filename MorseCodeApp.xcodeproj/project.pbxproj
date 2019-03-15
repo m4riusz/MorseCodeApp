@@ -16,6 +16,7 @@
 		6F66AAA1223C39EA0069FEE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F66AA9F223C39EA0069FEE4 /* LaunchScreen.storyboard */; };
 		6F66AAAC223C39EA0069FEE4 /* MorseCodeAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F66AAAB223C39EA0069FEE4 /* MorseCodeAppTests.swift */; };
 		6F66AAB7223C39EA0069FEE4 /* MorseCodeAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F66AAB6223C39EA0069FEE4 /* MorseCodeAppUITests.swift */; };
+		6FC91EB8223C3F3E004E1451 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6FC91EB7223C3F3E004E1451 /* GoogleService-Info.plist */; };
 		71AE6685E4523E4C26E45E08 /* Pods_MorseCodeApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B11D4B85239F4494C75CAA /* Pods_MorseCodeApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		6F66AAB2223C39EA0069FEE4 /* MorseCodeAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MorseCodeAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F66AAB6223C39EA0069FEE4 /* MorseCodeAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorseCodeAppUITests.swift; sourceTree = "<group>"; };
 		6F66AAB8223C39EB0069FEE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6FC91EB7223C3F3E004E1451 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		702B351FC567503A52FF3441 /* Pods-MorseCodeAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorseCodeAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MorseCodeAppUITests/Pods-MorseCodeAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		725373BCE135DCD1FE35647C /* Pods_MorseCodeAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MorseCodeAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8994739D8D9112D55B50F7D4 /* Pods-MorseCodeAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorseCodeAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MorseCodeAppTests/Pods-MorseCodeAppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				6F66AA9D223C39EA0069FEE4 /* Assets.xcassets */,
 				6F66AA9F223C39EA0069FEE4 /* LaunchScreen.storyboard */,
 				6F66AAA2223C39EA0069FEE4 /* Info.plist */,
+				6FC91EB7223C3F3E004E1451 /* GoogleService-Info.plist */,
 			);
 			path = MorseCodeApp;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 				6F66AA90223C39E90069FEE4 /* Frameworks */,
 				6F66AA91223C39E90069FEE4 /* Resources */,
 				E1D01F4E2088ABB4B832873A /* [CP] Embed Pods Frameworks */,
+				6FC91EB9223C418D004E1451 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -276,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F66AAA1223C39EA0069FEE4 /* LaunchScreen.storyboard in Resources */,
+				6FC91EB8223C3F3E004E1451 /* GoogleService-Info.plist in Resources */,
 				6F66AA9E223C39EA0069FEE4 /* Assets.xcassets in Resources */,
 				6F66AA9C223C39E90069FEE4 /* Main.storyboard in Resources */,
 			);
@@ -345,6 +350,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MorseCodeAppUITests/Pods-MorseCodeAppUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		6FC91EB9223C418D004E1451 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n";
 		};
 		CF5B9247B0AAD640DAC8170F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -553,7 +575,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
