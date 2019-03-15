@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E04492A6F726DCE2ADEA25C /* Pods_MorseCodeAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 725373BCE135DCD1FE35647C /* Pods_MorseCodeAppUITests.framework */; };
+		6AFB3E10318106A02A151C62 /* Pods_MorseCodeAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D806F7B2AC18E551D1320261 /* Pods_MorseCodeAppTests.framework */; };
 		6F66AA97223C39E90069FEE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F66AA96223C39E90069FEE4 /* AppDelegate.swift */; };
 		6F66AA99223C39E90069FEE4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F66AA98223C39E90069FEE4 /* ViewController.swift */; };
 		6F66AA9C223C39E90069FEE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F66AA9A223C39E90069FEE4 /* Main.storyboard */; };
@@ -14,6 +16,7 @@
 		6F66AAA1223C39EA0069FEE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F66AA9F223C39EA0069FEE4 /* LaunchScreen.storyboard */; };
 		6F66AAAC223C39EA0069FEE4 /* MorseCodeAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F66AAAB223C39EA0069FEE4 /* MorseCodeAppTests.swift */; };
 		6F66AAB7223C39EA0069FEE4 /* MorseCodeAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F66AAB6223C39EA0069FEE4 /* MorseCodeAppUITests.swift */; };
+		71AE6685E4523E4C26E45E08 /* Pods_MorseCodeApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B11D4B85239F4494C75CAA /* Pods_MorseCodeApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		26B11D4B85239F4494C75CAA /* Pods_MorseCodeApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MorseCodeApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F7A5C27751665066446B41D /* Pods-MorseCodeAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorseCodeAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MorseCodeAppUITests/Pods-MorseCodeAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6F66AA93223C39E90069FEE4 /* MorseCodeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MorseCodeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F66AA96223C39E90069FEE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6F66AA98223C39E90069FEE4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +52,13 @@
 		6F66AAB2223C39EA0069FEE4 /* MorseCodeAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MorseCodeAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F66AAB6223C39EA0069FEE4 /* MorseCodeAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorseCodeAppUITests.swift; sourceTree = "<group>"; };
 		6F66AAB8223C39EB0069FEE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		702B351FC567503A52FF3441 /* Pods-MorseCodeAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorseCodeAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MorseCodeAppUITests/Pods-MorseCodeAppUITests.release.xcconfig"; sourceTree = "<group>"; };
+		725373BCE135DCD1FE35647C /* Pods_MorseCodeAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MorseCodeAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8994739D8D9112D55B50F7D4 /* Pods-MorseCodeAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorseCodeAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MorseCodeAppTests/Pods-MorseCodeAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C9807E65065617F1D1EFE81B /* Pods-MorseCodeAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorseCodeAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MorseCodeAppTests/Pods-MorseCodeAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		D20D2FD213EF46EA1C7F9157 /* Pods-MorseCodeApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorseCodeApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MorseCodeApp/Pods-MorseCodeApp.debug.xcconfig"; sourceTree = "<group>"; };
+		D806F7B2AC18E551D1320261 /* Pods_MorseCodeAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MorseCodeAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E892775C25809B8866598E1D /* Pods-MorseCodeApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorseCodeApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MorseCodeApp/Pods-MorseCodeApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71AE6685E4523E4C26E45E08 /* Pods_MorseCodeApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AFB3E10318106A02A151C62 /* Pods_MorseCodeAppTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E04492A6F726DCE2ADEA25C /* Pods_MorseCodeAppUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +96,8 @@
 				6F66AAAA223C39EA0069FEE4 /* MorseCodeAppTests */,
 				6F66AAB5223C39EA0069FEE4 /* MorseCodeAppUITests */,
 				6F66AA94223C39E90069FEE4 /* Products */,
+				F81EE133471336C5F46AF5BA /* Pods */,
+				EBCEEB988BC5F3AA8A389E15 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,6 +142,29 @@
 			path = MorseCodeAppUITests;
 			sourceTree = "<group>";
 		};
+		EBCEEB988BC5F3AA8A389E15 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				26B11D4B85239F4494C75CAA /* Pods_MorseCodeApp.framework */,
+				D806F7B2AC18E551D1320261 /* Pods_MorseCodeAppTests.framework */,
+				725373BCE135DCD1FE35647C /* Pods_MorseCodeAppUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F81EE133471336C5F46AF5BA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D20D2FD213EF46EA1C7F9157 /* Pods-MorseCodeApp.debug.xcconfig */,
+				E892775C25809B8866598E1D /* Pods-MorseCodeApp.release.xcconfig */,
+				8994739D8D9112D55B50F7D4 /* Pods-MorseCodeAppTests.debug.xcconfig */,
+				C9807E65065617F1D1EFE81B /* Pods-MorseCodeAppTests.release.xcconfig */,
+				3F7A5C27751665066446B41D /* Pods-MorseCodeAppUITests.debug.xcconfig */,
+				702B351FC567503A52FF3441 /* Pods-MorseCodeAppUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +172,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6F66AABB223C39EB0069FEE4 /* Build configuration list for PBXNativeTarget "MorseCodeApp" */;
 			buildPhases = (
+				CF5B9247B0AAD640DAC8170F /* [CP] Check Pods Manifest.lock */,
 				6F66AA8F223C39E90069FEE4 /* Sources */,
 				6F66AA90223C39E90069FEE4 /* Frameworks */,
 				6F66AA91223C39E90069FEE4 /* Resources */,
+				E1D01F4E2088ABB4B832873A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -149,9 +191,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6F66AABE223C39EB0069FEE4 /* Build configuration list for PBXNativeTarget "MorseCodeAppTests" */;
 			buildPhases = (
+				4837B59CAB3E3A2212F9E540 /* [CP] Check Pods Manifest.lock */,
 				6F66AAA3223C39EA0069FEE4 /* Sources */,
 				6F66AAA4223C39EA0069FEE4 /* Frameworks */,
 				6F66AAA5223C39EA0069FEE4 /* Resources */,
+				E6E60DBBD4FCBAFA487F3C04 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -167,9 +211,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6F66AAC1223C39EB0069FEE4 /* Build configuration list for PBXNativeTarget "MorseCodeAppUITests" */;
 			buildPhases = (
+				D02910F4551BBD6593777A5A /* [CP] Check Pods Manifest.lock */,
 				6F66AAAE223C39EA0069FEE4 /* Sources */,
 				6F66AAAF223C39EA0069FEE4 /* Frameworks */,
 				6F66AAB0223C39EA0069FEE4 /* Resources */,
+				57F3D4441D92DC47E56F5D69 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -250,6 +296,167 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4837B59CAB3E3A2212F9E540 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MorseCodeAppTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		57F3D4441D92DC47E56F5D69 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MorseCodeAppUITests/Pods-MorseCodeAppUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MorseCodeAppUITests/Pods-MorseCodeAppUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CF5B9247B0AAD640DAC8170F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MorseCodeApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D02910F4551BBD6593777A5A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MorseCodeAppUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E1D01F4E2088ABB4B832873A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MorseCodeApp/Pods-MorseCodeApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRealm/RxRealm.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRealm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MorseCodeApp/Pods-MorseCodeApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E6E60DBBD4FCBAFA487F3C04 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MorseCodeAppTests/Pods-MorseCodeAppTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MorseCodeAppTests/Pods-MorseCodeAppTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6F66AA8F223C39E90069FEE4 /* Sources */ = {
@@ -430,6 +637,7 @@
 		};
 		6F66AABC223C39EB0069FEE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D20D2FD213EF46EA1C7F9157 /* Pods-MorseCodeApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -448,6 +656,7 @@
 		};
 		6F66AABD223C39EB0069FEE4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E892775C25809B8866598E1D /* Pods-MorseCodeApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -466,6 +675,7 @@
 		};
 		6F66AABF223C39EB0069FEE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8994739D8D9112D55B50F7D4 /* Pods-MorseCodeAppTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -487,6 +697,7 @@
 		};
 		6F66AAC0223C39EB0069FEE4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C9807E65065617F1D1EFE81B /* Pods-MorseCodeAppTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -508,6 +719,7 @@
 		};
 		6F66AAC2223C39EB0069FEE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F7A5C27751665066446B41D /* Pods-MorseCodeAppUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -528,6 +740,7 @@
 		};
 		6F66AAC3223C39EB0069FEE4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 702B351FC567503A52FF3441 /* Pods-MorseCodeAppUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

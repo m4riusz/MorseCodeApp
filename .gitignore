@@ -1,0 +1,5 @@
+Pods/
+Podfile.lock
+*xcschememanagement.plist
+MorseCodeApp.xcworkspace/contents.xcworkspacedata
+MorseCodeApp.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
