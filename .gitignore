@@ -1,5 +1,9 @@
+MorseCodeApp.app.dSYM.zip
+MorseCodeApp.ipa
 Pods/
 Podfile.lock
 *xcschememanagement.plist
 MorseCodeApp.xcworkspace/contents.xcworkspacedata
 MorseCodeApp.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+fastlane/README.md
+fastlane/report.xml
