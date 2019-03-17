@@ -19,6 +19,13 @@ platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
     build_app(workspace: "MorseCodeApp.xcworkspace", scheme: "MorseCodeApp")
+    commit_version_bump(
+      message: 'Build Version Bump by fastlane',
+      force: true
+    )
+    build_number = Actions.lane_context[Actions::SharedValues::BUILD_NUMBER]
+    add_git_tag(tag: "#{build_number}")
+    push_to_git_remote
     upload_to_testflight
   end
 end

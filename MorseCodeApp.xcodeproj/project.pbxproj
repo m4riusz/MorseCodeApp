@@ -11,7 +11,6 @@
 		6AFB3E10318106A02A151C62 /* Pods_MorseCodeAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D806F7B2AC18E551D1320261 /* Pods_MorseCodeAppTests.framework */; };
 		6F66AA97223C39E90069FEE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F66AA96223C39E90069FEE4 /* AppDelegate.swift */; };
 		6F66AA99223C39E90069FEE4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F66AA98223C39E90069FEE4 /* ViewController.swift */; };
-		6F66AA9C223C39E90069FEE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F66AA9A223C39E90069FEE4 /* Main.storyboard */; };
 		6F66AA9E223C39EA0069FEE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F66AA9D223C39EA0069FEE4 /* Assets.xcassets */; };
 		6F66AAA1223C39EA0069FEE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F66AA9F223C39EA0069FEE4 /* LaunchScreen.storyboard */; };
 		6F66AAAC223C39EA0069FEE4 /* MorseCodeAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F66AAAB223C39EA0069FEE4 /* MorseCodeAppTests.swift */; };
@@ -43,7 +42,6 @@
 		6F66AA93223C39E90069FEE4 /* MorseCodeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MorseCodeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F66AA96223C39E90069FEE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6F66AA98223C39E90069FEE4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		6F66AA9B223C39E90069FEE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6F66AA9D223C39EA0069FEE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6F66AAA0223C39EA0069FEE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6F66AAA2223C39EA0069FEE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -120,7 +118,6 @@
 				6F836370223D986A003F4B41 /* MorseCodeApp.entitlements */,
 				6F66AA96223C39E90069FEE4 /* AppDelegate.swift */,
 				6F66AA98223C39E90069FEE4 /* ViewController.swift */,
-				6F66AA9A223C39E90069FEE4 /* Main.storyboard */,
 				6F66AA9D223C39EA0069FEE4 /* Assets.xcassets */,
 				6F66AA9F223C39EA0069FEE4 /* LaunchScreen.storyboard */,
 				6F66AAA2223C39EA0069FEE4 /* Info.plist */,
@@ -290,7 +287,6 @@
 				6F66AAA1223C39EA0069FEE4 /* LaunchScreen.storyboard in Resources */,
 				6FC91EB8223C3F3E004E1451 /* GoogleService-Info.plist in Resources */,
 				6F66AA9E223C39EA0069FEE4 /* Assets.xcassets in Resources */,
-				6F66AA9C223C39E90069FEE4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,14 +543,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		6F66AA9A223C39E90069FEE4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6F66AA9B223C39E90069FEE4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		6F66AA9F223C39EA0069FEE4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
