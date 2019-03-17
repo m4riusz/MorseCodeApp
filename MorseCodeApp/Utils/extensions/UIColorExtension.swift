@@ -10,8 +10,7 @@ import UIKit
 import SwifterSwift
 
 extension UIColor {
-    
     class func global(_ color: Colors) -> UIColor {
-        return UIColor.init(hexString: color.rawValue)!
+        return UIColor.init(named: color.rawValue)!
     }
 }
