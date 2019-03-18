@@ -8,6 +8,10 @@
 
 import Foundation
 
+struct AppDefaults {
+    static let schemeVersion: UInt64 = 1
+}
+
 enum Colors: String {
     case turquoise = "color_turquoise"
     case white = "color_white"
