@@ -11,4 +11,10 @@ import Foundation
 class Pair: BaseObject {
     @objc dynamic var key: String?
     @objc dynamic var value: String?
+    
+    convenience init(key: String, value: String) {
+        self.init()
+        self.key = key
+        self.value = value
+    }
 }

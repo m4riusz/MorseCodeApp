@@ -14,6 +14,7 @@
 		6F66AAA1223C39EA0069FEE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F66AA9F223C39EA0069FEE4 /* LaunchScreen.storyboard */; };
 		6F66AAAC223C39EA0069FEE4 /* MorseCodeAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F66AAAB223C39EA0069FEE4 /* MorseCodeAppTests.swift */; };
 		6F66AAB7223C39EA0069FEE4 /* MorseCodeAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F66AAB6223C39EA0069FEE4 /* MorseCodeAppUITests.swift */; };
+		6FA28AF222416CF9008D209A /* AlphabetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA28AF122416CF9008D209A /* AlphabetViewModel.swift */; };
 		6FC91EB8223C3F3E004E1451 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6FC91EB7223C3F3E004E1451 /* GoogleService-Info.plist */; };
 		6FCFC3E9223EB8EA00ABD9FB /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFC3E8223EB8EA00ABD9FB /* MainController.swift */; };
 		6FCFC3F3223EBA0800ABD9FB /* AlphabetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFC3F2223EBA0800ABD9FB /* AlphabetController.swift */; };
@@ -28,7 +29,6 @@
 		6FECA51422401AE300E944E7 /* Pair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FECA51322401AE300E944E7 /* Pair.swift */; };
 		6FECA51622401BA300E944E7 /* AlphabetRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FECA51522401BA300E944E7 /* AlphabetRepository.swift */; };
 		6FECA51922401D1400E944E7 /* BaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FECA51822401D1400E944E7 /* BaseObject.swift */; };
-		6FECA51B22401DE000E944E7 /* BaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FECA51A22401DE000E944E7 /* BaseRepository.swift */; };
 		6FECA51D2240217700E944E7 /* NSErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FECA51C2240217700E944E7 /* NSErrorExtension.swift */; };
 		71AE6685E4523E4C26E45E08 /* Pods_MorseCodeApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B11D4B85239F4494C75CAA /* Pods_MorseCodeApp.framework */; };
 /* End PBXBuildFile section */
@@ -65,6 +65,7 @@
 		6F66AAB6223C39EA0069FEE4 /* MorseCodeAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorseCodeAppUITests.swift; sourceTree = "<group>"; };
 		6F66AAB8223C39EB0069FEE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F836370223D986A003F4B41 /* MorseCodeApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MorseCodeApp.entitlements; sourceTree = "<group>"; };
+		6FA28AF122416CF9008D209A /* AlphabetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphabetViewModel.swift; sourceTree = "<group>"; };
 		6FC91EB7223C3F3E004E1451 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6FCFC3E8223EB8EA00ABD9FB /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		6FCFC3F2223EBA0800ABD9FB /* AlphabetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphabetController.swift; sourceTree = "<group>"; };
@@ -79,7 +80,6 @@
 		6FECA51322401AE300E944E7 /* Pair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pair.swift; sourceTree = "<group>"; };
 		6FECA51522401BA300E944E7 /* AlphabetRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphabetRepository.swift; sourceTree = "<group>"; };
 		6FECA51822401D1400E944E7 /* BaseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseObject.swift; sourceTree = "<group>"; };
-		6FECA51A22401DE000E944E7 /* BaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRepository.swift; sourceTree = "<group>"; };
 		6FECA51C2240217700E944E7 /* NSErrorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSErrorExtension.swift; sourceTree = "<group>"; };
 		702B351FC567503A52FF3441 /* Pods-MorseCodeAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorseCodeAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MorseCodeAppUITests/Pods-MorseCodeAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		725373BCE135DCD1FE35647C /* Pods_MorseCodeAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MorseCodeAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,6 +179,22 @@
 			path = MorseCodeAppUITests;
 			sourceTree = "<group>";
 		};
+		6FA28AEF22416CA3008D209A /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6FCFC3F2223EBA0800ABD9FB /* AlphabetController.swift */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		6FA28AF022416CAE008D209A /* viewModels */ = {
+			isa = PBXGroup;
+			children = (
+				6FA28AF122416CF9008D209A /* AlphabetViewModel.swift */,
+			);
+			path = viewModels;
+			sourceTree = "<group>";
+		};
 		6FCFC3E7223EB86100ABD9FB /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,9 +214,10 @@
 		6FCFC3EB223EB92C00ABD9FB /* Alphabet */ = {
 			isa = PBXGroup;
 			children = (
+				6FA28AEF22416CA3008D209A /* controllers */,
 				6FECA50F22401A0100E944E7 /* models */,
 				6FECA50C2240139F00E944E7 /* repository */,
-				6FCFC3F2223EBA0800ABD9FB /* AlphabetController.swift */,
+				6FA28AF022416CAE008D209A /* viewModels */,
 			);
 			path = Alphabet;
 			sourceTree = "<group>";
@@ -269,7 +286,6 @@
 			isa = PBXGroup;
 			children = (
 				6FECA51822401D1400E944E7 /* BaseObject.swift */,
-				6FECA51A22401DE000E944E7 /* BaseRepository.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -580,6 +596,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRealm/RxRealm.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwifterSwift/SwifterSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -596,6 +613,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRealm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwifterSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -640,8 +658,8 @@
 			files = (
 				6FCFC3FA223EBAA600ABD9FB /* SettingsController.swift in Sources */,
 				6FCFC3E9223EB8EA00ABD9FB /* MainController.swift in Sources */,
+				6FA28AF222416CF9008D209A /* AlphabetViewModel.swift in Sources */,
 				6FECA51622401BA300E944E7 /* AlphabetRepository.swift in Sources */,
-				6FECA51B22401DE000E944E7 /* BaseRepository.swift in Sources */,
 				6FCFC3F3223EBA0800ABD9FB /* AlphabetController.swift in Sources */,
 				6FECA50E2240149900E944E7 /* DatabaseManager.swift in Sources */,
 				6FCFC401223EBF9B00ABD9FB /* UIColorExtension.swift in Sources */,

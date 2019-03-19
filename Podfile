@@ -15,6 +15,7 @@ target 'MorseCodeApp' do
   pod 'Crashlytics', '~> 3.12.0'
   pod 'SwiftLint'
   pod 'SwifterSwift/UIKit'
+  pod 'RxSwiftExt'
 
   # Pods for MorseCodeApp
 
