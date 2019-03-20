@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import RealmSwift
 
-class Alphabet: BaseObject {
-    @objc dynamic var countryCode: String?
-    let pairs = List<Pair>()
+struct Alphabet {
+    let countryCode: String
+    let pairs: [Pair]
 }

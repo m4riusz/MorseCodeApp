@@ -42,7 +42,7 @@ struct AlphabetViewModel: AlphabetViewModelProtocol {
     }
     
     func getAlphabetDriver() -> Driver<Alphabet> {
-        return self.alphabet.distinctUntilChanged().unwrap().asDriver(onErrorJustReturn: Alphabet())
+        return Observable<Alphabet>.empty().asDriver(onErrorJustReturn: Alphabet(countryCode: "", pairs: []))
     }
     
     func getErrorDriver() -> Driver<String> {

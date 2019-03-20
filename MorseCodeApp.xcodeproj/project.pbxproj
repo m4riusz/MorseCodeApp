@@ -14,6 +14,19 @@
 		6F66AAA1223C39EA0069FEE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F66AA9F223C39EA0069FEE4 /* LaunchScreen.storyboard */; };
 		6F66AAAC223C39EA0069FEE4 /* MorseCodeAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F66AAAB223C39EA0069FEE4 /* MorseCodeAppTests.swift */; };
 		6F66AAB7223C39EA0069FEE4 /* MorseCodeAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F66AAB6223C39EA0069FEE4 /* MorseCodeAppUITests.swift */; };
+		6F86CD402242B819009EF40E /* AlphabetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F86CD3F2242B819009EF40E /* AlphabetCell.swift */; };
+		6F86CD422242B8AD009EF40E /* UITableViewCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F86CD412242B8AD009EF40E /* UITableViewCellExtension.swift */; };
+		6F86CD442242B8FC009EF40E /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F86CD432242B8FC009EF40E /* BaseTableViewCell.swift */; };
+		6F86CD462242B974009EF40E /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F86CD452242B974009EF40E /* UITableViewExtension.swift */; };
+		6F86CD482242BC47009EF40E /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F86CD472242BC47009EF40E /* Spacing.swift */; };
+		6F86CD4A2242C022009EF40E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F86CD492242C022009EF40E /* BaseViewController.swift */; };
+		6F86CD4C2242C296009EF40E /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F86CD4B2242C296009EF40E /* BaseViewModel.swift */; };
+		6F86CD4F2242C35A009EF40E /* AlphabetUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F86CD4E2242C35A009EF40E /* AlphabetUseCase.swift */; };
+		6F86CD532242C5BE009EF40E /* RMAlphabet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F86CD522242C5BE009EF40E /* RMAlphabet.swift */; };
+		6F86CD562242C5FA009EF40E /* RMPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F86CD552242C5FA009EF40E /* RMPair.swift */; };
+		6F86CD582242C66A009EF40E /* DomainConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F86CD572242C66A009EF40E /* DomainConvertibleType.swift */; };
+		6F86CD5B2242C68E009EF40E /* RealmRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F86CD5A2242C68E009EF40E /* RealmRepresentable.swift */; };
+		6F86CD5E2242C7A4009EF40E /* ObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F86CD5D2242C7A4009EF40E /* ObjectExtension.swift */; };
 		6FA28AF222416CF9008D209A /* AlphabetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA28AF122416CF9008D209A /* AlphabetViewModel.swift */; };
 		6FC91EB8223C3F3E004E1451 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6FC91EB7223C3F3E004E1451 /* GoogleService-Info.plist */; };
 		6FCFC3E9223EB8EA00ABD9FB /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFC3E8223EB8EA00ABD9FB /* MainController.swift */; };
@@ -28,7 +41,6 @@
 		6FECA51122401A1A00E944E7 /* Alphabet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FECA51022401A1A00E944E7 /* Alphabet.swift */; };
 		6FECA51422401AE300E944E7 /* Pair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FECA51322401AE300E944E7 /* Pair.swift */; };
 		6FECA51622401BA300E944E7 /* AlphabetRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FECA51522401BA300E944E7 /* AlphabetRepository.swift */; };
-		6FECA51922401D1400E944E7 /* BaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FECA51822401D1400E944E7 /* BaseObject.swift */; };
 		6FECA51D2240217700E944E7 /* NSErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FECA51C2240217700E944E7 /* NSErrorExtension.swift */; };
 		71AE6685E4523E4C26E45E08 /* Pods_MorseCodeApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B11D4B85239F4494C75CAA /* Pods_MorseCodeApp.framework */; };
 /* End PBXBuildFile section */
@@ -65,6 +77,19 @@
 		6F66AAB6223C39EA0069FEE4 /* MorseCodeAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorseCodeAppUITests.swift; sourceTree = "<group>"; };
 		6F66AAB8223C39EB0069FEE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F836370223D986A003F4B41 /* MorseCodeApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MorseCodeApp.entitlements; sourceTree = "<group>"; };
+		6F86CD3F2242B819009EF40E /* AlphabetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphabetCell.swift; sourceTree = "<group>"; };
+		6F86CD412242B8AD009EF40E /* UITableViewCellExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtension.swift; sourceTree = "<group>"; };
+		6F86CD432242B8FC009EF40E /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		6F86CD452242B974009EF40E /* UITableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
+		6F86CD472242BC47009EF40E /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
+		6F86CD492242C022009EF40E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		6F86CD4B2242C296009EF40E /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		6F86CD4E2242C35A009EF40E /* AlphabetUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphabetUseCase.swift; sourceTree = "<group>"; };
+		6F86CD522242C5BE009EF40E /* RMAlphabet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMAlphabet.swift; sourceTree = "<group>"; };
+		6F86CD552242C5FA009EF40E /* RMPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMPair.swift; sourceTree = "<group>"; };
+		6F86CD572242C66A009EF40E /* DomainConvertibleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainConvertibleType.swift; sourceTree = "<group>"; };
+		6F86CD5A2242C68E009EF40E /* RealmRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepresentable.swift; sourceTree = "<group>"; };
+		6F86CD5D2242C7A4009EF40E /* ObjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectExtension.swift; sourceTree = "<group>"; };
 		6FA28AF122416CF9008D209A /* AlphabetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphabetViewModel.swift; sourceTree = "<group>"; };
 		6FC91EB7223C3F3E004E1451 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6FCFC3E8223EB8EA00ABD9FB /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
@@ -79,7 +104,6 @@
 		6FECA51022401A1A00E944E7 /* Alphabet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alphabet.swift; sourceTree = "<group>"; };
 		6FECA51322401AE300E944E7 /* Pair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pair.swift; sourceTree = "<group>"; };
 		6FECA51522401BA300E944E7 /* AlphabetRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphabetRepository.swift; sourceTree = "<group>"; };
-		6FECA51822401D1400E944E7 /* BaseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseObject.swift; sourceTree = "<group>"; };
 		6FECA51C2240217700E944E7 /* NSErrorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSErrorExtension.swift; sourceTree = "<group>"; };
 		702B351FC567503A52FF3441 /* Pods-MorseCodeAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorseCodeAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MorseCodeAppUITests/Pods-MorseCodeAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		725373BCE135DCD1FE35647C /* Pods_MorseCodeAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MorseCodeAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,6 +167,7 @@
 		6F66AA95223C39E90069FEE4 /* MorseCodeApp */ = {
 			isa = PBXGroup;
 			children = (
+				6F86CD502242C59F009EF40E /* RealmPlatform */,
 				6FCFC3EB223EB92C00ABD9FB /* Alphabet */,
 				6FCFC3EA223EB92300ABD9FB /* About */,
 				6FECA51722401CF500E944E7 /* Base */,
@@ -177,6 +202,58 @@
 				6F66AAB8223C39EB0069FEE4 /* Info.plist */,
 			);
 			path = MorseCodeAppUITests;
+			sourceTree = "<group>";
+		};
+		6F86CD3E2242B7F3009EF40E /* views */ = {
+			isa = PBXGroup;
+			children = (
+				6F86CD3F2242B819009EF40E /* AlphabetCell.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		6F86CD4D2242C311009EF40E /* useCase */ = {
+			isa = PBXGroup;
+			children = (
+				6F86CD4E2242C35A009EF40E /* AlphabetUseCase.swift */,
+			);
+			path = useCase;
+			sourceTree = "<group>";
+		};
+		6F86CD502242C59F009EF40E /* RealmPlatform */ = {
+			isa = PBXGroup;
+			children = (
+				6F86CD5C2242C796009EF40E /* utils */,
+				6F86CD542242C5D5009EF40E /* base */,
+				6F86CD512242C5AE009EF40E /* model */,
+			);
+			path = RealmPlatform;
+			sourceTree = "<group>";
+		};
+		6F86CD512242C5AE009EF40E /* model */ = {
+			isa = PBXGroup;
+			children = (
+				6F86CD522242C5BE009EF40E /* RMAlphabet.swift */,
+				6F86CD552242C5FA009EF40E /* RMPair.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		6F86CD542242C5D5009EF40E /* base */ = {
+			isa = PBXGroup;
+			children = (
+				6F86CD572242C66A009EF40E /* DomainConvertibleType.swift */,
+				6F86CD5A2242C68E009EF40E /* RealmRepresentable.swift */,
+			);
+			path = base;
+			sourceTree = "<group>";
+		};
+		6F86CD5C2242C796009EF40E /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				6F86CD5D2242C7A4009EF40E /* ObjectExtension.swift */,
+			);
+			path = utils;
 			sourceTree = "<group>";
 		};
 		6FA28AEF22416CA3008D209A /* controllers */ = {
@@ -214,9 +291,11 @@
 		6FCFC3EB223EB92C00ABD9FB /* Alphabet */ = {
 			isa = PBXGroup;
 			children = (
+				6F86CD4D2242C311009EF40E /* useCase */,
 				6FA28AEF22416CA3008D209A /* controllers */,
 				6FECA50F22401A0100E944E7 /* models */,
 				6FECA50C2240139F00E944E7 /* repository */,
+				6F86CD3E2242B7F3009EF40E /* views */,
 				6FA28AF022416CAE008D209A /* viewModels */,
 			);
 			path = Alphabet;
@@ -251,6 +330,7 @@
 			children = (
 				6FCFC3FF223EBF7D00ABD9FB /* extensions */,
 				6FECA50D2240149900E944E7 /* DatabaseManager.swift */,
+				6F86CD472242BC47009EF40E /* Spacing.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -261,6 +341,8 @@
 				6FCFC400223EBF9B00ABD9FB /* UIColorExtension.swift */,
 				6FCFC402223EC4CF00ABD9FB /* UIImageExtension.swift */,
 				6FECA51C2240217700E944E7 /* NSErrorExtension.swift */,
+				6F86CD412242B8AD009EF40E /* UITableViewCellExtension.swift */,
+				6F86CD452242B974009EF40E /* UITableViewExtension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -285,7 +367,9 @@
 		6FECA51722401CF500E944E7 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				6FECA51822401D1400E944E7 /* BaseObject.swift */,
+				6F86CD432242B8FC009EF40E /* BaseTableViewCell.swift */,
+				6F86CD492242C022009EF40E /* BaseViewController.swift */,
+				6F86CD4B2242C296009EF40E /* BaseViewModel.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -659,19 +743,31 @@
 				6FCFC3FA223EBAA600ABD9FB /* SettingsController.swift in Sources */,
 				6FCFC3E9223EB8EA00ABD9FB /* MainController.swift in Sources */,
 				6FA28AF222416CF9008D209A /* AlphabetViewModel.swift in Sources */,
+				6F86CD442242B8FC009EF40E /* BaseTableViewCell.swift in Sources */,
+				6F86CD422242B8AD009EF40E /* UITableViewCellExtension.swift in Sources */,
 				6FECA51622401BA300E944E7 /* AlphabetRepository.swift in Sources */,
 				6FCFC3F3223EBA0800ABD9FB /* AlphabetController.swift in Sources */,
 				6FECA50E2240149900E944E7 /* DatabaseManager.swift in Sources */,
 				6FCFC401223EBF9B00ABD9FB /* UIColorExtension.swift in Sources */,
 				6FECA51422401AE300E944E7 /* Pair.swift in Sources */,
+				6F86CD562242C5FA009EF40E /* RMPair.swift in Sources */,
+				6F86CD4F2242C35A009EF40E /* AlphabetUseCase.swift in Sources */,
+				6F86CD532242C5BE009EF40E /* RMAlphabet.swift in Sources */,
 				6FCFC3F7223EBA5B00ABD9FB /* TranslateController.swift in Sources */,
+				6F86CD462242B974009EF40E /* UITableViewExtension.swift in Sources */,
 				6FECA51D2240217700E944E7 /* NSErrorExtension.swift in Sources */,
+				6F86CD5B2242C68E009EF40E /* RealmRepresentable.swift in Sources */,
+				6F86CD4A2242C022009EF40E /* BaseViewController.swift in Sources */,
+				6F86CD4C2242C296009EF40E /* BaseViewModel.swift in Sources */,
 				6FCFC403223EC4CF00ABD9FB /* UIImageExtension.swift in Sources */,
+				6F86CD482242BC47009EF40E /* Spacing.swift in Sources */,
 				6F66AA97223C39E90069FEE4 /* AppDelegate.swift in Sources */,
 				6FCFC3FC223EBC2700ABD9FB /* Globals.swift in Sources */,
-				6FECA51922401D1400E944E7 /* BaseObject.swift in Sources */,
+				6F86CD582242C66A009EF40E /* DomainConvertibleType.swift in Sources */,
+				6F86CD5E2242C7A4009EF40E /* ObjectExtension.swift in Sources */,
 				6FECA51122401A1A00E944E7 /* Alphabet.swift in Sources */,
 				6FCFC3F5223EBA3300ABD9FB /* AboutController.swift in Sources */,
+				6F86CD402242B819009EF40E /* AlphabetCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
