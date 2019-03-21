@@ -9,6 +9,7 @@
 import Foundation
 
 struct Pair {
+    let id: String
     let key: String
     let value: String
 }

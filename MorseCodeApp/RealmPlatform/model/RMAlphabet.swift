@@ -17,16 +17,17 @@ final class RMAlphabet: Object {
 
 extension RMAlphabet: DomainConvertibleType {
     func asDomain() -> Alphabet {
-        return Alphabet(countryCode: self.countryCode ?? "",
+        return Alphabet(id: self.id,
+                        countryCode: self.countryCode ?? "",
                         pairs: self.pairs.map { $0.asDomain() })
     }
 }
 
-extension RMAlphabet: RealmRepresentable {
+extension Alphabet: RealmRepresentable {
     func asRealm() -> RMAlphabet {
         return RMAlphabet.build { object in
             object.id = self.id
-            object.countryCode = self.countryCode
+            object.pairs.append(objectsIn: self.pairs.map { $0.asRealm() })
         }
     }
 }

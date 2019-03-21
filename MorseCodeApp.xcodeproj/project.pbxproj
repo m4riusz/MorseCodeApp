@@ -21,7 +21,6 @@
 		6F86CD482242BC47009EF40E /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F86CD472242BC47009EF40E /* Spacing.swift */; };
 		6F86CD4A2242C022009EF40E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F86CD492242C022009EF40E /* BaseViewController.swift */; };
 		6F86CD4C2242C296009EF40E /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F86CD4B2242C296009EF40E /* BaseViewModel.swift */; };
-		6F86CD4F2242C35A009EF40E /* AlphabetUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F86CD4E2242C35A009EF40E /* AlphabetUseCase.swift */; };
 		6F86CD532242C5BE009EF40E /* RMAlphabet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F86CD522242C5BE009EF40E /* RMAlphabet.swift */; };
 		6F86CD562242C5FA009EF40E /* RMPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F86CD552242C5FA009EF40E /* RMPair.swift */; };
 		6F86CD582242C66A009EF40E /* DomainConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F86CD572242C66A009EF40E /* DomainConvertibleType.swift */; };
@@ -84,7 +83,6 @@
 		6F86CD472242BC47009EF40E /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 		6F86CD492242C022009EF40E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		6F86CD4B2242C296009EF40E /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
-		6F86CD4E2242C35A009EF40E /* AlphabetUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphabetUseCase.swift; sourceTree = "<group>"; };
 		6F86CD522242C5BE009EF40E /* RMAlphabet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMAlphabet.swift; sourceTree = "<group>"; };
 		6F86CD552242C5FA009EF40E /* RMPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMPair.swift; sourceTree = "<group>"; };
 		6F86CD572242C66A009EF40E /* DomainConvertibleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainConvertibleType.swift; sourceTree = "<group>"; };
@@ -212,14 +210,6 @@
 			path = views;
 			sourceTree = "<group>";
 		};
-		6F86CD4D2242C311009EF40E /* useCase */ = {
-			isa = PBXGroup;
-			children = (
-				6F86CD4E2242C35A009EF40E /* AlphabetUseCase.swift */,
-			);
-			path = useCase;
-			sourceTree = "<group>";
-		};
 		6F86CD502242C59F009EF40E /* RealmPlatform */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,7 +281,6 @@
 		6FCFC3EB223EB92C00ABD9FB /* Alphabet */ = {
 			isa = PBXGroup;
 			children = (
-				6F86CD4D2242C311009EF40E /* useCase */,
 				6FA28AEF22416CA3008D209A /* controllers */,
 				6FECA50F22401A0100E944E7 /* models */,
 				6FECA50C2240139F00E944E7 /* repository */,
@@ -751,7 +740,6 @@
 				6FCFC401223EBF9B00ABD9FB /* UIColorExtension.swift in Sources */,
 				6FECA51422401AE300E944E7 /* Pair.swift in Sources */,
 				6F86CD562242C5FA009EF40E /* RMPair.swift in Sources */,
-				6F86CD4F2242C35A009EF40E /* AlphabetUseCase.swift in Sources */,
 				6F86CD532242C5BE009EF40E /* RMAlphabet.swift in Sources */,
 				6FCFC3F7223EBA5B00ABD9FB /* TranslateController.swift in Sources */,
 				6F86CD462242B974009EF40E /* UITableViewExtension.swift in Sources */,

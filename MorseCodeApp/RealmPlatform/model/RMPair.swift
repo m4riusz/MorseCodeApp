@@ -23,12 +23,13 @@ final class RMPair: Object {
 
 extension RMPair: DomainConvertibleType {
     func asDomain() -> Pair {
-        return Pair(key: self.key!,
+        return Pair(id: self.id,
+                    key: self.key!,
                     value: self.value!)
     }
 }
 
-extension RMPair: RealmRepresentable {
+extension Pair: RealmRepresentable {
     func asRealm() -> RMPair {
         return RMPair.build { object in
             object.id = self.id

@@ -9,6 +9,7 @@
 import Foundation
 
 struct Alphabet {
+    let id: String
     let countryCode: String
     let pairs: [Pair]
 }

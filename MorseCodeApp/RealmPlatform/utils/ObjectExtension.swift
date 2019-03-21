@@ -9,6 +9,7 @@
 import Foundation
 import RealmSwift
 import RxSwift
+import RxRealm
 
 extension Object {
     static func build<O: Object>(_ builder: (O) -> () ) -> O {
@@ -18,3 +19,37 @@ extension Object {
     }
 }
 
+extension Reactive where Base: Realm {
+    func save<R: RealmRepresentable>(entity: R, update: Bool = true) -> Observable<Void> where R.RealmType: Object  {
+        return Observable.create { observer in
+            do {
+                try self.base.write {
+                    self.base.add(entity.asRealm(), update: update)
+                }
+                observer.onNext(())
+                observer.onCompleted()
+            } catch {
+                observer.onError(error)
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func delete<R: RealmRepresentable>(entity: R) -> Observable<Void> where R.RealmType: Object {
+        return Observable.create { observer in
+            do {
+                guard let object = self.base.object(ofType: R.RealmType.self, forPrimaryKey: entity.id) else { fatalError() }
+                
+                try self.base.write {
+                    self.base.delete(object)
+                }
+                
+                observer.onNext(())
+                observer.onCompleted()
+            } catch {
+                observer.onError(error)
+            }
+            return Disposables.create()
+        }
+    }
+}

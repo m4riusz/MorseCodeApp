@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import RealmSwift
 
 class AlphabetController: BaseViewController {
     
     fileprivate var tableView: UITableView?
-    fileprivate let viewModel: AlphabetViewModelProtocol = AlphabetViewModel(alphabetRepository: AlphabetRepository())
+    fileprivate let viewModel: AlphabetViewModelProtocol = AlphabetViewModel(alphabetRepository: AlphabetRepository(configuration: Realm.Configuration.defaultConfiguration ))
     
     override func initialize() {
         self.initTableView()
