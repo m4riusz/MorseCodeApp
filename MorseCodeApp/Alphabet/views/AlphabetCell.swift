@@ -19,9 +19,15 @@ class AlphabetCell: BaseCollectionViewCell {
         }
     }
     
+    fileprivate struct Sizes {
+        static let cornerRadius: CGFloat = 10
+    }
+    
     override func initialize() {
+        self.cornerRadius = Sizes.cornerRadius
         self.initContainerView()
         self.initNameLabel()
+        self.updateForSelectedChange()
     }
     
     fileprivate func initContainerView() {
@@ -35,7 +41,7 @@ class AlphabetCell: BaseCollectionViewCell {
     
     fileprivate func initNameLabel() {
         self.nameLabel = UILabel()
-        self.nameLabel?.textColor = .black
+        self.nameLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         self.containerView?.addSubview(self.nameLabel!)
         
         self.nameLabel?.snp.makeConstraints({ [unowned self] make in
@@ -47,7 +53,8 @@ class AlphabetCell: BaseCollectionViewCell {
     }
     
     fileprivate func updateForSelectedChange() {
-        sel
+        self.nameLabel?.textColor = .global(self.isSelected ? .white : .white)
+        self.containerView?.backgroundColor = .global(self.isSelected ? .turquoiseDark : .turquoiseLight)
     }
     
     fileprivate func updateForData(data: Alphabet?) {

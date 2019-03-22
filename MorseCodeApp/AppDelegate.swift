@@ -17,11 +17,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         DatabaseManager.shared.configure(schemaVersion: AppDefaults.schemeVersion)
+        self.setNavigationBarStyle()
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = MainController()
         self.window?.makeKeyAndVisible()
         return true
+    }
+    
+    fileprivate func setNavigationBarStyle() {
+        UINavigationBar.appearance().barTintColor = .global(.turquoise)
+        UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.global(.white)]
+        UINavigationBar.appearance().isTranslucent = false
     }
 }
 

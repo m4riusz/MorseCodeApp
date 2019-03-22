@@ -25,6 +25,7 @@ class AlphabetController: BaseViewController {
     }
     
     override func initialize() {
+        self.title = "Alphabet"
         self.initAlphabetCollectionView()
         self.initTableView()
         self.initBindings()
@@ -36,8 +37,10 @@ class AlphabetController: BaseViewController {
         flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
         self.alphabetCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        self.alphabetCollectionView?.backgroundColor = .white
+        self.alphabetCollectionView?.backgroundColor = .clear
         self.alphabetCollectionView?.register(AlphabetCell.self)
+        self.alphabetCollectionView?.borderColor = .global(.grayLight)
+        self.alphabetCollectionView?.borderWidth = 1
         self.view.addSubview(self.alphabetCollectionView!)
         
         self.alphabetCollectionView?.snp.makeConstraints({ [unowned self] make in
@@ -50,7 +53,7 @@ class AlphabetController: BaseViewController {
     
     fileprivate func initTableView() {
         self.pairTableView = UITableView()
-        self.pairTableView?.backgroundColor = .white
+        self.pairTableView?.backgroundColor = .clear
         self.pairTableView?.register(PairCell.self)
         self.view.addSubview(self.pairTableView!)
         

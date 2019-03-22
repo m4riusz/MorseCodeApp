@@ -14,9 +14,12 @@ struct AppDefaults {
 
 enum Colors: String {
     case turquoise = "color_turquoise"
+    case turquoiseLight = "color_turquoise_light"
+    case turquoiseDark = "color_turquoise_dark"
     case white = "color_white"
-    case lightGray = "color_white_gray"
+    case black = "color_black"
     case gray = "color_gray"
+    case grayLight = "color_light_gray"
 }
 
 enum Images: String {
