@@ -7,29 +7,77 @@
 //
 
 import UIKit
+import RxDataSources
 import RealmSwift
+import RxSwift
+import RxCocoa
+import RxSwiftExt
 
 class AlphabetController: BaseViewController {
     
-    fileprivate var tableView: UITableView?
-    fileprivate let viewModel: AlphabetViewModelProtocol = AlphabetViewModel(alphabetRepository: AlphabetRepository(configuration: Realm.Configuration.defaultConfiguration ))
+    fileprivate var alphabetCollectionView: UICollectionView?
+    fileprivate var pairTableView: UITableView?
+    fileprivate let viewModel = AlphabetViewModel(alphabetRepository: AlphabetRepository(configuration: Realm.Configuration.defaultConfiguration ))
+    fileprivate let bag = DisposeBag()
+    
+    fileprivate struct Sizes {
+        static let alphabetContainerViewHeight: CGFloat = 60
+    }
     
     override func initialize() {
+        self.initAlphabetCollectionView()
         self.initTableView()
         self.initBindings()
     }
     
-    fileprivate func initTableView() {
-        self.tableView = UITableView()
-        self.tableView?.register(AlphabetCell.self)
-        self.view.addSubview(self.tableView!)
+    fileprivate func initAlphabetCollectionView() {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+        self.alphabetCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        self.alphabetCollectionView?.backgroundColor = .white
+        self.alphabetCollectionView?.register(AlphabetCell.self)
+        self.view.addSubview(self.alphabetCollectionView!)
         
-        self.tableView?.snp.makeConstraints({ [unowned self] make in
-            make.edges.equalToSuperview()
+        self.alphabetCollectionView?.snp.makeConstraints({ [unowned self] make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left)
+            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right)
+            make.height.equalTo(Sizes.alphabetContainerViewHeight)
+        })
+    }
+    
+    fileprivate func initTableView() {
+        self.pairTableView = UITableView()
+        self.pairTableView?.backgroundColor = .white
+        self.pairTableView?.register(PairCell.self)
+        self.view.addSubview(self.pairTableView!)
+        
+        self.pairTableView?.snp.makeConstraints({ [unowned self] make in
+            make.top.equalTo(self.alphabetCollectionView!.snp.bottom)
+            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left)
+            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
         })
     }
     
     fileprivate func initBindings() {
+        let viewWillAppearAction = self.rx.sentMessage(#selector(viewWillAppear(_:)))
+            .flatMapLatest { _ -> Observable<Void> in return .just(Void() )}
+            .asDriver(onErrorJustReturn: Void())
         
+        let itemSelectionAction = self.alphabetCollectionView!.rx.modelSelected(Alphabet.self).asDriver()
+        
+        let output = self.viewModel.transform(input: AlphabetViewModel.Input(trigger: viewWillAppearAction,
+                                                                             selection: itemSelectionAction))
+        
+        output.alphabets.drive(self.alphabetCollectionView!.rx.items(cellType: AlphabetCell.self)) { _, item, cell in
+            cell.alphabet = item
+        }.disposed(by: self.bag)
+        
+        output.pairs.drive(self.pairTableView!.rx.items(cellType: PairCell.self)) { _, item, cell in
+            cell.pair = item
+        }.disposed(by: self.bag)
     }
 }

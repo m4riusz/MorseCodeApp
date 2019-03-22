@@ -16,6 +16,7 @@ target 'MorseCodeApp' do
   pod 'SwiftLint'
   pod 'SwifterSwift/UIKit'
   pod 'RxSwiftExt'
+  pod 'RxDataSources'
 
   # Pods for MorseCodeApp
 

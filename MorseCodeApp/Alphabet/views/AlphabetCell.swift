@@ -2,31 +2,26 @@
 //  AlphabetCell.swift
 //  MorseCodeApp
 //
-//  Created by Mariusz Sut on 20/03/2019.
+//  Created by Mariusz Sut on 22/03/2019.
 //  Copyright © 2019 Mariusz Sut. All rights reserved.
 //
 
 import UIKit
-import SnapKit
 
-class AlphabetCell: BaseTableViewCell {
+class AlphabetCell: BaseCollectionViewCell {
     
+    override var isSelected: Bool { didSet { self.updateForSelectedChange() }}
     fileprivate var containerView: UIView?
-    fileprivate var signLabelBackground: UIView?
-    fileprivate var signLabel: UILabel?
-    fileprivate var codeLabel: UILabel?
-    var pair: Pair? {
+    fileprivate var nameLabel: UILabel?
+    var alphabet: Alphabet? {
         willSet {
             self.updateForData(data: newValue)
         }
     }
     
     override func initialize() {
-        self.addShadow()
         self.initContainerView()
-        self.initSingLabelBackground()
-        self.initSignLabel()
-        self.initCodeLabel()
+        self.initNameLabel()
     }
     
     fileprivate func initContainerView() {
@@ -34,6 +29,16 @@ class AlphabetCell: BaseTableViewCell {
         self.addSubview(self.containerView!)
         
         self.containerView?.snp.makeConstraints({ [unowned self] make in
+            make.edges.equalToSuperview()
+        })
+    }
+    
+    fileprivate func initNameLabel() {
+        self.nameLabel = UILabel()
+        self.nameLabel?.textColor = .black
+        self.containerView?.addSubview(self.nameLabel!)
+        
+        self.nameLabel?.snp.makeConstraints({ [unowned self] make in
             make.top.equalToSuperview().offset(Spacing.normal)
             make.left.equalToSuperview().offset(Spacing.normal)
             make.right.equalToSuperview().offset(-Spacing.normal)
@@ -41,43 +46,11 @@ class AlphabetCell: BaseTableViewCell {
         })
     }
     
-    fileprivate func initSingLabelBackground() {
-        self.signLabelBackground = UIView()
-        self.signLabelBackground?.backgroundColor = .global(.turquoise)
-        self.containerView?.addSubview(self.signLabelBackground!)
-        
-        self.signLabelBackground?.snp.makeConstraints({ [unowned self] make in
-            make.top.equalToSuperview()
-            make.left.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.width.equalTo(self.signLabelBackground!.snp.height)
-        })
+    fileprivate func updateForSelectedChange() {
+        sel
     }
     
-    fileprivate func initSignLabel() {
-        self.signLabel = UILabel()
-        self.signLabelBackground?.addSubview(self.signLabel!)
-        
-        self.signLabel?.snp.makeConstraints({ [unowned self] make in
-            make.edges.equalToSuperview()
-        })
-    }
-    
-    fileprivate func initCodeLabel() {
-        self.codeLabel = UILabel()
-        self.containerView?.addSubview(self.codeLabel!)
-        
-        self.codeLabel?.snp.makeConstraints({ [unowned self] make in
-            make.top.equalToSuperview()
-            make.left.equalTo(self.signLabelBackground!.snp.right).offset(Spacing.normal)
-            make.right.equalToSuperview()
-            make.bottom.equalToSuperview()
-        })
-    }
-    
-    fileprivate func updateForData(data: Pair?) {
-        self.signLabel?.text = data?.key
-        self.codeLabel?.text = data?.value
+    fileprivate func updateForData(data: Alphabet?) {
+        self.nameLabel?.text = data?.countryCode
     }
 }
-

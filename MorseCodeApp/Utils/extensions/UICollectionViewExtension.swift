@@ -1,8 +1,8 @@
 //
-//  UITableViewExtension.swift
+//  UICollectionViewExtension.swift
 //  MorseCodeApp
 //
-//  Created by Mariusz Sut on 20/03/2019.
+//  Created by Mariusz Sut on 22/03/2019.
 //  Copyright © 2019 Mariusz Sut. All rights reserved.
 //
 
@@ -10,15 +10,15 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-extension UITableView {
-    func register(_ cell: UITableViewCell.Type) {
-        self.register(cell, forCellReuseIdentifier: cell.reusableIdentifier())
+extension UICollectionView {
+    func register(_ cell: UICollectionViewCell.Type) {
+        self.register(cell, forCellWithReuseIdentifier: cell.reusableIdentifier())
     }
 }
 
-extension Reactive where Base: UITableView {
+extension Reactive where Base: UICollectionView {
     
-    public func items<S: Sequence, Cell: UITableViewCell, O : ObservableType>
+    public func items<S: Sequence, Cell: UICollectionViewCell, O : ObservableType>
         (cellType: Cell.Type = Cell.self)
         -> (_ source: O)
         -> (_ configureCell: @escaping (Int, S.Iterator.Element, Cell) -> Void)
