@@ -8,7 +8,17 @@
 
 import UIKit
 
-class BaseViewController: UIViewController {
+class BaseViewController<T: ViewModelType>: UIViewController {
+    internal let viewModel: T!
+    
+    init(viewModel: T) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

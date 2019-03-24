@@ -20,7 +20,7 @@ class MainController: UITabBarController {
     }
     
     fileprivate func initAlphabetController() -> UINavigationController {
-        let navigationController = UINavigationController(rootViewController: AlphabetController())
+        let navigationController = UINavigationController(rootViewController: DependencyContainer.resolve(AlphabetController.self))
         navigationController.tabBarItem = UITabBarItem(title: "Alphabet",
                                                        image: .global(.alphabet),
                                                        selectedImage: .global(.alphabet))
@@ -28,7 +28,7 @@ class MainController: UITabBarController {
     }
     
     fileprivate func initTranslateController() -> UINavigationController {
-        let navigationController = UINavigationController(rootViewController: TranslateController())
+        let navigationController = UINavigationController(rootViewController: DependencyContainer.resolve(TranslateController.self))
         navigationController.tabBarItem = UITabBarItem(title: "Translate",
                                                        image: .global(.translate),
                                                        selectedImage: .global(.translate))
@@ -36,7 +36,7 @@ class MainController: UITabBarController {
     }
     
     fileprivate func initSettingsController() -> UINavigationController {
-        let navigationController = UINavigationController(rootViewController: SettingsController())
+        let navigationController = UINavigationController(rootViewController: DependencyContainer.resolve(SettingsController.self))
         navigationController.tabBarItem = UITabBarItem(title: "Settings",
                                                        image: .global(.settings),
                                                        selectedImage: .global(.settings))
@@ -44,7 +44,7 @@ class MainController: UITabBarController {
     }
     
     fileprivate func initAboutController() -> UINavigationController {
-        let navigationController = UINavigationController(rootViewController: TranslateController())
+        let navigationController = UINavigationController(rootViewController: DependencyContainer.resolve(AboutController.self))
         navigationController.tabBarItem = UITabBarItem(title: "About",
                                                        image: .global(.info),
                                                        selectedImage: .global(.info))

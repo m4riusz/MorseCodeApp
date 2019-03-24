@@ -31,6 +31,7 @@
 		6F94F2AC224582360094ACCE /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F94F2AB224582360094ACCE /* BaseCollectionViewCell.swift */; };
 		6F94F2AE224583030094ACCE /* UICollectionViewCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F94F2AD224583030094ACCE /* UICollectionViewCellExtension.swift */; };
 		6FA28AF222416CF9008D209A /* AlphabetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA28AF122416CF9008D209A /* AlphabetViewModel.swift */; };
+		6FBC6E222247CBAD00DD3326 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBC6E212247CBAD00DD3326 /* DependencyContainer.swift */; };
 		6FC91EB8223C3F3E004E1451 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6FC91EB7223C3F3E004E1451 /* GoogleService-Info.plist */; };
 		6FCFC3E9223EB8EA00ABD9FB /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFC3E8223EB8EA00ABD9FB /* MainController.swift */; };
 		6FCFC3F3223EBA0800ABD9FB /* AlphabetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFC3F2223EBA0800ABD9FB /* AlphabetController.swift */; };
@@ -40,7 +41,6 @@
 		6FCFC3FC223EBC2700ABD9FB /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFC3FB223EBC2700ABD9FB /* Globals.swift */; };
 		6FCFC401223EBF9B00ABD9FB /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFC400223EBF9B00ABD9FB /* UIColorExtension.swift */; };
 		6FCFC403223EC4CF00ABD9FB /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFC402223EC4CF00ABD9FB /* UIImageExtension.swift */; };
-		6FECA50E2240149900E944E7 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FECA50D2240149900E944E7 /* DatabaseManager.swift */; };
 		6FECA51122401A1A00E944E7 /* Alphabet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FECA51022401A1A00E944E7 /* Alphabet.swift */; };
 		6FECA51422401AE300E944E7 /* Pair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FECA51322401AE300E944E7 /* Pair.swift */; };
 		6FECA51622401BA300E944E7 /* AlphabetRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FECA51522401BA300E944E7 /* AlphabetRepository.swift */; };
@@ -97,6 +97,7 @@
 		6F94F2AB224582360094ACCE /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		6F94F2AD224583030094ACCE /* UICollectionViewCellExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewCellExtension.swift; sourceTree = "<group>"; };
 		6FA28AF122416CF9008D209A /* AlphabetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphabetViewModel.swift; sourceTree = "<group>"; };
+		6FBC6E212247CBAD00DD3326 /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
 		6FC91EB7223C3F3E004E1451 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6FCFC3E8223EB8EA00ABD9FB /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		6FCFC3F2223EBA0800ABD9FB /* AlphabetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphabetController.swift; sourceTree = "<group>"; };
@@ -106,7 +107,6 @@
 		6FCFC3FB223EBC2700ABD9FB /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		6FCFC400223EBF9B00ABD9FB /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		6FCFC402223EC4CF00ABD9FB /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
-		6FECA50D2240149900E944E7 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		6FECA51022401A1A00E944E7 /* Alphabet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alphabet.swift; sourceTree = "<group>"; };
 		6FECA51322401AE300E944E7 /* Pair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pair.swift; sourceTree = "<group>"; };
 		6FECA51522401BA300E944E7 /* AlphabetRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphabetRepository.swift; sourceTree = "<group>"; };
@@ -327,7 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				6FCFC3FF223EBF7D00ABD9FB /* extensions */,
-				6FECA50D2240149900E944E7 /* DatabaseManager.swift */,
+				6FBC6E212247CBAD00DD3326 /* DependencyContainer.swift */,
 				6F86CD472242BC47009EF40E /* Spacing.swift */,
 			);
 			path = Utils;
@@ -674,6 +674,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MorseCodeApp/Pods-MorseCodeApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
@@ -686,6 +687,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwifterSwift/SwifterSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -693,6 +695,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
@@ -705,6 +708,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwifterSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -753,7 +757,6 @@
 				6F94F2AC224582360094ACCE /* BaseCollectionViewCell.swift in Sources */,
 				6FECA51622401BA300E944E7 /* AlphabetRepository.swift in Sources */,
 				6FCFC3F3223EBA0800ABD9FB /* AlphabetController.swift in Sources */,
-				6FECA50E2240149900E944E7 /* DatabaseManager.swift in Sources */,
 				6FCFC401223EBF9B00ABD9FB /* UIColorExtension.swift in Sources */,
 				6FECA51422401AE300E944E7 /* Pair.swift in Sources */,
 				6F86CD562242C5FA009EF40E /* RMPair.swift in Sources */,
@@ -764,6 +767,7 @@
 				6F86CD5B2242C68E009EF40E /* RealmRepresentable.swift in Sources */,
 				6F86CD4A2242C022009EF40E /* BaseViewController.swift in Sources */,
 				6F86CD4C2242C296009EF40E /* BaseViewModel.swift in Sources */,
+				6FBC6E222247CBAD00DD3326 /* DependencyContainer.swift in Sources */,
 				6FCFC403223EC4CF00ABD9FB /* UIImageExtension.swift in Sources */,
 				6F86CD482242BC47009EF40E /* Spacing.swift in Sources */,
 				6F94F2AE224583030094ACCE /* UICollectionViewCellExtension.swift in Sources */,

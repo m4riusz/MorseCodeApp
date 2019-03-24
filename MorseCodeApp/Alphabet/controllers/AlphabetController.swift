@@ -13,11 +13,10 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 
-class AlphabetController: BaseViewController {
+class AlphabetController: BaseViewController<AlphabetViewModel> {
     
     fileprivate var alphabetCollectionView: UICollectionView?
     fileprivate var pairTableView: UITableView?
-    fileprivate let viewModel = AlphabetViewModel(alphabetRepository: AlphabetRepository(configuration: Realm.Configuration.defaultConfiguration ))
     fileprivate let bag = DisposeBag()
     
     fileprivate struct Sizes {
