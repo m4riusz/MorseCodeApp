@@ -21,7 +21,7 @@ class MainController: UITabBarController {
     
     fileprivate func initAlphabetController() -> UINavigationController {
         let navigationController = UINavigationController(rootViewController: DependencyContainer.resolve(AlphabetController.self))
-        navigationController.tabBarItem = UITabBarItem(title: "Alphabet",
+        navigationController.tabBarItem = UITabBarItem(title: "AlphabetTitle".localized(),
                                                        image: .global(.alphabet),
                                                        selectedImage: .global(.alphabet))
         return navigationController
@@ -29,7 +29,7 @@ class MainController: UITabBarController {
     
     fileprivate func initTranslateController() -> UINavigationController {
         let navigationController = UINavigationController(rootViewController: DependencyContainer.resolve(TranslateController.self))
-        navigationController.tabBarItem = UITabBarItem(title: "Translate",
+        navigationController.tabBarItem = UITabBarItem(title: "TranslateTitle".localized(),
                                                        image: .global(.translate),
                                                        selectedImage: .global(.translate))
         return navigationController
@@ -37,7 +37,7 @@ class MainController: UITabBarController {
     
     fileprivate func initSettingsController() -> UINavigationController {
         let navigationController = UINavigationController(rootViewController: DependencyContainer.resolve(SettingsController.self))
-        navigationController.tabBarItem = UITabBarItem(title: "Settings",
+        navigationController.tabBarItem = UITabBarItem(title: "SettingsTitle".localized(),
                                                        image: .global(.settings),
                                                        selectedImage: .global(.settings))
         return navigationController
@@ -45,7 +45,7 @@ class MainController: UITabBarController {
     
     fileprivate func initAboutController() -> UINavigationController {
         let navigationController = UINavigationController(rootViewController: DependencyContainer.resolve(AboutController.self))
-        navigationController.tabBarItem = UITabBarItem(title: "About",
+        navigationController.tabBarItem = UITabBarItem(title: "AboutTitle".localized(),
                                                        image: .global(.info),
                                                        selectedImage: .global(.info))
         return navigationController

@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  MorseCodeApp
+
+  Created by Mariusz Sut on 24/03/2019.
+  Copyright © 2019 Mariusz Sut. All rights reserved.
+*/
+
+/* General */
+"AlphabetTitle" = "Alfabet";
+"TranslateTitle" = "Tłumacz";
+"SettingsTitle" = "Opcje";
+"AboutTitle" = "Informacje";

@@ -24,7 +24,7 @@ class AlphabetController: BaseViewController<AlphabetViewModel> {
     }
     
     override func initialize() {
-        self.title = "Alphabet"
+        self.title = "AlphabetTitle".localized()
         self.initAlphabetCollectionView()
         self.initTableView()
         self.initBindings()
