@@ -8,3 +8,4 @@ MorseCodeApp.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
 MorseCodeApp.xcworkspace/xcuserdata/*/xcdebugger/*
 fastlane/README.md
 fastlane/report.xml
+Gemfile.lock
