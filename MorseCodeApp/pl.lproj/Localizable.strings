@@ -11,3 +11,7 @@
 "TranslateTitle" = "Tłumacz";
 "SettingsTitle" = "Opcje";
 "AboutTitle" = "Informacje";
+
+/* Alphabet */
+"AlphabetNoAlphabetsEmptyView" = "Brak danych!";
+"AlphabetNoAlphabetSelected" = "Nie wybrano alfabetu!";

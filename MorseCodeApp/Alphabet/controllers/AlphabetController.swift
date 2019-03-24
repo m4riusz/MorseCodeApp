@@ -40,6 +40,7 @@ class AlphabetController: BaseViewController<AlphabetViewModel> {
         self.alphabetCollectionView?.register(AlphabetCell.self)
         self.alphabetCollectionView?.borderColor = .global(.grayLight)
         self.alphabetCollectionView?.borderWidth = 1
+        self.alphabetCollectionView?.backgroundView = EmptyView(text: "AlphabetNoAlphabetsEmptyView".localized())
         self.view.addSubview(self.alphabetCollectionView!)
         
         self.alphabetCollectionView?.snp.makeConstraints({ [unowned self] make in
@@ -54,6 +55,8 @@ class AlphabetController: BaseViewController<AlphabetViewModel> {
         self.pairTableView = UITableView()
         self.pairTableView?.backgroundColor = .clear
         self.pairTableView?.register(PairCell.self)
+        self.pairTableView?.backgroundView = EmptyView(text: "AlphabetNoAlphabetSelected".localized())
+        self.pairTableView?.tableFooterView = UIView()
         self.view.addSubview(self.pairTableView!)
         
         self.pairTableView?.snp.makeConstraints({ [unowned self] make in
@@ -72,14 +75,22 @@ class AlphabetController: BaseViewController<AlphabetViewModel> {
         let itemSelectionAction = self.alphabetCollectionView!.rx.modelSelected(Alphabet.self).asDriver()
         
         let output = self.viewModel.transform(input: AlphabetViewModel.Input(trigger: viewWillAppearAction,
-                                                                             selection: itemSelectionAction))
+                                                                            selection: itemSelectionAction))
         
-        output.alphabets.drive(self.alphabetCollectionView!.rx.items(cellType: AlphabetCell.self)) { _, item, cell in
-            cell.alphabet = item
-        }.disposed(by: self.bag)
+        output.alphabets
+            .do(onNext: { [weak self] alphabets in
+                self?.alphabetCollectionView?.backgroundView?.isHidden = alphabets.count > 0
+            })
+            .drive(self.alphabetCollectionView!.rx.items(cellType: AlphabetCell.self)) { _, item, cell in
+                cell.alphabet = item
+            }.disposed(by: self.bag)
         
-        output.pairs.drive(self.pairTableView!.rx.items(cellType: PairCell.self)) { _, item, cell in
-            cell.pair = item
-        }.disposed(by: self.bag)
+        output.pairs
+            .do(onNext: { [weak self] pairs in
+                self?.pairTableView?.backgroundView?.isHidden = pairs.count > 0
+            })
+            .drive(self.pairTableView!.rx.items(cellType: PairCell.self)) { _, item, cell in
+                cell.pair = item
+            }.disposed(by: self.bag)
     }
 }
