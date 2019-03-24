@@ -35,6 +35,7 @@
 		6FBC6E322247DD9300DD3326 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6FBC6E342247DD9300DD3326 /* Localizable.strings */; };
 		6FBC6E3B2247DE4C00DD3326 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBC6E3A2247DE4C00DD3326 /* StringExtension.swift */; };
 		6FBC6E3E2247E01900DD3326 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBC6E3D2247E01900DD3326 /* EmptyView.swift */; };
+		6FBC6E412247E51F00DD3326 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBC6E402247E51F00DD3326 /* Label.swift */; };
 		6FC91EB8223C3F3E004E1451 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6FC91EB7223C3F3E004E1451 /* GoogleService-Info.plist */; };
 		6FCFC3E9223EB8EA00ABD9FB /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFC3E8223EB8EA00ABD9FB /* MainController.swift */; };
 		6FCFC3F3223EBA0800ABD9FB /* AlphabetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFC3F2223EBA0800ABD9FB /* AlphabetController.swift */; };
@@ -106,6 +107,7 @@
 		6FBC6E392247DDF500DD3326 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6FBC6E3A2247DE4C00DD3326 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		6FBC6E3D2247E01900DD3326 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		6FBC6E402247E51F00DD3326 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		6FC91EB7223C3F3E004E1451 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6FCFC3E8223EB8EA00ABD9FB /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		6FCFC3F2223EBA0800ABD9FB /* AlphabetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphabetController.swift; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 				6F86CD492242C022009EF40E /* BaseViewController.swift */,
 				6F86CD4B2242C296009EF40E /* BaseViewModel.swift */,
 				6F94F2AB224582360094ACCE /* BaseCollectionViewCell.swift */,
+				6FBC6E402247E51F00DD3326 /* Label.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -783,6 +786,7 @@
 				6F86CD562242C5FA009EF40E /* RMPair.swift in Sources */,
 				6F86CD532242C5BE009EF40E /* RMAlphabet.swift in Sources */,
 				6FBC6E3E2247E01900DD3326 /* EmptyView.swift in Sources */,
+				6FBC6E412247E51F00DD3326 /* Label.swift in Sources */,
 				6FCFC3F7223EBA5B00ABD9FB /* TranslateController.swift in Sources */,
 				6F86CD462242B974009EF40E /* UITableViewExtension.swift in Sources */,
 				6FECA51D2240217700E944E7 /* NSErrorExtension.swift in Sources */,

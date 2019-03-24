@@ -13,12 +13,14 @@ class PairCell: BaseTableViewCell {
     
     fileprivate var containerView: UIView?
     fileprivate var signLabelBackground: UIView?
-    fileprivate var signLabel: UILabel?
-    fileprivate var codeLabel: UILabel?
+    fileprivate var signLabel: Label?
+    fileprivate var codeLabel: Label?
     var pair: Pair? { willSet { self.updateForData(data: newValue) } }
     
     fileprivate struct Sizes {
+        static let signLabelFontSize: CGFloat = 24
         static let signLabelBackgroundSize: CGFloat = 50
+        static let codeLabelFontSize: CGFloat = 40
     }
     
     override func initialize() {
@@ -57,11 +59,7 @@ class PairCell: BaseTableViewCell {
     }
     
     fileprivate func initSignLabel() {
-        self.signLabel = UILabel()
-        self.signLabel?.textColor = .white
-        self.signLabel?.font = UIFont.boldSystemFont(ofSize: 24)
-        self.signLabel?.numberOfLines = 1
-        self.signLabel?.textAlignment = .center
+        self.signLabel = Label(.bold(size: Sizes.signLabelFontSize, color: .white), textAligment: .center)
         self.signLabelBackground?.addSubview(self.signLabel!)
         
         self.signLabel?.snp.makeConstraints({ [unowned self] make in
@@ -70,10 +68,7 @@ class PairCell: BaseTableViewCell {
     }
     
     fileprivate func initCodeLabel() {
-        self.codeLabel = UILabel()
-        self.codeLabel?.textColor = .black
-        self.codeLabel?.font = UIFont.boldSystemFont(ofSize: 24)
-        self.codeLabel?.numberOfLines = 1
+        self.codeLabel = Label(.bold(size: Sizes.codeLabelFontSize, color: .black))
         self.containerView?.addSubview(self.codeLabel!)
         
         self.codeLabel?.snp.makeConstraints({ [unowned self] make in

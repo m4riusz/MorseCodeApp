@@ -12,15 +12,12 @@ class AlphabetCell: BaseCollectionViewCell {
     
     override var isSelected: Bool { didSet { self.updateForSelectedChange() }}
     fileprivate var containerView: UIView?
-    fileprivate var nameLabel: UILabel?
-    var alphabet: Alphabet? {
-        willSet {
-            self.updateForData(data: newValue)
-        }
-    }
+    fileprivate var nameLabel: Label?
+    var alphabet: Alphabet? { willSet { self.updateForData(data: newValue) }}
     
     fileprivate struct Sizes {
         static let cornerRadius: CGFloat = 10
+        static let nameLabelFontSize: CGFloat = 18
     }
     
     override func initialize() {
@@ -40,8 +37,7 @@ class AlphabetCell: BaseCollectionViewCell {
     }
     
     fileprivate func initNameLabel() {
-        self.nameLabel = UILabel()
-        self.nameLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        self.nameLabel = Label(.bold(size: Sizes.nameLabelFontSize, color: .black))
         self.containerView?.addSubview(self.nameLabel!)
         
         self.nameLabel?.snp.makeConstraints({ [unowned self] make in
