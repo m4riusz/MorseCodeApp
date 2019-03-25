@@ -10,4 +10,8 @@ import UIKit
 
 class AboutController: UITableViewController {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "AboutTitle".localized()
+    }
 }

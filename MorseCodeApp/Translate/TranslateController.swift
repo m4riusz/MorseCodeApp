@@ -10,4 +10,8 @@ import UIKit
 
 class TranslateController: UITableViewController {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "TranslateTitle".localized()
+    }
 }

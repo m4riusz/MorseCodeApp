@@ -50,7 +50,7 @@ struct AlphabetRepository: AlphabetRepositoryProtocol {
                             Pair(id: "18", key: "H", value: "--."),
                             Pair(id: "19", key: "I", value: ".."),
                             Pair(id: "20", key: "J", value: ".")
-                            ])
+            ], isSelected: true)
         
         let al2 = Alphabet(id: "2",
                            countryCode: "ENNNNN",
@@ -65,7 +65,7 @@ struct AlphabetRepository: AlphabetRepositoryProtocol {
                             Pair(id: "28", key: "H", value: "-..."),
                             Pair(id: "29", key: "I", value: ".----."),
                             Pair(id: "30", key: "J", value: "-")
-            ])
+            ], isSelected: false)
         
         return .just([al1, al2])
     }

@@ -81,8 +81,12 @@ class AlphabetController: BaseViewController<AlphabetViewModel> {
             .do(onNext: { [weak self] alphabets in
                 self?.alphabetCollectionView?.backgroundView?.isHidden = alphabets.count > 0
             })
-            .drive(self.alphabetCollectionView!.rx.items(cellType: AlphabetCell.self)) { _, item, cell in
+            .drive(self.alphabetCollectionView!.rx.items(cellType: AlphabetCell.self)) { [weak self] row, item, cell in
                 cell.alphabet = item
+                guard item.isSelected else {
+                    return
+                }
+                self?.alphabetCollectionView?.selectItem(at: IndexPath(row: row, section: 0), animated: false, scrollPosition: .centeredHorizontally)
             }.disposed(by: self.bag)
         
         output.pairs

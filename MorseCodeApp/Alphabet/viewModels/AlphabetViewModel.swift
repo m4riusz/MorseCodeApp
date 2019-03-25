@@ -47,11 +47,14 @@ struct AlphabetViewModel: ViewModelType {
                         loading.onNext(false)
                     })
             }
-
-        let pairs = input.selection.asObservable()
+        let selectedAlphabet = alphabets.flatMapLatest { items -> Observable<Alphabet?> in
+            return .just(items.first(where: { $0.isSelected }))
+        }
+            .unwrap()
+        let pairs = Observable.merge(selectedAlphabet, input.selection.asObservable())
             .flatMapLatest { alphabet -> Observable<[Pair]> in
-                return .just(alphabet.pairs)
-            }
+                 return .just(alphabet.pairs)
+        }
         
         let loadingDriver = loading.distinctUntilChanged().asDriver(onErrorJustReturn: false)
         let alphabetsDriver = alphabets.asDriver(onErrorJustReturn: [])

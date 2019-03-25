@@ -12,4 +12,5 @@ struct Alphabet {
     let id: String
     let countryCode: String
     let pairs: [Pair]
+    let isSelected: Bool
 }

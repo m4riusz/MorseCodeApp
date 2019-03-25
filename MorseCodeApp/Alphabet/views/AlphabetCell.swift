@@ -55,5 +55,6 @@ class AlphabetCell: BaseCollectionViewCell {
     
     fileprivate func updateForData(data: Alphabet?) {
         self.nameLabel?.text = data?.countryCode
+        self.isSelected = data?.isSelected ?? false
     }
 }
