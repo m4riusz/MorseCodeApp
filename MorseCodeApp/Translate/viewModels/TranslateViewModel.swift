@@ -1,0 +1,55 @@
+//
+//  TranslateViewModel.swift
+//  MorseCodeApp
+//
+//  Created by Mariusz Sut on 26/03/2019.
+//  Copyright © 2019 Mariusz Sut. All rights reserved.
+//
+
+import Foundation
+import RxSwift
+import RxCocoa
+
+struct TranslateViewModel: ViewModelType {
+    
+    struct Input {
+        let text: Driver<String>
+        let selection: Driver<Alphabet>
+    }
+    
+    struct Output {
+        let text: Driver<String>
+        let alphabets: Driver<[Alphabet]>
+    }
+    
+    fileprivate let alphabetRepository: AlphabetRepositoryProtocol
+    
+    init(alphabetRepository: AlphabetRepositoryProtocol) {
+        self.alphabetRepository = alphabetRepository
+    }
+    
+    func transform(input: TranslateViewModel.Input) -> TranslateViewModel.Output {
+    
+        let alphabets = self.alphabetRepository.queryAll()
+        
+        let selectedAlphabet = alphabets.flatMapLatest { items -> Observable<Alphabet?> in
+            return .just(items.first(where: { $0.isSelected }))
+            }
+            .unwrap()
+        let pairs = Observable.merge(selectedAlphabet, input.selection.asObservable())
+            .flatMapLatest { alphabet -> Observable<[Pair]> in
+                return .just(alphabet.pairs)
+        }
+        
+        let outputText = input.text.asObservable().withLatestFrom(pairs) { text, pairs -> String in
+            let mapped = text.map { character in pairs.first(where: { pair in pair.key == String(character) })?.value ?? ""}
+            return mapped.joined()
+        }
+        
+        let outputTextDriver = outputText.asDriver(onErrorJustReturn: "")
+        let alphabetsDriver = alphabets.asDriver(onErrorJustReturn: [])
+        
+        return Output(text: outputTextDriver,
+                      alphabets: alphabetsDriver)
+    }
+}

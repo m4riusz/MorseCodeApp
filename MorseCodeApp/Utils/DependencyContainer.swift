@@ -25,10 +25,10 @@ struct DependencyContainer {
             config.schemaVersion = AppDefaults.schemeVersion
             return config
         }
-        // MARK: Alphabet
         container.register(AlphabetRepositoryProtocol.self) { resolver in
             return AlphabetRepository(configuration: resolver.resolve(Realm.Configuration.self)!)
         }
+        // MARK: Alphabet
         container.register(AlphabetViewModel.self) { resolver in
             return AlphabetViewModel(alphabetRepository: resolver.resolve(AlphabetRepositoryProtocol.self)!)
         }
@@ -36,7 +36,12 @@ struct DependencyContainer {
             return AlphabetController(viewModel: resolver.resolve(AlphabetViewModel.self)!)
         }
         // MARK: Translate
-        container.register(TranslateController.self) { _ in TranslateController() }
+        container.register(TranslateViewModel.self) { resolver in
+            return TranslateViewModel(alphabetRepository: resolver.resolve(AlphabetRepositoryProtocol.self)!)
+        }
+        container.register(TranslateController.self) { resolver in
+            return TranslateController(viewModel: resolver.resolve(TranslateViewModel.self)!)
+        }
         // MARK: Settings
         container.register(SettingsController.self) { _ in SettingsController() }
         // MARK: About

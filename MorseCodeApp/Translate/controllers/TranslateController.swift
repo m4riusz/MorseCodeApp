@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TranslateController: UITableViewController {
+class TranslateController: BaseViewController<TranslateViewModel> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
