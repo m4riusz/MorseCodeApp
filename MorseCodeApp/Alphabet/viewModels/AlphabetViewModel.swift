@@ -52,6 +52,9 @@ struct AlphabetViewModel: ViewModelType {
         }
             .unwrap()
         let pairs = Observable.merge(selectedAlphabet, input.selection.asObservable())
+            .do(onNext: { alphabet in
+                self.alphabetRepository.selectAlphabet(entity: alphabet).subscribe()
+            })
             .flatMapLatest { alphabet -> Observable<[Pair]> in
                  return .just(alphabet.pairs)
         }
