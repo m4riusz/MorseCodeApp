@@ -14,7 +14,6 @@ struct TranslateViewModel: ViewModelType {
     
     struct Input {
         let text: Driver<String>
-        let selection: Driver<Alphabet>
     }
     
     struct Output {
@@ -36,7 +35,7 @@ struct TranslateViewModel: ViewModelType {
             return .just(items.first(where: { $0.isSelected }))
             }
             .unwrap()
-        let pairs = Observable.merge(selectedAlphabet, input.selection.asObservable())
+        let pairs = selectedAlphabet
             .flatMapLatest { alphabet -> Observable<[Pair]> in
                 return .just(alphabet.pairs)
         }
