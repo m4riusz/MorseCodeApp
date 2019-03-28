@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import FlagKit
 
-class AlphabetCell: BaseCollectionViewCell {
+class AlphabetCell: BaseTableViewCell {
     
     override var isSelected: Bool { didSet { self.updateForSelectedChange() }}
     fileprivate var containerView: UIView?
+    fileprivate var countryImageView: UIImageView?
     fileprivate var nameLabel: Label?
     var alphabet: Alphabet? { willSet { self.updateForData(data: newValue) }}
     
@@ -23,6 +25,7 @@ class AlphabetCell: BaseCollectionViewCell {
     override func initialize() {
         self.cornerRadius = Sizes.cornerRadius
         self.initContainerView()
+        self.initCountryImageView()
         self.initNameLabel()
         self.updateForSelectedChange()
     }
@@ -36,25 +39,41 @@ class AlphabetCell: BaseCollectionViewCell {
         })
     }
     
+    fileprivate func initCountryImageView() {
+        self.countryImageView = UIImageView()
+        self.countryImageView?.setContentHuggingPriority(.required, for: .horizontal)
+        self.containerView?.addSubview(self.countryImageView!)
+        
+        self.countryImageView?.snp.makeConstraints({ [unowned self] make in
+            make.top.equalToSuperview().offset(Spacing.normal)
+            make.left.equalToSuperview().offset(Spacing.normal)
+            make.bottom.equalToSuperview().offset(-Spacing.normal)
+        })
+    }
+    
     fileprivate func initNameLabel() {
         self.nameLabel = Label(.bold(size: Sizes.nameLabelFontSize, color: .black))
         self.containerView?.addSubview(self.nameLabel!)
         
         self.nameLabel?.snp.makeConstraints({ [unowned self] make in
             make.top.equalToSuperview().offset(Spacing.normal)
-            make.left.equalToSuperview().offset(Spacing.normal)
+            make.left.equalTo(self.countryImageView!.snp.right).offset(Spacing.normal)
             make.right.equalToSuperview().offset(-Spacing.normal)
             make.bottom.equalToSuperview().offset(-Spacing.normal)
         })
     }
     
     fileprivate func updateForSelectedChange() {
-        self.nameLabel?.textColor = .global(self.isSelected ? .white : .white)
-        self.containerView?.backgroundColor = .global(self.isSelected ? .turquoiseDark : .turquoiseLight)
+        let size = Sizes.nameLabelFontSize
+        self.nameLabel?.style = self.isSelected ? .bold(size: size, color: .black) : .normal(size: size, color: .black)
     }
     
     fileprivate func updateForData(data: Alphabet?) {
-        self.nameLabel?.text = data?.countryCode
+        self.nameLabel?.text = data?.name
         self.isSelected = data?.isSelected ?? false
+        guard let countryCode = data?.countryCode, let flag = Flag(countryCode: countryCode) else {
+            return
+        }
+        self.countryImageView?.image = flag.image(style: .roundedRect)
     }
 }

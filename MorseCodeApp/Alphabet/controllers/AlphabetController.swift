@@ -12,10 +12,10 @@ import RealmSwift
 import RxSwift
 import RxCocoa
 import RxSwiftExt
+import FlagKit
 
 class AlphabetController: BaseViewController<AlphabetViewModel> {
     
-    fileprivate var alphabetCollectionView: UICollectionView?
     fileprivate var pairTableView: UITableView?
     fileprivate let bag = DisposeBag()
     
@@ -25,30 +25,9 @@ class AlphabetController: BaseViewController<AlphabetViewModel> {
     
     override func initialize() {
         self.title = "AlphabetTitle".localized()
-        self.initAlphabetCollectionView()
         self.initTableView()
+        self.initNavigationBarButton()
         self.initBindings()
-    }
-    
-    fileprivate func initAlphabetCollectionView() {
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = .horizontal
-        flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
-        self.alphabetCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        self.alphabetCollectionView?.backgroundColor = .clear
-        self.alphabetCollectionView?.register(AlphabetCell.self)
-        self.alphabetCollectionView?.borderColor = .global(.grayLight)
-        self.alphabetCollectionView?.borderWidth = 1
-        self.alphabetCollectionView?.backgroundView = EmptyView(text: "AlphabetNoAlphabetsEmptyView".localized())
-        self.view.addSubview(self.alphabetCollectionView!)
-        
-        self.alphabetCollectionView?.snp.makeConstraints({ [unowned self] make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left)
-            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right)
-            make.height.equalTo(Sizes.alphabetContainerViewHeight)
-        })
     }
     
     fileprivate func initTableView() {
@@ -60,34 +39,31 @@ class AlphabetController: BaseViewController<AlphabetViewModel> {
         self.view.addSubview(self.pairTableView!)
         
         self.pairTableView?.snp.makeConstraints({ [unowned self] make in
-            make.top.equalTo(self.alphabetCollectionView!.snp.bottom)
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left)
             make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
         })
     }
     
+    fileprivate func initNavigationBarButton() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: nil, style: .plain, target: nil, action: nil)
+    }
+    
     fileprivate func initBindings() {
+        self.navigationItem.rightBarButtonItem?.rx.tap
+            .asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                let controller = UINavigationController(rootViewController: DependencyContainer.resolve(AlphabetSelectionController.self))
+                self?.navigationController?.present(controller, animated: true)
+            })
+            .disposed(by: self.bag)
+        
         let viewWillAppearAction = self.rx.sentMessage(#selector(viewWillAppear(_:)))
             .flatMapLatest { _ -> Observable<Void> in return .just(Void() )}
             .asDriver(onErrorJustReturn: Void())
         
-        let itemSelectionAction = self.alphabetCollectionView!.rx.modelSelected(Alphabet.self).asDriver()
-        
-        let output = self.viewModel.transform(input: AlphabetViewModel.Input(trigger: viewWillAppearAction,
-                                                                            selection: itemSelectionAction))
-        
-        output.alphabets
-            .do(onNext: { [weak self] alphabets in
-                self?.alphabetCollectionView?.backgroundView?.isHidden = alphabets.count > 0
-            })
-            .drive(self.alphabetCollectionView!.rx.items(cellType: AlphabetCell.self)) { [weak self] row, item, cell in
-                cell.alphabet = item
-                guard item.isSelected else {
-                    return
-                }
-                self?.alphabetCollectionView?.selectItem(at: IndexPath(row: row, section: 0), animated: false, scrollPosition: .centeredHorizontally)
-            }.disposed(by: self.bag)
+        let output = self.viewModel.transform(input: AlphabetViewModel.Input(trigger: viewWillAppearAction))
         
         output.pairs
             .do(onNext: { [weak self] pairs in
@@ -96,5 +72,17 @@ class AlphabetController: BaseViewController<AlphabetViewModel> {
             .drive(self.pairTableView!.rx.items(cellType: PairCell.self)) { _, item, cell in
                 cell.pair = item
             }.disposed(by: self.bag)
+        
+        output.alphabet
+            .drive(onNext: { [weak self] alphabet in
+                guard let countryCode = alphabet?.countryCode, let flagImage = Flag(countryCode: countryCode) else {
+                    self?.navigationItem.rightBarButtonItem?.image = nil
+                    self?.navigationItem.rightBarButtonItem?.title = "Choose".localized()
+                    return
+                }
+                self?.navigationItem.rightBarButtonItem?.image = flagImage.image(style: .roundedRect).withRenderingMode(.alwaysOriginal)
+                self?.navigationItem.rightBarButtonItem?.title = nil
+            })
+            .disposed(by: self.bag)
     }
 }

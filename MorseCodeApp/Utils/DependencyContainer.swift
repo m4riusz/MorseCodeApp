@@ -48,6 +48,13 @@ struct DependencyContainer {
         container.register(AboutController.self) { _ in AboutController() }
         // MARK: Main
         container.register(MainController.self) { _ in MainController() }
+        // MARK: AlphabetSelection
+        container.register(AlphabetSelectionViewModel.self) { resolver in
+            return AlphabetSelectionViewModel(alphabetRepository: resolver.resolve(AlphabetRepositoryProtocol.self)!)
+        }
+        container.register(AlphabetSelectionController.self) { resolver in
+            return AlphabetSelectionController(viewModel: resolver.resolve(AlphabetSelectionViewModel.self)!)
+        }
         return container
     }
     

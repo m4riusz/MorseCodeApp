@@ -18,7 +18,8 @@ target 'MorseCodeApp' do
   pod 'RxSwiftExt'
   pod 'RxDataSources'
   pod 'Swinject'
-
+  pod 'FlagKit'
+  
   # Pods for MorseCodeApp
 
   target 'MorseCodeAppTests' do

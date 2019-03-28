@@ -11,6 +11,7 @@ import Foundation
 struct Alphabet {
     let id: String
     let countryCode: String
+    let name: String
     let pairs: [Pair]
     let isSelected: Bool
 }

@@ -11,7 +11,11 @@
 "TranslateTitle" = "Translate";
 "SettingsTitle" = "Settings";
 "AboutTitle" = "About";
+"Choose" = "Choose";
 
 /* Alphabet */
 "AlphabetNoAlphabetsEmptyView" = "No data!";
 "AlphabetNoAlphabetSelected" = "Alphabet is not selected!";
+
+/* AlphabetSelection */
+"AlphabetChoose" = "Choose alphabet";
