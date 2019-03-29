@@ -19,6 +19,7 @@ target 'MorseCodeApp' do
   pod 'RxDataSources'
   pod 'Swinject'
   pod 'FlagKit'
+  pod 'JJFloatingActionButton'
   
   # Pods for MorseCodeApp
 

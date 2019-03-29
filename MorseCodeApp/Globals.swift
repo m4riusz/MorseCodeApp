@@ -27,4 +27,8 @@ enum Images: String {
     case settings = "ic_settings"
     case info = "ic_info"
     case translate = "ic_translate"
+    case flash = "ic_flash"
+    case vibration = "ic_vibration"
+    case phone = "ic_phone"
+    case sound = "ic_volume"
 }

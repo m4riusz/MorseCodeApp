@@ -17,6 +17,7 @@ import FlagKit
 class AlphabetController: BaseViewController<AlphabetViewModel> {
     
     fileprivate var pairTableView: UITableView?
+    fileprivate var playButton: PlayTypeSelectionView?
     fileprivate let bag = DisposeBag()
     
     fileprivate struct Sizes {
@@ -27,6 +28,7 @@ class AlphabetController: BaseViewController<AlphabetViewModel> {
         self.title = "AlphabetTitle".localized()
         self.initTableView()
         self.initNavigationBarButton()
+        self.initPlayButton()
         self.initBindings()
     }
     
@@ -48,6 +50,15 @@ class AlphabetController: BaseViewController<AlphabetViewModel> {
     
     fileprivate func initNavigationBarButton() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: nil, style: .plain, target: nil, action: nil)
+    }
+    
+    fileprivate func initPlayButton() {
+        self.playButton = PlayTypeSelectionView()
+        self.view.addSubview(self.playButton!)
+        
+        self.playButton?.snp.makeConstraints({ [unowned self] make in
+            make.edges.equalToSuperview()
+        })
     }
     
     fileprivate func initBindings() {
