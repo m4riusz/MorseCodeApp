@@ -15,53 +15,52 @@ struct AlphabetViewModel: ViewModelType {
     
     struct Input {
         let trigger: Driver<Void>
+        let playTypeSelection: Driver<PlayType>
     }
     
     struct Output {
-        let loading: Driver<Bool>
         let alphabet: Driver<Alphabet?>
+        let playTypes: Driver<[PlayType]>
+        let playTypeChanged: Driver<Void>
         let pairs: Driver<[Pair]>
         let error: Driver<Error>
     }
     
     fileprivate let alphabetRepository: AlphabetRepositoryProtocol
+    fileprivate let playTypeRepository: PlayTypeRepositoryProtocol
     
-    init(alphabetRepository: AlphabetRepositoryProtocol) {
+    init(alphabetRepository: AlphabetRepositoryProtocol,
+         playTypeRepository: PlayTypeRepositoryProtocol) {
         self.alphabetRepository = alphabetRepository
+        self.playTypeRepository = playTypeRepository
     }
     
     func transform(input: AlphabetViewModel.Input) -> AlphabetViewModel.Output {
-        let loading = PublishSubject<Bool>()
         let error = PublishSubject<Error>()
         
-        let alphabets = input.trigger.asObservable()
-            .flatMapLatest {
-                return self.alphabetRepository.queryAll()
-                    .do(onNext: { _ in
-                        loading.onNext(true)
-                    }, onError: { err in
-                        loading.onNext(false)
-                        error.onNext(err)
-                    }, onCompleted: {
-                        loading.onNext(false)
-                    })
-            }
-        let selectedAlphabet = alphabets.flatMapLatest { items -> Observable<Alphabet?> in
-            return .just(items.first(where: { $0.isSelected }))
+        let selectedAlphabet =  input.trigger.asObservable()
+                .flatMapLatest { return self.alphabetRepository.getAll() }
+                .flatMapLatest { items -> Observable<Alphabet?> in
+                    return .just(items.first(where: { $0.isSelected }))
         }
-        let pairs = selectedAlphabet
-            .unwrap()
-            .flatMapLatest { alphabet -> Observable<[Pair]> in
-                 return .just(alphabet.pairs)
-        }
+        let playTypes = input.trigger.asObservable()
+            .flatMapLatest { return self.playTypeRepository.getAll() }
+        let playTypeChanged = input.playTypeSelection.asObservable()
+            .flatMapLatest { return self.playTypeRepository.select($0) }
+            .flatMapLatest { _ in return Observable<Void>.just(Void()) }
         
-        let loadingDriver = loading.distinctUntilChanged().asDriver(onErrorJustReturn: false)
+        let pairs = selectedAlphabet
+            .flatMapLatest { alphabet -> Observable<[Pair]> in return .just(alphabet?.pairs ?? []) }
+        
         let alphabetDriver = selectedAlphabet.asDriver(onErrorJustReturn: nil)
+        let playTypesDriver = playTypes.asDriver(onErrorJustReturn: [])
         let pairsDriver = pairs.asDriver(onErrorJustReturn: [])
         let errorDriver = error.asObservable().asDriver(onErrorRecover: { return Driver.just($0) })
+        let playTypeChangedDriver = playTypeChanged.asDriver(onErrorJustReturn: Void())
   
-        return Output(loading: loadingDriver,
-                      alphabet: alphabetDriver,
+        return Output(alphabet: alphabetDriver,
+                      playTypes: playTypesDriver,
+                      playTypeChanged: playTypeChangedDriver,
                       pairs: pairsDriver,
                       error: errorDriver)
     }

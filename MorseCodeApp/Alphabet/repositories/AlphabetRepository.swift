@@ -11,11 +11,11 @@ import RxSwift
 import RealmSwift
 
 protocol AlphabetRepositoryProtocol {
-    func selectAlphabet(entity: Alphabet) -> Completable
-    func createOrUpdate(entity: Alphabet, update: Bool) -> Observable<Void>
-    func queryAll() -> Observable<[Alphabet]>
-    func query(with predicate: NSPredicate) -> Observable<[Alphabet]>
-    func delete(entity: Alphabet) -> Observable<Void>
+    func select(_ alphabet: Alphabet) -> Completable
+    func createOrUpdate(_ alphabet: Alphabet, update: Bool) -> Observable<Void>
+    func getAll() -> Observable<[Alphabet]>
+    func getAll(with predicate: NSPredicate) -> Observable<[Alphabet]>
+    func delete(_ alphabet: Alphabet) -> Observable<Void>
 }
 
 struct AlphabetRepository: AlphabetRepositoryProtocol {
@@ -29,28 +29,28 @@ struct AlphabetRepository: AlphabetRepositoryProtocol {
 //        self.createAlphabets() // TEMPRORARY
     }
     
-    func selectAlphabet(entity: Alphabet) -> Completable {
+    func select(_ alphabet: Alphabet) -> Completable {
         return Completable.create(subscribe: { completable in
             let disposable = Disposables.create()
             self.realm.beginWrite()
-            let alphabets = self.realm.objects(RMAlphabet.self)
-            alphabets.forEach { $0.isSelected = false}
-            alphabets.first(where: { $0.id == entity.id })?.isSelected = true
+            let alphabets = self.realm.objects(Alphabet.RealmType.self)
+            alphabets.forEach { $0.isSelected = $0.id == alphabet.id }
             try! self.realm.commitWrite()
             completable(.completed)
             return disposable
         })
     }
     
-    func createOrUpdate(entity: Alphabet, update: Bool) -> Observable<Void> {
-        return self.realm.rx.save(entity: entity, update: update)
+    func createOrUpdate(_ alphabet: Alphabet, update: Bool) -> Observable<Void> {
+        return self.realm.rx.save(entity: alphabet, update: update)
     }
     
-    func queryAll() -> Observable<[Alphabet]> {
+    func getAll() -> Observable<[Alphabet]> {
         let objects = self.realm.objects(Alphabet.RealmType.self)
-        return Observable.array(from: objects).flatMapLatest({ realm -> Observable<[Alphabet]> in
-            return .just(realm.map { $0.asDomain() })
-        })
+        return Observable.array(from: objects)
+            .flatMapLatest { items -> Observable<[Alphabet]> in
+                return .just(items.map { $0.asDomain() })
+        }
     }
     /*
     func createAlphabets() {
@@ -178,14 +178,14 @@ struct AlphabetRepository: AlphabetRepositoryProtocol {
         self.createOrUpdate(entity: polishAlphabet, update: true).subscribe()
     }
     */
-    func query(with predicate: NSPredicate) -> Observable<[Alphabet]> {
+    func getAll(with predicate: NSPredicate) -> Observable<[Alphabet]> {
         let objects = self.realm.objects(Alphabet.RealmType.self).filter(predicate)
         return Observable.array(from: objects).flatMapLatest({ realm -> Observable<[Alphabet]> in
             return .just(realm.map { $0.asDomain() })
         })
     }
     
-    func delete(entity: Alphabet) -> Observable<Void> {
-        return self.realm.rx.delete(entity: entity)
+    func delete(_ alphabet: Alphabet) -> Observable<Void> {
+        return self.realm.rx.delete(entity: alphabet)
     }
 }

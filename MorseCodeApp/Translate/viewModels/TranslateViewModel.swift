@@ -29,7 +29,7 @@ struct TranslateViewModel: ViewModelType {
     
     func transform(input: TranslateViewModel.Input) -> TranslateViewModel.Output {
     
-        let alphabets = self.alphabetRepository.queryAll()
+        let alphabets = self.alphabetRepository.getAll()
         
         let selectedAlphabet = alphabets.flatMapLatest { items -> Observable<Alphabet?> in
             return .just(items.first(where: { $0.isSelected }))

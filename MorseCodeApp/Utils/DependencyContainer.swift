@@ -28,9 +28,13 @@ struct DependencyContainer {
         container.register(AlphabetRepositoryProtocol.self) { resolver in
             return AlphabetRepository(configuration: resolver.resolve(Realm.Configuration.self)!)
         }
+        container.register(PlayTypeRepositoryProtocol.self) { resolver in
+            return PlayTypeRepository(configuration: resolver.resolve(Realm.Configuration.self)!)
+        }
         // MARK: Alphabet
         container.register(AlphabetViewModel.self) { resolver in
-            return AlphabetViewModel(alphabetRepository: resolver.resolve(AlphabetRepositoryProtocol.self)!)
+            return AlphabetViewModel(alphabetRepository: resolver.resolve(AlphabetRepositoryProtocol.self)!,
+                                     playTypeRepository: resolver.resolve(PlayTypeRepositoryProtocol.self)!)
         }
         container.register(AlphabetController.self) { resolver in
             return AlphabetController(viewModel: resolver.resolve(AlphabetViewModel.self)!)

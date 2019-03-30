@@ -28,7 +28,7 @@
 		6F86CD582242C66A009EF40E /* DomainConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F86CD572242C66A009EF40E /* DomainConvertibleType.swift */; };
 		6F86CD5B2242C68E009EF40E /* RealmRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F86CD5A2242C68E009EF40E /* RealmRepresentable.swift */; };
 		6F86CD5E2242C7A4009EF40E /* ObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F86CD5D2242C7A4009EF40E /* ObjectExtension.swift */; };
-		6F8BFC9B224EB94B00896DCE /* PlayTypeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8BFC9A224EB94B00896DCE /* PlayTypeSelectionView.swift */; };
+		6F8BFC9B224EB94B00896DCE /* PlayTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8BFC9A224EB94B00896DCE /* PlayTypeView.swift */; };
 		6F94F2A822457F550094ACCE /* AlphabetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F94F2A722457F550094ACCE /* AlphabetCell.swift */; };
 		6F94F2AA224581B30094ACCE /* UICollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F94F2A9224581B30094ACCE /* UICollectionViewExtension.swift */; };
 		6F94F2AC224582360094ACCE /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F94F2AB224582360094ACCE /* BaseCollectionViewCell.swift */; };
@@ -48,6 +48,9 @@
 		6FCFC3FC223EBC2700ABD9FB /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFC3FB223EBC2700ABD9FB /* Globals.swift */; };
 		6FCFC401223EBF9B00ABD9FB /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFC400223EBF9B00ABD9FB /* UIColorExtension.swift */; };
 		6FCFC403223EC4CF00ABD9FB /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFC402223EC4CF00ABD9FB /* UIImageExtension.swift */; };
+		6FD79B62224FCCB100EF64DE /* PlayType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD79B61224FCCB100EF64DE /* PlayType.swift */; };
+		6FD79B64224FCD4600EF64DE /* PlayTypeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD79B63224FCD4600EF64DE /* PlayTypeRepository.swift */; };
+		6FD79B66224FD21F00EF64DE /* RMPlayType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD79B65224FD21F00EF64DE /* RMPlayType.swift */; };
 		6FEC0C9E224AA78700E946B9 /* TranslateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FEC0C9D224AA78700E946B9 /* TranslateViewModel.swift */; };
 		6FECA51122401A1A00E944E7 /* Alphabet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FECA51022401A1A00E944E7 /* Alphabet.swift */; };
 		6FECA51422401AE300E944E7 /* Pair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FECA51322401AE300E944E7 /* Pair.swift */; };
@@ -102,7 +105,7 @@
 		6F86CD572242C66A009EF40E /* DomainConvertibleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainConvertibleType.swift; sourceTree = "<group>"; };
 		6F86CD5A2242C68E009EF40E /* RealmRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepresentable.swift; sourceTree = "<group>"; };
 		6F86CD5D2242C7A4009EF40E /* ObjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectExtension.swift; sourceTree = "<group>"; };
-		6F8BFC9A224EB94B00896DCE /* PlayTypeSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayTypeSelectionView.swift; sourceTree = "<group>"; };
+		6F8BFC9A224EB94B00896DCE /* PlayTypeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayTypeView.swift; sourceTree = "<group>"; };
 		6F94F2A722457F550094ACCE /* AlphabetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphabetCell.swift; sourceTree = "<group>"; };
 		6F94F2A9224581B30094ACCE /* UICollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtension.swift; sourceTree = "<group>"; };
 		6F94F2AB224582360094ACCE /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -124,6 +127,9 @@
 		6FCFC3FB223EBC2700ABD9FB /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		6FCFC400223EBF9B00ABD9FB /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		6FCFC402223EC4CF00ABD9FB /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		6FD79B61224FCCB100EF64DE /* PlayType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayType.swift; sourceTree = "<group>"; };
+		6FD79B63224FCD4600EF64DE /* PlayTypeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayTypeRepository.swift; sourceTree = "<group>"; };
+		6FD79B65224FD21F00EF64DE /* RMPlayType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMPlayType.swift; sourceTree = "<group>"; };
 		6FEC0C9D224AA78700E946B9 /* TranslateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewModel.swift; sourceTree = "<group>"; };
 		6FECA51022401A1A00E944E7 /* Alphabet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alphabet.swift; sourceTree = "<group>"; };
 		6FECA51322401AE300E944E7 /* Pair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pair.swift; sourceTree = "<group>"; };
@@ -192,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				6F86CD502242C59F009EF40E /* RealmPlatform */,
+				6FD79B5C224FCC2A00EF64DE /* PlayType */,
 				6FCFC3EB223EB92C00ABD9FB /* Alphabet */,
 				6F8041DD224C04A700848C81 /* AlphabetSelection */,
 				6FCFC3EA223EB92300ABD9FB /* About */,
@@ -288,6 +295,7 @@
 			children = (
 				6F86CD522242C5BE009EF40E /* RMAlphabet.swift */,
 				6F86CD552242C5FA009EF40E /* RMPair.swift */,
+				6FD79B65224FD21F00EF64DE /* RMPlayType.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -354,7 +362,7 @@
 			children = (
 				6FA28AEF22416CA3008D209A /* controllers */,
 				6FECA50F22401A0100E944E7 /* models */,
-				6FECA50C2240139F00E944E7 /* repository */,
+				6FECA50C2240139F00E944E7 /* repositories */,
 				6F86CD3E2242B7F3009EF40E /* views */,
 				6FA28AF022416CAE008D209A /* viewModels */,
 			);
@@ -411,6 +419,40 @@
 			path = extensions;
 			sourceTree = "<group>";
 		};
+		6FD79B5C224FCC2A00EF64DE /* PlayType */ = {
+			isa = PBXGroup;
+			children = (
+				6FD79B60224FCCA100EF64DE /* models */,
+				6FD79B5D224FCC4300EF64DE /* views */,
+				6FD79B5E224FCC4C00EF64DE /* repositories */,
+			);
+			path = PlayType;
+			sourceTree = "<group>";
+		};
+		6FD79B5D224FCC4300EF64DE /* views */ = {
+			isa = PBXGroup;
+			children = (
+				6F8BFC9A224EB94B00896DCE /* PlayTypeView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		6FD79B5E224FCC4C00EF64DE /* repositories */ = {
+			isa = PBXGroup;
+			children = (
+				6FD79B63224FCD4600EF64DE /* PlayTypeRepository.swift */,
+			);
+			path = repositories;
+			sourceTree = "<group>";
+		};
+		6FD79B60224FCCA100EF64DE /* models */ = {
+			isa = PBXGroup;
+			children = (
+				6FD79B61224FCCB100EF64DE /* PlayType.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
 		6FEC0C9A224AA74400E946B9 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -427,12 +469,12 @@
 			path = viewModels;
 			sourceTree = "<group>";
 		};
-		6FECA50C2240139F00E944E7 /* repository */ = {
+		6FECA50C2240139F00E944E7 /* repositories */ = {
 			isa = PBXGroup;
 			children = (
 				6FECA51522401BA300E944E7 /* AlphabetRepository.swift */,
 			);
-			path = repository;
+			path = repositories;
 			sourceTree = "<group>";
 		};
 		6FECA50F22401A0100E944E7 /* models */ = {
@@ -447,7 +489,6 @@
 		6FECA51722401CF500E944E7 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				6F8BFC9A224EB94B00896DCE /* PlayTypeSelectionView.swift */,
 				6F86CD432242B8FC009EF40E /* BaseTableViewCell.swift */,
 				6F86CD492242C022009EF40E /* BaseViewController.swift */,
 				6F86CD4B2242C296009EF40E /* BaseViewModel.swift */,
@@ -844,6 +885,7 @@
 				6FECA51622401BA300E944E7 /* AlphabetRepository.swift in Sources */,
 				6FCFC3F3223EBA0800ABD9FB /* AlphabetController.swift in Sources */,
 				6FCFC401223EBF9B00ABD9FB /* UIColorExtension.swift in Sources */,
+				6FD79B62224FCCB100EF64DE /* PlayType.swift in Sources */,
 				6FECA51422401AE300E944E7 /* Pair.swift in Sources */,
 				6F86CD562242C5FA009EF40E /* RMPair.swift in Sources */,
 				6F86CD532242C5BE009EF40E /* RMAlphabet.swift in Sources */,
@@ -855,11 +897,12 @@
 				6F86CD5B2242C68E009EF40E /* RealmRepresentable.swift in Sources */,
 				6F86CD4A2242C022009EF40E /* BaseViewController.swift in Sources */,
 				6F86CD4C2242C296009EF40E /* BaseViewModel.swift in Sources */,
-				6F8BFC9B224EB94B00896DCE /* PlayTypeSelectionView.swift in Sources */,
+				6F8BFC9B224EB94B00896DCE /* PlayTypeView.swift in Sources */,
 				6FBC6E222247CBAD00DD3326 /* DependencyContainer.swift in Sources */,
 				6F8041E3224C051700848C81 /* AlphabetSelectionViewModel.swift in Sources */,
 				6FCFC403223EC4CF00ABD9FB /* UIImageExtension.swift in Sources */,
 				6F86CD482242BC47009EF40E /* Spacing.swift in Sources */,
+				6FD79B66224FD21F00EF64DE /* RMPlayType.swift in Sources */,
 				6FEC0C9E224AA78700E946B9 /* TranslateViewModel.swift in Sources */,
 				6F94F2AE224583030094ACCE /* UICollectionViewCellExtension.swift in Sources */,
 				6F94F2AA224581B30094ACCE /* UICollectionViewExtension.swift in Sources */,
@@ -868,6 +911,7 @@
 				6F8041E0224C04EB00848C81 /* AlphabetSelectionController.swift in Sources */,
 				6F86CD582242C66A009EF40E /* DomainConvertibleType.swift in Sources */,
 				6F86CD5E2242C7A4009EF40E /* ObjectExtension.swift in Sources */,
+				6FD79B64224FCD4600EF64DE /* PlayTypeRepository.swift in Sources */,
 				6FECA51122401A1A00E944E7 /* Alphabet.swift in Sources */,
 				6FCFC3F5223EBA3300ABD9FB /* AboutController.swift in Sources */,
 				6F94F2A822457F550094ACCE /* AlphabetCell.swift in Sources */,

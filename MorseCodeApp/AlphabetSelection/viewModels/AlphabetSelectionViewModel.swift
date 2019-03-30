@@ -33,14 +33,12 @@ struct AlphabetSelectionViewModel: ViewModelType {
         let error = PublishSubject<Error>()
         
        input.selection.asObservable()
-        .flatMapLatest({ return self.alphabetRepository.selectAlphabet(entity: $0) })
+        .flatMapLatest { return self.alphabetRepository.select($0) }
         .subscribe()
         .disposed(by: self.bag)
         
         let alphabets = input.trigger.asObservable()
-            .flatMapLatest {
-                return self.alphabetRepository.queryAll()
-        }
+            .flatMapLatest { return self.alphabetRepository.getAll() }
         
         let alphabetsDriver = alphabets.asDriver(onErrorJustReturn: [])
         let errorDriver = error.asObservable().asDriver(onErrorRecover: { return Driver.just($0) })

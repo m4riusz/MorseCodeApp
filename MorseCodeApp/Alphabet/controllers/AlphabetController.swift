@@ -17,7 +17,7 @@ import FlagKit
 class AlphabetController: BaseViewController<AlphabetViewModel> {
     
     fileprivate var pairTableView: UITableView?
-    fileprivate var playButton: PlayTypeSelectionView?
+    fileprivate var playView: PlayTypeView?
     fileprivate let bag = DisposeBag()
     
     fileprivate struct Sizes {
@@ -53,10 +53,10 @@ class AlphabetController: BaseViewController<AlphabetViewModel> {
     }
     
     fileprivate func initPlayButton() {
-        self.playButton = PlayTypeSelectionView()
-        self.view.addSubview(self.playButton!)
+        self.playView = PlayTypeView()
+        self.view.addSubview(self.playView!)
         
-        self.playButton?.snp.makeConstraints({ [unowned self] make in
+        self.playView?.snp.makeConstraints({ [unowned self] make in
             make.edges.equalToSuperview()
         })
     }
@@ -74,7 +74,14 @@ class AlphabetController: BaseViewController<AlphabetViewModel> {
             .flatMapLatest { _ -> Observable<Void> in return .just(Void() )}
             .asDriver(onErrorJustReturn: Void())
         
-        let output = self.viewModel.transform(input: AlphabetViewModel.Input(trigger: viewWillAppearAction))
+        let playTypeSelectionAction = self.playView!.playType
+            .asObservable()
+            .asDriver(onErrorJustReturn: nil)
+            .unwrap()
+
+        
+        let output = self.viewModel.transform(input: AlphabetViewModel.Input(trigger: viewWillAppearAction,
+                                                                             playTypeSelection: playTypeSelectionAction))
         
         output.pairs
             .do(onNext: { [weak self] pairs in
@@ -94,6 +101,17 @@ class AlphabetController: BaseViewController<AlphabetViewModel> {
                 self?.navigationItem.rightBarButtonItem?.image = flagImage.image(style: .roundedRect).withRenderingMode(.alwaysOriginal)
                 self?.navigationItem.rightBarButtonItem?.title = nil
             })
+            .disposed(by: self.bag)
+        
+        output.playTypes
+            .drive(onNext: { [weak self] playTypes in
+                self?.playView?.isHidden = playTypes.count == 0
+                self?.playView?.setItems(playTypes)
+            })
+            .disposed(by: self.bag)
+        
+        output.playTypeChanged
+            .drive()
             .disposed(by: self.bag)
     }
 }
