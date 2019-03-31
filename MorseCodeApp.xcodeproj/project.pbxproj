@@ -28,6 +28,7 @@
 		6F86CD582242C66A009EF40E /* DomainConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F86CD572242C66A009EF40E /* DomainConvertibleType.swift */; };
 		6F86CD5B2242C68E009EF40E /* RealmRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F86CD5A2242C68E009EF40E /* RealmRepresentable.swift */; };
 		6F86CD5E2242C7A4009EF40E /* ObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F86CD5D2242C7A4009EF40E /* ObjectExtension.swift */; };
+		6F8A398B22513986009D0069 /* JJFloatingActionButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8A398A22513986009D0069 /* JJFloatingActionButtonExtension.swift */; };
 		6F8BFC9B224EB94B00896DCE /* PlayTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8BFC9A224EB94B00896DCE /* PlayTypeView.swift */; };
 		6F94F2A822457F550094ACCE /* AlphabetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F94F2A722457F550094ACCE /* AlphabetCell.swift */; };
 		6F94F2AA224581B30094ACCE /* UICollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F94F2A9224581B30094ACCE /* UICollectionViewExtension.swift */; };
@@ -105,6 +106,7 @@
 		6F86CD572242C66A009EF40E /* DomainConvertibleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainConvertibleType.swift; sourceTree = "<group>"; };
 		6F86CD5A2242C68E009EF40E /* RealmRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepresentable.swift; sourceTree = "<group>"; };
 		6F86CD5D2242C7A4009EF40E /* ObjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectExtension.swift; sourceTree = "<group>"; };
+		6F8A398A22513986009D0069 /* JJFloatingActionButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJFloatingActionButtonExtension.swift; sourceTree = "<group>"; };
 		6F8BFC9A224EB94B00896DCE /* PlayTypeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayTypeView.swift; sourceTree = "<group>"; };
 		6F94F2A722457F550094ACCE /* AlphabetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphabetCell.swift; sourceTree = "<group>"; };
 		6F94F2A9224581B30094ACCE /* UICollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtension.swift; sourceTree = "<group>"; };
@@ -400,6 +402,7 @@
 				6FCFC3FF223EBF7D00ABD9FB /* extensions */,
 				6FBC6E212247CBAD00DD3326 /* DependencyContainer.swift */,
 				6F86CD472242BC47009EF40E /* Spacing.swift */,
+				6F8A398A22513986009D0069 /* JJFloatingActionButtonExtension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -807,6 +810,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
+				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRealm/RxRealm.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
@@ -829,6 +833,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRealm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
@@ -886,6 +891,7 @@
 				6FCFC3F3223EBA0800ABD9FB /* AlphabetController.swift in Sources */,
 				6FCFC401223EBF9B00ABD9FB /* UIColorExtension.swift in Sources */,
 				6FD79B62224FCCB100EF64DE /* PlayType.swift in Sources */,
+				6F8A398B22513986009D0069 /* JJFloatingActionButtonExtension.swift in Sources */,
 				6FECA51422401AE300E944E7 /* Pair.swift in Sources */,
 				6F86CD562242C5FA009EF40E /* RMPair.swift in Sources */,
 				6F86CD532242C5BE009EF40E /* RMAlphabet.swift in Sources */,

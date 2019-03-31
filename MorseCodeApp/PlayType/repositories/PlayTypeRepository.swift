@@ -10,7 +10,6 @@ import Foundation
 import RxSwift
 import RxCocoa
 import RealmSwift
-import RxSwift
 
 protocol PlayTypeRepositoryProtocol {
     func select(_ playType: PlayType) -> Completable
@@ -27,7 +26,7 @@ struct PlayTypeRepository: PlayTypeRepositoryProtocol {
     
     init(configuration: Realm.Configuration) {
         self.configuration = configuration
-//        self.createPlayTypes() // TEMPORARY
+        self.createPlayTypes() // TEMPORARY
     }
     
     func select(_ playType: PlayType) -> Completable {

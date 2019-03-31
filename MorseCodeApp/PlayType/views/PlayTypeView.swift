@@ -9,11 +9,14 @@
 import JJFloatingActionButton
 import UIKit
 import RxSwift
+import RxGesture
 
 class PlayTypeView: UIView {
     
     fileprivate var floatActionButton: JJFloatingActionButton?
+    fileprivate let bag = DisposeBag()
     let playType: PublishSubject<PlayType?> = PublishSubject()
+    let play: PublishSubject<Void> = PublishSubject()
     
     init() {
         super.init(frame: .zero)
@@ -27,10 +30,12 @@ class PlayTypeView: UIView {
     
     fileprivate func initialize() {
         self.initFloatActionButton()
+        self.initBindings()
     }
     
     fileprivate func initFloatActionButton() {
         self.floatActionButton = JJFloatingActionButton()
+        self.floatActionButton?.isUserInteractionEnabled = false
         self.floatActionButton?.buttonImageColor = .global(.white)
         self.floatActionButton?.buttonColor = .global(.turquoise)
         self.floatActionButton?.highlightedButtonColor = .global(.turquoiseDark)
@@ -43,6 +48,26 @@ class PlayTypeView: UIView {
         }
     }
     
+    fileprivate func initBindings() {
+        self.floatActionButton?.rx.tapGesture()
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                guard let itemCount = self?.floatActionButton?.items.count, itemCount > 0 else {
+                    return
+                }
+                guard self?.floatActionButton?.buttonState != .open else {
+                    self?.floatActionButton?.close()
+                    return
+                }
+                guard self?.floatActionButton?.items.contains(where: { $0.isSelected }) ?? false else {
+                    self?.floatActionButton?.open()
+                    return
+                }
+                print("------------------ CLICK ------------------")
+            })
+            .disposed(by: self.bag)
+    }
+    
     func setItems(_ playTypes: [PlayType]) {
         self.floatActionButton?.buttonImage = nil
         self.floatActionButton?.items = playTypes.map { self.initActionItem($0)}
@@ -53,6 +78,7 @@ class PlayTypeView: UIView {
         button.buttonImage = .global(playType.image)
         button.titleLabel.text = playType.name.localized()
         button.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
+        button.isSelected = playType.isSelected
         button.action = { [weak self] item in
             self?.playType.onNext(playType)
         }

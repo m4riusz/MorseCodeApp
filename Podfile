@@ -14,12 +14,13 @@ target 'MorseCodeApp' do
   pod 'Fabric', '~> 1.9.0'
   pod 'Crashlytics', '~> 3.12.0'
   pod 'SwiftLint'
-  pod 'SwifterSwift/UIKit'
+  pod 'SwifterSwift/UIKit', '~> 4.6.0'
   pod 'RxSwiftExt'
   pod 'RxDataSources'
   pod 'Swinject'
   pod 'FlagKit'
   pod 'JJFloatingActionButton'
+  pod 'RxGesture'
   
   # Pods for MorseCodeApp
 
