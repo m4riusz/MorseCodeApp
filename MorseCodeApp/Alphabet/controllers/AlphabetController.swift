@@ -13,11 +13,13 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 import FlagKit
+import JJFloatingActionButton
+import RxGesture
 
 class AlphabetController: BaseViewController<AlphabetViewModel> {
     
     fileprivate var pairTableView: UITableView?
-    fileprivate var playView: PlayTypeView?
+    fileprivate var playButton: JJFloatingActionButton?
     fileprivate let bag = DisposeBag()
     
     fileprivate struct Sizes {
@@ -53,12 +55,18 @@ class AlphabetController: BaseViewController<AlphabetViewModel> {
     }
     
     fileprivate func initPlayButton() {
-        self.playView = PlayTypeView()
-        self.view.addSubview(self.playView!)
+        self.playButton = JJFloatingActionButton()
+        self.playButton?.isUserInteractionEnabled = false
+        self.playButton?.buttonImageColor = .global(.white)
+        self.playButton?.buttonColor = .global(.turquoise)
+        self.playButton?.highlightedButtonColor = .global(.turquoiseDark)
+        self.playButton?.itemSizeRatio = CGFloat(0.8)
+        self.pairTableView?.addSubview(self.playButton!)
         
-        self.playView?.snp.makeConstraints({ [unowned self] make in
-            make.edges.equalToSuperview()
-        })
+        self.playButton?.snp.makeConstraints { [unowned self] make in
+            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).offset(-Spacing.normal)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-Spacing.normal)
+        }
     }
     
     fileprivate func initBindings() {
@@ -70,12 +78,29 @@ class AlphabetController: BaseViewController<AlphabetViewModel> {
             })
             .disposed(by: self.bag)
         
+        self.playButton?.rx.tapGesture()
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                guard let itemCount = self?.playButton?.items.count, itemCount > 0 else {
+                    return
+                }
+                guard self?.playButton?.buttonState != .open else {
+                    self?.playButton?.close()
+                    return
+                }
+                guard self?.playButton?.items.contains(where: { $0.isSelected }) ?? false else {
+                    self?.playButton?.open()
+                    return
+                }
+                print("------------------ CLICK ------------------")
+            })
+            .disposed(by: self.bag)
+        
         let viewWillAppearAction = self.rx.sentMessage(#selector(viewWillAppear(_:)))
             .flatMapLatest { _ -> Observable<Void> in return .just(Void() )}
             .asDriver(onErrorJustReturn: Void())
         
-        let playTypeSelectionAction = self.playView!.playType
-            .asObservable()
+        let playTypeSelectionAction = self.playButton!.getSelectedObservable()
             .asDriver(onErrorJustReturn: nil)
             .unwrap()
 
@@ -105,8 +130,8 @@ class AlphabetController: BaseViewController<AlphabetViewModel> {
         
         output.playTypes
             .drive(onNext: { [weak self] playTypes in
-                self?.playView?.isHidden = playTypes.count == 0
-                self?.playView?.setItems(playTypes)
+                self?.playButton?.isHidden = playTypes.count == 0
+                self?.playButton?.setItems(playTypes)
             })
             .disposed(by: self.bag)
         

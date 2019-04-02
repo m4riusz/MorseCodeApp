@@ -174,8 +174,8 @@ struct AlphabetRepository: AlphabetRepositoryProtocol {
         ]
         let englishAlphabet = Alphabet(id: "2", countryCode: "GB", name: "English", pairs: engilshPairs, isSelected: false)
 
-        self.createOrUpdate(entity: englishAlphabet, update: true).subscribe()
-        self.createOrUpdate(entity: polishAlphabet, update: true).subscribe()
+        self.createOrUpdate(englishAlphabet, update: true).subscribe()
+        self.createOrUpdate(polishAlphabet, update: true).subscribe()
     }
     */
     func getAll(with predicate: NSPredicate) -> Observable<[Alphabet]> {

@@ -26,7 +26,7 @@ struct PlayTypeRepository: PlayTypeRepositoryProtocol {
     
     init(configuration: Realm.Configuration) {
         self.configuration = configuration
-        self.createPlayTypes() // TEMPORARY
+//        self.createPlayTypes() // TEMPORARY
     }
     
     func select(_ playType: PlayType) -> Completable {

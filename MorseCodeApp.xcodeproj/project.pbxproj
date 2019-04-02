@@ -29,7 +29,6 @@
 		6F86CD5B2242C68E009EF40E /* RealmRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F86CD5A2242C68E009EF40E /* RealmRepresentable.swift */; };
 		6F86CD5E2242C7A4009EF40E /* ObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F86CD5D2242C7A4009EF40E /* ObjectExtension.swift */; };
 		6F8A398B22513986009D0069 /* JJFloatingActionButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8A398A22513986009D0069 /* JJFloatingActionButtonExtension.swift */; };
-		6F8BFC9B224EB94B00896DCE /* PlayTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8BFC9A224EB94B00896DCE /* PlayTypeView.swift */; };
 		6F94F2A822457F550094ACCE /* AlphabetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F94F2A722457F550094ACCE /* AlphabetCell.swift */; };
 		6F94F2AA224581B30094ACCE /* UICollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F94F2A9224581B30094ACCE /* UICollectionViewExtension.swift */; };
 		6F94F2AC224582360094ACCE /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F94F2AB224582360094ACCE /* BaseCollectionViewCell.swift */; };
@@ -107,7 +106,6 @@
 		6F86CD5A2242C68E009EF40E /* RealmRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepresentable.swift; sourceTree = "<group>"; };
 		6F86CD5D2242C7A4009EF40E /* ObjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectExtension.swift; sourceTree = "<group>"; };
 		6F8A398A22513986009D0069 /* JJFloatingActionButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJFloatingActionButtonExtension.swift; sourceTree = "<group>"; };
-		6F8BFC9A224EB94B00896DCE /* PlayTypeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayTypeView.swift; sourceTree = "<group>"; };
 		6F94F2A722457F550094ACCE /* AlphabetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphabetCell.swift; sourceTree = "<group>"; };
 		6F94F2A9224581B30094ACCE /* UICollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtension.swift; sourceTree = "<group>"; };
 		6F94F2AB224582360094ACCE /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -426,18 +424,9 @@
 			isa = PBXGroup;
 			children = (
 				6FD79B60224FCCA100EF64DE /* models */,
-				6FD79B5D224FCC4300EF64DE /* views */,
 				6FD79B5E224FCC4C00EF64DE /* repositories */,
 			);
 			path = PlayType;
-			sourceTree = "<group>";
-		};
-		6FD79B5D224FCC4300EF64DE /* views */ = {
-			isa = PBXGroup;
-			children = (
-				6F8BFC9A224EB94B00896DCE /* PlayTypeView.swift */,
-			);
-			path = views;
 			sourceTree = "<group>";
 		};
 		6FD79B5E224FCC4C00EF64DE /* repositories */ = {
@@ -623,6 +612,7 @@
 			knownRegions = (
 				en,
 				Base,
+				pl,
 			);
 			mainGroup = 6F66AA8A223C39E90069FEE4;
 			productRefGroup = 6F66AA94223C39E90069FEE4 /* Products */;
@@ -903,7 +893,6 @@
 				6F86CD5B2242C68E009EF40E /* RealmRepresentable.swift in Sources */,
 				6F86CD4A2242C022009EF40E /* BaseViewController.swift in Sources */,
 				6F86CD4C2242C296009EF40E /* BaseViewModel.swift in Sources */,
-				6F8BFC9B224EB94B00896DCE /* PlayTypeView.swift in Sources */,
 				6FBC6E222247CBAD00DD3326 /* DependencyContainer.swift in Sources */,
 				6F8041E3224C051700848C81 /* AlphabetSelectionViewModel.swift in Sources */,
 				6FCFC403223EC4CF00ABD9FB /* UIImageExtension.swift in Sources */,
