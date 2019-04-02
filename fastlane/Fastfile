@@ -31,6 +31,8 @@ platform :ios do
     )
     add_git_tag(tag: "#{version}-#{build_number}")
     push_to_git_remote
-    upload_to_testflight
+    upload_to_testflight(
+	skip_waiting_for_build_processing: true
+    )
   end
 end
