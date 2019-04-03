@@ -49,13 +49,17 @@
 		6FCFC401223EBF9B00ABD9FB /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFC400223EBF9B00ABD9FB /* UIColorExtension.swift */; };
 		6FCFC403223EC4CF00ABD9FB /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFC402223EC4CF00ABD9FB /* UIImageExtension.swift */; };
 		6FD79B62224FCCB100EF64DE /* PlayType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD79B61224FCCB100EF64DE /* PlayType.swift */; };
-		6FD79B64224FCD4600EF64DE /* PlayTypeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD79B63224FCD4600EF64DE /* PlayTypeRepository.swift */; };
+		6FD79B64224FCD4600EF64DE /* PlayRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD79B63224FCD4600EF64DE /* PlayRepository.swift */; };
 		6FD79B66224FD21F00EF64DE /* RMPlayType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD79B65224FD21F00EF64DE /* RMPlayType.swift */; };
 		6FEC0C9E224AA78700E946B9 /* TranslateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FEC0C9D224AA78700E946B9 /* TranslateViewModel.swift */; };
 		6FECA51122401A1A00E944E7 /* Alphabet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FECA51022401A1A00E944E7 /* Alphabet.swift */; };
 		6FECA51422401AE300E944E7 /* Pair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FECA51322401AE300E944E7 /* Pair.swift */; };
 		6FECA51622401BA300E944E7 /* AlphabetRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FECA51522401BA300E944E7 /* AlphabetRepository.swift */; };
 		6FECA51D2240217700E944E7 /* NSErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FECA51C2240217700E944E7 /* NSErrorExtension.swift */; };
+		6FF04D6522552302000DA017 /* PlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF04D6422552302000DA017 /* PlayController.swift */; };
+		6FF04D6722552313000DA017 /* PlayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF04D6622552313000DA017 /* PlayViewModel.swift */; };
+		6FF04D6922552B93000DA017 /* Play.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF04D6822552B93000DA017 /* Play.swift */; };
+		6FF04D6B22552C54000DA017 /* RMPlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF04D6A22552C54000DA017 /* RMPlay.swift */; };
 		71AE6685E4523E4C26E45E08 /* Pods_MorseCodeApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B11D4B85239F4494C75CAA /* Pods_MorseCodeApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -128,13 +132,17 @@
 		6FCFC400223EBF9B00ABD9FB /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		6FCFC402223EC4CF00ABD9FB /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		6FD79B61224FCCB100EF64DE /* PlayType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayType.swift; sourceTree = "<group>"; };
-		6FD79B63224FCD4600EF64DE /* PlayTypeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayTypeRepository.swift; sourceTree = "<group>"; };
+		6FD79B63224FCD4600EF64DE /* PlayRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayRepository.swift; sourceTree = "<group>"; };
 		6FD79B65224FD21F00EF64DE /* RMPlayType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMPlayType.swift; sourceTree = "<group>"; };
 		6FEC0C9D224AA78700E946B9 /* TranslateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewModel.swift; sourceTree = "<group>"; };
 		6FECA51022401A1A00E944E7 /* Alphabet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alphabet.swift; sourceTree = "<group>"; };
 		6FECA51322401AE300E944E7 /* Pair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pair.swift; sourceTree = "<group>"; };
 		6FECA51522401BA300E944E7 /* AlphabetRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphabetRepository.swift; sourceTree = "<group>"; };
 		6FECA51C2240217700E944E7 /* NSErrorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSErrorExtension.swift; sourceTree = "<group>"; };
+		6FF04D6422552302000DA017 /* PlayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayController.swift; sourceTree = "<group>"; };
+		6FF04D6622552313000DA017 /* PlayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewModel.swift; sourceTree = "<group>"; };
+		6FF04D6822552B93000DA017 /* Play.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Play.swift; sourceTree = "<group>"; };
+		6FF04D6A22552C54000DA017 /* RMPlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMPlay.swift; sourceTree = "<group>"; };
 		702B351FC567503A52FF3441 /* Pods-MorseCodeAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorseCodeAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MorseCodeAppUITests/Pods-MorseCodeAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		725373BCE135DCD1FE35647C /* Pods_MorseCodeAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MorseCodeAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8994739D8D9112D55B50F7D4 /* Pods-MorseCodeAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorseCodeAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MorseCodeAppTests/Pods-MorseCodeAppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -198,7 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				6F86CD502242C59F009EF40E /* RealmPlatform */,
-				6FD79B5C224FCC2A00EF64DE /* PlayType */,
+				6FF04D61225522B7000DA017 /* Play */,
 				6FCFC3EB223EB92C00ABD9FB /* Alphabet */,
 				6F8041DD224C04A700848C81 /* AlphabetSelection */,
 				6FCFC3EA223EB92300ABD9FB /* About */,
@@ -295,6 +303,7 @@
 			children = (
 				6F86CD522242C5BE009EF40E /* RMAlphabet.swift */,
 				6F86CD552242C5FA009EF40E /* RMPair.swift */,
+				6FF04D6A22552C54000DA017 /* RMPlay.swift */,
 				6FD79B65224FD21F00EF64DE /* RMPlayType.swift */,
 			);
 			path = model;
@@ -420,19 +429,10 @@
 			path = extensions;
 			sourceTree = "<group>";
 		};
-		6FD79B5C224FCC2A00EF64DE /* PlayType */ = {
-			isa = PBXGroup;
-			children = (
-				6FD79B60224FCCA100EF64DE /* models */,
-				6FD79B5E224FCC4C00EF64DE /* repositories */,
-			);
-			path = PlayType;
-			sourceTree = "<group>";
-		};
 		6FD79B5E224FCC4C00EF64DE /* repositories */ = {
 			isa = PBXGroup;
 			children = (
-				6FD79B63224FCD4600EF64DE /* PlayTypeRepository.swift */,
+				6FD79B63224FCD4600EF64DE /* PlayRepository.swift */,
 			);
 			path = repositories;
 			sourceTree = "<group>";
@@ -440,6 +440,7 @@
 		6FD79B60224FCCA100EF64DE /* models */ = {
 			isa = PBXGroup;
 			children = (
+				6FF04D6822552B93000DA017 /* Play.swift */,
 				6FD79B61224FCCB100EF64DE /* PlayType.swift */,
 			);
 			path = models;
@@ -488,6 +489,33 @@
 				6FBC6E402247E51F00DD3326 /* Label.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		6FF04D61225522B7000DA017 /* Play */ = {
+			isa = PBXGroup;
+			children = (
+				6FD79B60224FCCA100EF64DE /* models */,
+				6FF04D63225522CC000DA017 /* viewModels */,
+				6FD79B5E224FCC4C00EF64DE /* repositories */,
+				6FF04D62225522C3000DA017 /* controllers */,
+			);
+			path = Play;
+			sourceTree = "<group>";
+		};
+		6FF04D62225522C3000DA017 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6FF04D6422552302000DA017 /* PlayController.swift */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		6FF04D63225522CC000DA017 /* viewModels */ = {
+			isa = PBXGroup;
+			children = (
+				6FF04D6622552313000DA017 /* PlayViewModel.swift */,
+			);
+			path = viewModels;
 			sourceTree = "<group>";
 		};
 		EBCEEB988BC5F3AA8A389E15 /* Frameworks */ = {
@@ -885,6 +913,7 @@
 				6FECA51422401AE300E944E7 /* Pair.swift in Sources */,
 				6F86CD562242C5FA009EF40E /* RMPair.swift in Sources */,
 				6F86CD532242C5BE009EF40E /* RMAlphabet.swift in Sources */,
+				6FF04D6922552B93000DA017 /* Play.swift in Sources */,
 				6FBC6E3E2247E01900DD3326 /* EmptyView.swift in Sources */,
 				6FBC6E412247E51F00DD3326 /* Label.swift in Sources */,
 				6FCFC3F7223EBA5B00ABD9FB /* TranslateController.swift in Sources */,
@@ -895,18 +924,21 @@
 				6F86CD4C2242C296009EF40E /* BaseViewModel.swift in Sources */,
 				6FBC6E222247CBAD00DD3326 /* DependencyContainer.swift in Sources */,
 				6F8041E3224C051700848C81 /* AlphabetSelectionViewModel.swift in Sources */,
+				6FF04D6722552313000DA017 /* PlayViewModel.swift in Sources */,
 				6FCFC403223EC4CF00ABD9FB /* UIImageExtension.swift in Sources */,
+				6FF04D6B22552C54000DA017 /* RMPlay.swift in Sources */,
 				6F86CD482242BC47009EF40E /* Spacing.swift in Sources */,
 				6FD79B66224FD21F00EF64DE /* RMPlayType.swift in Sources */,
 				6FEC0C9E224AA78700E946B9 /* TranslateViewModel.swift in Sources */,
 				6F94F2AE224583030094ACCE /* UICollectionViewCellExtension.swift in Sources */,
 				6F94F2AA224581B30094ACCE /* UICollectionViewExtension.swift in Sources */,
+				6FF04D6522552302000DA017 /* PlayController.swift in Sources */,
 				6F66AA97223C39E90069FEE4 /* AppDelegate.swift in Sources */,
 				6FCFC3FC223EBC2700ABD9FB /* Globals.swift in Sources */,
 				6F8041E0224C04EB00848C81 /* AlphabetSelectionController.swift in Sources */,
 				6F86CD582242C66A009EF40E /* DomainConvertibleType.swift in Sources */,
 				6F86CD5E2242C7A4009EF40E /* ObjectExtension.swift in Sources */,
-				6FD79B64224FCD4600EF64DE /* PlayTypeRepository.swift in Sources */,
+				6FD79B64224FCD4600EF64DE /* PlayRepository.swift in Sources */,
 				6FECA51122401A1A00E944E7 /* Alphabet.swift in Sources */,
 				6FCFC3F5223EBA3300ABD9FB /* AboutController.swift in Sources */,
 				6F94F2A822457F550094ACCE /* AlphabetCell.swift in Sources */,

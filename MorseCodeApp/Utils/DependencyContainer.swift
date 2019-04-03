@@ -28,13 +28,13 @@ struct DependencyContainer {
         container.register(AlphabetRepositoryProtocol.self) { resolver in
             return AlphabetRepository(configuration: resolver.resolve(Realm.Configuration.self)!)
         }
-        container.register(PlayTypeRepositoryProtocol.self) { resolver in
-            return PlayTypeRepository(configuration: resolver.resolve(Realm.Configuration.self)!)
+        container.register(PlayRepositoryProtocol.self) { resolver in
+            return PlayRepository(configuration: resolver.resolve(Realm.Configuration.self)!)
         }
         // MARK: Alphabet
         container.register(AlphabetViewModel.self) { resolver in
             return AlphabetViewModel(alphabetRepository: resolver.resolve(AlphabetRepositoryProtocol.self)!,
-                                     playTypeRepository: resolver.resolve(PlayTypeRepositoryProtocol.self)!)
+                                     playTypeRepository: resolver.resolve(PlayRepositoryProtocol.self)!)
         }
         container.register(AlphabetController.self) { resolver in
             return AlphabetController(viewModel: resolver.resolve(AlphabetViewModel.self)!)
@@ -58,6 +58,13 @@ struct DependencyContainer {
         }
         container.register(AlphabetSelectionController.self) { resolver in
             return AlphabetSelectionController(viewModel: resolver.resolve(AlphabetSelectionViewModel.self)!)
+        }
+        // MARK: Play
+        container.register(PlayViewModel.self) { resolver in
+            return PlayViewModel(playTypeRepository: resolver.resolve(PlayRepositoryProtocol.self)!)
+        }
+        container.register(PlayController.self) { resolver in
+            return PlayController(viewModel: resolver.resolve(PlayViewModel.self)!)
         }
         return container
     }

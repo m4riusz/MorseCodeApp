@@ -1,5 +1,5 @@
 //
-//  PlayTypeRepository.swift
+//  PlayRepository.swift
 //  MorseCodeApp
 //
 //  Created by Mariusz Sut on 30/03/2019.
@@ -11,13 +11,14 @@ import RxSwift
 import RxCocoa
 import RealmSwift
 
-protocol PlayTypeRepositoryProtocol {
-    func select(_ playType: PlayType) -> Completable
-    func createOrUpdate(_ playType: PlayType, update: Bool) -> Observable<Void>
-    func getAll() -> Observable<[PlayType]>
+protocol PlayRepositoryProtocol {
+    func setTextToPlay(_ text: String) -> Completable
+    func selectPlayType(_ playType: PlayType) -> Completable
+    func createOrUpdatePlayType(_ playType: PlayType, update: Bool) -> Observable<Void>
+    func getPlayTypes() -> Observable<[PlayType]>
 }
 
-struct PlayTypeRepository: PlayTypeRepositoryProtocol {
+struct PlayRepository: PlayRepositoryProtocol {
 
     fileprivate let configuration: Realm.Configuration
     fileprivate var realm: Realm {
@@ -29,7 +30,16 @@ struct PlayTypeRepository: PlayTypeRepositoryProtocol {
 //        self.createPlayTypes() // TEMPORARY
     }
     
-    func select(_ playType: PlayType) -> Completable {
+    func setTextToPlay(_ text: String) -> Completable {
+        return Completable.create(subscribe: { completable in
+            let disposable = Disposables.create()
+            
+            
+            return disposable
+        })
+    }
+    
+    func selectPlayType(_ playType: PlayType) -> Completable {
         return Completable.create(subscribe: { completable in
             let disposable = Disposables.create()
             self.realm.beginWrite()
@@ -41,7 +51,7 @@ struct PlayTypeRepository: PlayTypeRepositoryProtocol {
         })
     }
     
-    func getAll() -> Observable<[PlayType]> {
+    func getPlayTypes() -> Observable<[PlayType]> {
         let objects = self.realm.objects(PlayType.RealmType.self)
         return Observable.array(from: objects)
             .flatMapLatest { items -> Observable<[PlayType]> in
@@ -49,7 +59,7 @@ struct PlayTypeRepository: PlayTypeRepositoryProtocol {
         }
     }
     
-    func createOrUpdate(_ playType: PlayType, update: Bool) -> Observable<Void> {
+    func createOrUpdatePlayType(_ playType: PlayType, update: Bool) -> Observable<Void> {
         return self.realm.rx.save(entity: playType, update: update)
     }
     
@@ -71,9 +81,9 @@ struct PlayTypeRepository: PlayTypeRepositoryProtocol {
                              name: "Flash",
                              image: .flash,
                              isSelected: false)
-        self.createOrUpdate(screen, update: true).subscribe()
-        self.createOrUpdate(sound, update: true).subscribe()
-        self.createOrUpdate(vibration, update: true).subscribe()
-        self.createOrUpdate(flash, update: true).subscribe()
+        self.createOrUpdatePlayType(screen, update: true).subscribe()
+        self.createOrUpdatePlayType(sound, update: true).subscribe()
+        self.createOrUpdatePlayType(vibration, update: true).subscribe()
+        self.createOrUpdatePlayType(flash, update: true).subscribe()
     }
 }

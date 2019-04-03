@@ -27,10 +27,10 @@ struct AlphabetViewModel: ViewModelType {
     }
     
     fileprivate let alphabetRepository: AlphabetRepositoryProtocol
-    fileprivate let playTypeRepository: PlayTypeRepositoryProtocol
+    fileprivate let playTypeRepository: PlayRepositoryProtocol
     
     init(alphabetRepository: AlphabetRepositoryProtocol,
-         playTypeRepository: PlayTypeRepositoryProtocol) {
+         playTypeRepository: PlayRepositoryProtocol) {
         self.alphabetRepository = alphabetRepository
         self.playTypeRepository = playTypeRepository
     }
@@ -44,9 +44,9 @@ struct AlphabetViewModel: ViewModelType {
                     return .just(items.first(where: { $0.isSelected }))
         }
         let playTypes = input.trigger.asObservable()
-            .flatMapLatest { return self.playTypeRepository.getAll() }
+            .flatMapLatest { return self.playTypeRepository.getPlayTypes() }
         let playTypeChanged = input.playTypeSelection.asObservable()
-            .flatMapLatest { return self.playTypeRepository.select($0) }
+            .flatMapLatest { return self.playTypeRepository.selectPlayType($0) }
             .flatMapLatest { _ in return Observable<Void>.just(Void()) }
         
         let pairs = selectedAlphabet
