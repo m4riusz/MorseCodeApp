@@ -11,7 +11,7 @@ import Foundation
 protocol RealmRepresentable {
     associatedtype RealmType: DomainConvertibleType
     
-    var id: String { get }
+    var id: Int { get }
     
     func asRealm() -> RealmType
 }

@@ -35,10 +35,10 @@ class PairCell: BaseTableViewCell {
         self.addSubview(self.containerView!)
         
         self.containerView?.snp.makeConstraints({ [unowned self] make in
-            make.top.equalToSuperview().offset(Spacing.normal)
-            make.left.equalToSuperview().offset(Spacing.normal)
-            make.right.equalToSuperview().offset(-Spacing.normal)
-            make.bottom.equalToSuperview().offset(-Spacing.normal)
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(Spacing.normal)
+            make.left.equalTo(self.safeAreaLayoutGuide.snp.left).offset(Spacing.normal)
+            make.right.equalTo(self.safeAreaLayoutGuide.snp.right).offset(-Spacing.normal)
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-Spacing.normal)
         })
     }
     

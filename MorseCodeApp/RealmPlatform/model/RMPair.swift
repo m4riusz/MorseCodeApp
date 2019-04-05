@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 final class RMPair: Object {
-    @objc dynamic var id: String?
+    @objc dynamic var id: Int = 0
     @objc dynamic var key: String?
     @objc dynamic var value: String?
     
@@ -27,7 +27,7 @@ final class RMPair: Object {
 
 extension RMPair: DomainConvertibleType {
     func asDomain() -> Pair {
-        return Pair(id: self.id!,
+        return Pair(id: self.id,
                     key: self.key!,
                     value: self.value!)
     }

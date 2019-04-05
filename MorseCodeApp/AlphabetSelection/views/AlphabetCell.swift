@@ -35,7 +35,10 @@ class AlphabetCell: BaseTableViewCell {
         self.addSubview(self.containerView!)
         
         self.containerView?.snp.makeConstraints({ [unowned self] make in
-            make.edges.equalToSuperview()
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(Spacing.small)
+            make.left.equalTo(self.safeAreaLayoutGuide.snp.left).offset(Spacing.normal)
+            make.right.equalTo(self.safeAreaLayoutGuide.snp.right).offset(-Spacing.normal)
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-Spacing.small)
         })
     }
     

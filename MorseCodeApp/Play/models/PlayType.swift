@@ -9,7 +9,7 @@
 import Foundation
 
 struct PlayType {
-    let id: String
+    let id: Int
     let name: String
     let image: Images
     let isSelected: Bool

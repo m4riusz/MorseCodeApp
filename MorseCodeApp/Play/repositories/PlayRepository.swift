@@ -10,16 +10,19 @@ import Foundation
 import RxSwift
 import RxCocoa
 import RealmSwift
+import RxRealm
 
 protocol PlayRepositoryProtocol {
-    func setTextToPlay(_ text: String) -> Completable
+    func setTextToPlay(_ text: String) -> Observable<Void>
+    func getTextToPlay() -> Observable<String>
     func selectPlayType(_ playType: PlayType) -> Completable
     func createOrUpdatePlayType(_ playType: PlayType, update: Bool) -> Observable<Void>
     func getPlayTypes() -> Observable<[PlayType]>
 }
 
 struct PlayRepository: PlayRepositoryProtocol {
-
+    
+    fileprivate static let playDefaultId: Int = 0
     fileprivate let configuration: Realm.Configuration
     fileprivate var realm: Realm {
         return try! Realm(configuration: self.configuration)
@@ -30,13 +33,18 @@ struct PlayRepository: PlayRepositoryProtocol {
 //        self.createPlayTypes() // TEMPORARY
     }
     
-    func setTextToPlay(_ text: String) -> Completable {
-        return Completable.create(subscribe: { completable in
-            let disposable = Disposables.create()
-            
-            
-            return disposable
-        })
+    func setTextToPlay(_ text: String) -> Observable<Void> {
+        return self.realm.rx.save(entity: Play(id: PlayRepository.playDefaultId,
+                                               text: text),
+                                  update: true)
+    }
+    
+    func getTextToPlay() -> Observable<String> {
+        let object = self.realm.objects(Play.RealmType.self)
+        return Observable.changeset(from: object)
+            .flatMapLatest({ items -> Observable<String> in
+                return .just(items.0.first?.text ?? "")
+            })
     }
     
     func selectPlayType(_ playType: PlayType) -> Completable {
@@ -65,19 +73,19 @@ struct PlayRepository: PlayRepositoryProtocol {
     
     // to remove
     func createPlayTypes() {
-        let screen = PlayType(id: "1",
+        let screen = PlayType(id: 1,
                               name: "Screen",
                               image: .phone,
                               isSelected: false)
-        let sound = PlayType(id: "2",
+        let sound = PlayType(id: 2,
                              name: "Sound",
                              image: .sound,
                              isSelected: false)
-        let vibration = PlayType(id: "3",
+        let vibration = PlayType(id: 3,
                                  name: "Vibration",
                                  image: .vibration,
                                  isSelected: false)
-        let flash = PlayType(id: "4",
+        let flash = PlayType(id: 4,
                              name: "Flash",
                              image: .flash,
                              isSelected: false)

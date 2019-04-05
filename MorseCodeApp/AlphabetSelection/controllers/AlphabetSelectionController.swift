@@ -30,10 +30,7 @@ class AlphabetSelectionController: BaseViewController<AlphabetSelectionViewModel
         self.view.addSubview(self.tableView!)
         
         self.tableView?.snp.makeConstraints({ [unowned self] make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left)
-            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+            make.edges.equalToSuperview()
         })
     }
     

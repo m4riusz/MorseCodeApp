@@ -9,7 +9,7 @@
 import Foundation
 
 struct AppDefaults {
-    static let schemeVersion: UInt64 = 4
+    static let schemeVersion: UInt64 = 5
 }
 
 enum Colors: String {
@@ -31,4 +31,5 @@ enum Images: String {
     case vibration = "ic_vibration"
     case phone = "ic_phone"
     case sound = "ic_volume"
+    case play = "ic_play"
 }

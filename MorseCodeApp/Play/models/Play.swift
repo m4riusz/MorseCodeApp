@@ -9,7 +9,6 @@
 import Foundation
 
 struct Play {
-    let id: String
-    let morseCode: String
+    let id: Int
     let text: String
 }

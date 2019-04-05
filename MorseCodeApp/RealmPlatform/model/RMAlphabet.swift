@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 final class RMAlphabet: Object {
-    @objc dynamic var id: String?
+    @objc dynamic var id: Int = 0
     @objc dynamic var countryCode: String?
     @objc dynamic var name: String?
     @objc dynamic var isSelected: Bool = false
@@ -23,7 +23,7 @@ final class RMAlphabet: Object {
 
 extension RMAlphabet: DomainConvertibleType {
     func asDomain() -> Alphabet {
-        return Alphabet(id: self.id!,
+        return Alphabet(id: self.id,
                         countryCode: self.countryCode!,
                         name: self.name!,
                         pairs: self.pairs.map { $0.asDomain() },
