@@ -26,10 +26,10 @@ struct DependencyContainer {
             return config
         }
         container.register(AlphabetRepositoryProtocol.self) { resolver in
-            return AlphabetRepository(configuration: resolver.resolve(Realm.Configuration.self)!)
+            return RMAlphabetRepository(configuration: resolver.resolve(Realm.Configuration.self)!)
         }
         container.register(PlayRepositoryProtocol.self) { resolver in
-            return PlayRepository(configuration: resolver.resolve(Realm.Configuration.self)!)
+            return RMPlayRepository(configuration: resolver.resolve(Realm.Configuration.self)!)
         }
         // MARK: Alphabet
         container.register(AlphabetViewModel.self) { resolver in
