@@ -32,4 +32,5 @@ enum Images: String {
     case phone = "ic_phone"
     case sound = "ic_volume"
     case play = "ic_play"
+    case pause = "ic_pause"
 }

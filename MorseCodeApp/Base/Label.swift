@@ -12,6 +12,7 @@ import UIKit
 class Label: UILabel {
     
     enum Style {
+        case italic(size: CGFloat, color: Colors)
         case light(size: CGFloat, color: Colors)
         case normal(size: CGFloat, color: Colors)
         case semiBold(size: CGFloat, color: Colors)
@@ -32,30 +33,23 @@ class Label: UILabel {
     }
     
     fileprivate func update() {
-        var fontWeight: UIFont.Weight = .light
-        var fontSize: CGFloat = 0.0
-        var fontColor: UIColor = .black
-        
         switch style {
+        case .italic(let size, let color):
+            self.font = UIFont.italicSystemFont(ofSize: size)
+            self.textColor = .global(color)
         case .light(let size, let color):
-            fontWeight = .light
-            fontColor = .global(color)
-            fontSize = size
+            self.font = UIFont.systemFont(ofSize: size, weight: .light)
+            self.textColor = .global(color)
         case .normal(let size, let color):
-            fontWeight = .regular
-            fontColor = .global(color)
-            fontSize = size
+            self.font = UIFont.systemFont(ofSize: size, weight: .regular)
+            self.textColor = .global(color)
         case .semiBold(let size, let color):
-            fontWeight = .semibold
-            fontColor = .global(color)
-            fontSize = size
+            self.font = UIFont.systemFont(ofSize: size, weight: .semibold)
+            self.textColor = .global(color)
         case .bold(let size, let color):
-            fontWeight = .bold
-            fontColor = .global(color)
-            fontSize = size
+            self.font = UIFont.boldSystemFont(ofSize: size)
+            self.textColor = .global(color)
         }
-        self.font = UIFont.systemFont(ofSize: fontSize, weight: fontWeight)
-        self.textColor = fontColor
     }
 }
 

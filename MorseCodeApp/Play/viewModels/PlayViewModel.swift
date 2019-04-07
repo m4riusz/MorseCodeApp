@@ -18,9 +18,8 @@ struct PlayViewModel: ViewModelType {
     }
     
     struct Output {
-        let playTypes: Driver<[PlayType]>
+        let playTypes: Driver<[PlaySectionData]>
         let playTypeChanged: Driver<Void>
-        let playText: Driver<String>
     }
     
     fileprivate let playTypeRepository: PlayRepositoryProtocol
@@ -35,16 +34,20 @@ struct PlayViewModel: ViewModelType {
             .flatMapLatest { _ -> Observable<Void> in return .just(Void()) }
         
         let playTypesAction = input.loadTriger.asObservable()
-            .flatMapLatest { _ -> Observable<[PlayType]> in
+            .flatMapLatest { text -> Observable<[PlayType]> in
                 return self.playTypeRepository.getPlayTypes()
             }
-        
+            .withLatestFrom(self.playTypeRepository.getTextToPlay(), resultSelector: { playTypes, text -> [PlaySectionData] in
+                    let headerDataType = PlaySectionDataType.header("text afsas fas fasf asf asf asfas fas fasf as fasf asf asfas fasfasf af")
+                    let itemsDataType = playTypes.map { PlaySectionDataType.item($0) }
+                    let footerDataType = PlaySectionDataType.footer
+                    return [PlaySectionData(items: [headerDataType] + itemsDataType + [footerDataType])]
+            })
+
         let playTypesDriver = playTypesAction.asDriver(onErrorJustReturn: [])
         let playTypeChangedDriver = playTypeChangedAction.asDriver(onErrorJustReturn: Void())
-        let playTextDriver = Observable<String>.just("Test").asDriver(onErrorJustReturn: "")
         
         return Output(playTypes: playTypesDriver,
-                      playTypeChanged: playTypeChangedDriver,
-                      playText: playTextDriver)
+                      playTypeChanged: playTypeChangedDriver)
     }
 }
