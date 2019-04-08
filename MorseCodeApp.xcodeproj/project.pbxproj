@@ -755,7 +755,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MorseCodeAppUITests/Pods-MorseCodeAppUITests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-MorseCodeAppUITests/Pods-MorseCodeAppUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
@@ -770,7 +770,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MorseCodeAppUITests/Pods-MorseCodeAppUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MorseCodeAppUITests/Pods-MorseCodeAppUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6FC91EB9223C418D004E1451 /* ShellScript */ = {
@@ -859,7 +859,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MorseCodeApp/Pods-MorseCodeApp-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-MorseCodeApp/Pods-MorseCodeApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/FlagKit/FlagKit.framework",
@@ -902,7 +902,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MorseCodeApp/Pods-MorseCodeApp-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MorseCodeApp/Pods-MorseCodeApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E6E60DBBD4FCBAFA487F3C04 /* [CP] Embed Pods Frameworks */ = {
@@ -913,7 +913,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MorseCodeAppTests/Pods-MorseCodeAppTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-MorseCodeAppTests/Pods-MorseCodeAppTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
@@ -928,7 +928,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MorseCodeAppTests/Pods-MorseCodeAppTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MorseCodeAppTests/Pods-MorseCodeAppTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1170,7 +1170,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = F8MY77QSLQ;
 				INFOPLIST_FILE = MorseCodeApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1193,7 +1193,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = F8MY77QSLQ;
 				INFOPLIST_FILE = MorseCodeApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
