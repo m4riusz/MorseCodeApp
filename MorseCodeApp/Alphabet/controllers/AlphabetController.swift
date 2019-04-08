@@ -80,7 +80,8 @@ class AlphabetController: BaseViewController<AlphabetViewModel> {
             .asDriver(onErrorJustReturn: Void())
         
         let playAction =  self.playButton!.rx.controlEvent(.touchUpInside)
-            .flatMapLatest { _ in return Observable<String>.just("test")}
+            .withLatestFrom(self.pairTableView!.rx.modelSelected(Pair.self))
+            .flatMapLatest { pair in return Observable<String>.just(pair.key)}
             .asDriver(onErrorJustReturn: "")
         
         let output = self.viewModel.transform(input: AlphabetViewModel.Input(trigger: viewWillAppearAction,
