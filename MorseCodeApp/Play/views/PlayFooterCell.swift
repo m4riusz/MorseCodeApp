@@ -27,11 +27,11 @@ class PlayFooterCell: BaseTableViewCell {
         self.containerView = UIView()
         self.contentView.addSubview(self.containerView!)
         
-        self.containerView?.snp.makeConstraints({ [unowned self] make in
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(Spacing.normal)
-            make.left.equalTo(self.safeAreaLayoutGuide.snp.left).offset(Spacing.normal)
-            make.right.equalTo(self.safeAreaLayoutGuide.snp.right).offset(-Spacing.normal)
-            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-Spacing.normal)
+        self.containerView?.snp.makeConstraints({ make in
+            make.top.equalToSuperview().offset(Spacing.small)
+            make.left.equalToSuperview().offset(Spacing.normal)
+            make.right.equalToSuperview().offset(-Spacing.normal)
+            make.bottom.equalToSuperview().offset(-Spacing.small)
         })
     }
     
@@ -45,7 +45,7 @@ class PlayFooterCell: BaseTableViewCell {
         self.playButton?.contentEdgeInsets = Sizes.playButtonInsets
         self.containerView?.addSubview(self.playButton!)
         
-        self.playButton?.snp.makeConstraints({ [unowned self] make in
+        self.playButton?.snp.makeConstraints({ make in
             make.edges.equalToSuperview()
         })
     }

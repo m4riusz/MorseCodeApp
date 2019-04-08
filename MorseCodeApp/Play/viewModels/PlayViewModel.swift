@@ -30,15 +30,16 @@ struct PlayViewModel: ViewModelType {
     
     func transform(input: PlayViewModel.Input) -> PlayViewModel.Output {
         let playTypeChangedAction = input.playTypeSelection.asObservable()
-            .flatMapLatest { playType -> Completable in return self.playTypeRepository.selectPlayType(playType) }
-            .flatMapLatest { _ -> Observable<Void> in return .just(Void()) }
+            .flatMapLatest { self.playTypeRepository.selectPlayType($0) }
+        
+        let textToPlayAction = self.playTypeRepository.getTextToPlay()
         
         let playTypesAction = input.loadTriger.asObservable()
-            .flatMapLatest { text -> Observable<[PlayType]> in
+            .flatMapLatest { _ -> Observable<[PlayType]> in
                 return self.playTypeRepository.getPlayTypes()
             }
-            .withLatestFrom(self.playTypeRepository.getTextToPlay(), resultSelector: { playTypes, text -> [PlaySectionData] in
-                    let headerDataType = PlaySectionDataType.header("text afsas fas fasf asf asf asfas fas fasf as fasf asf asfas fasfasf af")
+            .withLatestFrom(textToPlayAction, resultSelector: { playTypes, text -> [PlaySectionData] in
+                    let headerDataType = PlaySectionDataType.header(text)
                     let itemsDataType = playTypes.map { PlaySectionDataType.item($0) }
                     let footerDataType = PlaySectionDataType.footer
                     return [PlaySectionData(items: [headerDataType] + itemsDataType + [footerDataType])]

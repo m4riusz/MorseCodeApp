@@ -26,7 +26,8 @@ class PlayController: BaseViewController<PlayViewModel> {
         self.tableView?.register(PlayHeaderCell.self)
         self.tableView?.register(PlayTypeCell.self)
         self.tableView?.register(PlayFooterCell.self)
-        self.tableView?.rowHeight = 70 // TODO
+        self.tableView?.rowHeight = UITableView.automaticDimension
+        self.tableView?.tableFooterView = UIView()
         self.view.addSubview(self.tableView!)
         
         self.tableView?.snp.makeConstraints({ make in
@@ -44,6 +45,7 @@ class PlayController: BaseViewController<PlayViewModel> {
                 switch item {
                 case .header(let title):
                     let cell = tableView.dequeueReusableCell(withClass: PlayHeaderCell.self)
+                    cell.selectionStyle = .none
                     cell.playText = title
                     return cell
                 case .item(let itemData):
@@ -52,6 +54,7 @@ class PlayController: BaseViewController<PlayViewModel> {
                     return cell
                 case .footer:
                     let cell = tableView.dequeueReusableCell(withClass: PlayFooterCell.self)
+                    cell.selectionStyle = .none
                     return cell
                 }
         })
@@ -85,12 +88,10 @@ class PlayController: BaseViewController<PlayViewModel> {
             .asDriver(onErrorJustReturn: nil)
             .unwrap()
         
-        
         let output = self.viewModel.transform(input: PlayViewModel.Input(playTypeSelection: playTypeSelectedAction,
                                                                          loadTriger: viewWillAppearAction,
                                                                          playTriger: playAction))
     
-      
         output.playTypes.asObservable()
             .bind(to: self.tableView!.rx.items(dataSource: dataSource))
             .disposed(by: self.bag)
@@ -100,4 +101,3 @@ class PlayController: BaseViewController<PlayViewModel> {
             .disposed(by: self.bag)
     }
 }
-

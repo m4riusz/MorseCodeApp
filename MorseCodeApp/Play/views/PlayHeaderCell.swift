@@ -12,8 +12,11 @@ class PlayHeaderCell: BaseTableViewCell {
     
     fileprivate var containerView: UIView?
     fileprivate var playTextLabel: Label?
-    
     var playText: String? { willSet { self.updateForData(data: newValue) } }
+    
+    fileprivate struct Sizes {
+        static let playTextLabelFontSize: CGFloat = 16
+    }
     
     override func initialize() {
         self.initContainerView()
@@ -24,16 +27,16 @@ class PlayHeaderCell: BaseTableViewCell {
         self.containerView = UIView()
         self.contentView.addSubview(self.containerView!)
         
-        self.containerView?.snp.makeConstraints({ [unowned self] make in
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(Spacing.normal)
-            make.left.equalTo(self.safeAreaLayoutGuide.snp.left).offset(Spacing.normal)
-            make.right.equalTo(self.safeAreaLayoutGuide.snp.right).offset(-Spacing.normal)
-            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-Spacing.normal)
+        self.containerView?.snp.makeConstraints({ make in
+            make.top.equalToSuperview().offset(Spacing.normal)
+            make.left.equalToSuperview().offset(Spacing.normal)
+            make.right.equalToSuperview().offset(-Spacing.normal)
+            make.bottom.equalToSuperview().offset(-Spacing.normal)
         })
     }
     
     fileprivate func initPlayTextLabel() {
-        self.playTextLabel = Label(.italic(size: 16, color: .gray), textAligment: .center)
+        self.playTextLabel = Label(.italic(size: Sizes.playTextLabelFontSize, color: .gray), textAligment: .center)
         self.playTextLabel?.numberOfLines = 0
         self.containerView?.addSubview(self.playTextLabel!)
         

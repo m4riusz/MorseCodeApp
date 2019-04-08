@@ -13,8 +13,11 @@ class PlayTypeCell: BaseTableViewCell {
     fileprivate var containerView: UIView?
     fileprivate var playTypeImageView: UIImageView?
     fileprivate var playTypeNameLabel: Label?
-    
     var playType: PlayType? { willSet { self.updateForData(data: newValue) } }
+    
+    fileprivate struct Sizes {
+        static let playTypeNameLabelFontSize: CGFloat = 16
+    }
     
     override func initialize() {
         self.initContainerView()
@@ -26,11 +29,11 @@ class PlayTypeCell: BaseTableViewCell {
         self.containerView = UIView()
         self.contentView.addSubview(self.containerView!)
         
-        self.containerView?.snp.makeConstraints({ [unowned self] make in
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(Spacing.normal)
-            make.left.equalTo(self.safeAreaLayoutGuide.snp.left).offset(Spacing.normal)
-            make.right.equalTo(self.safeAreaLayoutGuide.snp.right).offset(-Spacing.normal)
-            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-Spacing.normal)
+        self.containerView?.snp.makeConstraints({ make in
+            make.top.equalToSuperview().offset(Spacing.small)
+            make.left.equalToSuperview().offset(Spacing.normal)
+            make.right.equalToSuperview().offset(-Spacing.normal)
+            make.bottom.equalToSuperview().offset(-Spacing.small)
         })
     }
     
@@ -49,7 +52,7 @@ class PlayTypeCell: BaseTableViewCell {
     }
     
     fileprivate func initPlayTypeNameLabel() {
-        self.playTypeNameLabel = Label(.normal(size: 16, color: .gray))
+        self.playTypeNameLabel = Label(.normal(size: Sizes.playTypeNameLabelFontSize, color: .gray))
         self.containerView?.addSubview(self.playTypeNameLabel!)
         
         self.playTypeNameLabel?.snp.makeConstraints({ [unowned self] make in

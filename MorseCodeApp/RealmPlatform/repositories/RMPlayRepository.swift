@@ -39,14 +39,15 @@ struct RMPlayRepository: PlayRepositoryProtocol {
             })
     }
     
-    func selectPlayType(_ playType: PlayType) -> Completable {
-        return Completable.create(subscribe: { completable in
+    func selectPlayType(_ playType: PlayType) -> Observable<Void> {
+        return Observable.create({ observable in
             let disposable = Disposables.create()
             self.realm.beginWrite()
             let playTypes = self.realm.objects(RMPlayType.self)
             playTypes.forEach { $0.isSelected = $0.id == playType.id}
             try! self.realm.commitWrite()
-            completable(.completed)
+            observable.onNext(Void())
+            observable.onCompleted()
             return disposable
         })
     }
