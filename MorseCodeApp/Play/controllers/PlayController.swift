@@ -41,8 +41,37 @@ class PlayController: BaseViewController<PlayViewModel> {
             .flatMapLatest { _ in return Observable<Void>.just(Void()) }
             .asDriver(onErrorJustReturn: Void())
 
-        let dataSource = RxTableViewSectionedReloadDataSource<PlaySectionData>(
-            configureCell: { dataSource, tableView, indexPath, item in
+        let tableSelectionAction = self.tableView!.rx
+            .modelSelected(PlaySectionDataType.self)
+            .asControlEvent()
+            .share()
+        
+        let playTypeSelectedAction = self.initPlayTypeSelectedAction(tableSelectionAction)
+            .asDriver(onErrorRecover: { error in fatalError("Error: \(error.localizedDescription)")})
+        
+        let playAction = self.initPlayAction(tableSelectionAction)
+            .asDriver(onErrorRecover: { error in fatalError("Error: \(error.localizedDescription)")})
+        
+        let playTextAction = Observable<String>.just(self.textToPlay)
+            .asDriver(onErrorJustReturn: "")
+        
+        let output = self.viewModel.transform(input: PlayViewModel.Input(playText: playTextAction,
+                                                                         playTypeSelection: playTypeSelectedAction,
+                                                                         loadTriger: viewWillAppearAction,
+                                                                         playTriger: playAction))
+    
+        output.playTypes.asObservable()
+            .bind(to: self.tableView!.rx.items(dataSource: self.initTableViewDataSource()))
+            .disposed(by: self.bag)
+        
+        output.playTypeChanged
+            .drive()
+            .disposed(by: self.bag)
+    }
+    
+    fileprivate func initTableViewDataSource() -> RxTableViewSectionedReloadDataSource<PlaySectionData> {
+        return RxTableViewSectionedReloadDataSource<PlaySectionData>(
+            configureCell: { _, tableView, _, item in
                 switch item {
                 case .header(let title):
                     let cell = tableView.dequeueReusableCell(withClass: PlayHeaderCell.self)
@@ -59,13 +88,10 @@ class PlayController: BaseViewController<PlayViewModel> {
                     return cell
                 }
         })
-        
-        let tableSelectionAction = self.tableView!.rx
-            .modelSelected(PlaySectionDataType.self)
-            .asControlEvent()
-            .share()
-        
-        let playTypeSelectedAction = tableSelectionAction
+    }
+    
+    fileprivate func initPlayTypeSelectedAction(_ tableSelectionAction: Observable<PlaySectionDataType>) -> Observable<PlayType> {
+        return tableSelectionAction
             .flatMapLatest { item -> Observable<PlayType?> in
                 switch item {
                 case .item(let playType):
@@ -74,13 +100,11 @@ class PlayController: BaseViewController<PlayViewModel> {
                     return .just(nil)
                 }
             }
-            .asDriver(onErrorJustReturn: nil)
             .unwrap()
-        
-        let playTextAction = Observable<String>.just(self.textToPlay)
-            .asDriver(onErrorJustReturn: "")
-        
-        let playAction = tableSelectionAction
+    }
+    
+    fileprivate func initPlayAction(_ tableSelectionAction: Observable<PlaySectionDataType>) -> Observable<Void> {
+        return tableSelectionAction
             .flatMapLatest { item -> Observable<Void?> in
                 switch item {
                 case .footer:
@@ -89,20 +113,6 @@ class PlayController: BaseViewController<PlayViewModel> {
                     return .just(nil)
                 }
             }
-            .asDriver(onErrorJustReturn: nil)
             .unwrap()
-        
-        let output = self.viewModel.transform(input: PlayViewModel.Input(playText: playTextAction,
-                                                                         playTypeSelection: playTypeSelectedAction,
-                                                                         loadTriger: viewWillAppearAction,
-                                                                         playTriger: playAction))
-    
-        output.playTypes.asObservable()
-            .bind(to: self.tableView!.rx.items(dataSource: dataSource))
-            .disposed(by: self.bag)
-        
-        output.playTypeChanged
-            .drive()
-            .disposed(by: self.bag)
     }
 }
