@@ -108,8 +108,8 @@ class AlphabetController: BaseViewController<AlphabetViewModel> {
             .disposed(by: self.bag)
         
         output.playReady
-            .drive(onNext: { [weak self] _ in
-                let controller = DependencyContainer.resolve(PlayController.self)
+            .drive(onNext: { [weak self] text in
+                let controller = DependencyContainer.resolve(PlayController.self, text)
                 self?.navigationController?.pushViewController(controller)
             })
             .disposed(by: self.bag)

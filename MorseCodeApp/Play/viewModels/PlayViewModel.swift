@@ -12,6 +12,7 @@ import RxCocoa
 struct PlayViewModel: ViewModelType {
     
     struct Input {
+        let playText: Driver<String>
         let playTypeSelection: Driver<PlayType>
         let loadTriger: Driver<Void>
         let playTriger: Driver<Void>
@@ -32,7 +33,7 @@ struct PlayViewModel: ViewModelType {
         let playTypeChangedAction = input.playTypeSelection.asObservable()
             .flatMapLatest { self.playTypeRepository.selectPlayType($0) }
         
-        let textToPlayAction = self.playTypeRepository.getTextToPlay()
+        let textToPlayAction = input.playText
         
         let playTypesAction = input.loadTriger.asObservable()
             .flatMapLatest { _ -> Observable<[PlayType]> in

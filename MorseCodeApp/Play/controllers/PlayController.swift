@@ -15,6 +15,7 @@ class PlayController: BaseViewController<PlayViewModel> {
     
     fileprivate var tableView: UITableView?
     fileprivate let bag = DisposeBag()
+    var textToPlay: String = ""
     
     override func initialize() {
         self.initTableView()
@@ -76,6 +77,9 @@ class PlayController: BaseViewController<PlayViewModel> {
             .asDriver(onErrorJustReturn: nil)
             .unwrap()
         
+        let playTextAction = Observable<String>.just(self.textToPlay)
+            .asDriver(onErrorJustReturn: "")
+        
         let playAction = tableSelectionAction
             .flatMapLatest { item -> Observable<Void?> in
                 switch item {
@@ -88,7 +92,8 @@ class PlayController: BaseViewController<PlayViewModel> {
             .asDriver(onErrorJustReturn: nil)
             .unwrap()
         
-        let output = self.viewModel.transform(input: PlayViewModel.Input(playTypeSelection: playTypeSelectedAction,
+        let output = self.viewModel.transform(input: PlayViewModel.Input(playText: playTextAction,
+                                                                         playTypeSelection: playTypeSelectedAction,
                                                                          loadTriger: viewWillAppearAction,
                                                                          playTriger: playAction))
     

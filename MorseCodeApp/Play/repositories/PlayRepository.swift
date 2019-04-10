@@ -10,8 +10,6 @@ import Foundation
 import RxSwift
 
 protocol PlayRepositoryProtocol {
-    func setTextToPlay(_ text: String) -> Observable<Void>
-    func getTextToPlay() -> Observable<String>
     func selectPlayType(_ playType: PlayType) -> Observable<Void>
     func createOrUpdatePlayType(_ playType: PlayType, update: Bool) -> Observable<Void>
     func getPlayTypes() -> Observable<[PlayType]>

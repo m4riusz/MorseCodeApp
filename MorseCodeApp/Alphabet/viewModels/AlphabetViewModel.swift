@@ -20,7 +20,7 @@ struct AlphabetViewModel: ViewModelType {
     
     struct Output {
         let alphabet: Driver<Alphabet?>
-        let playReady: Driver<Void>
+        let playReady: Driver<String>
         let pairs: Driver<[Pair]>
         let error: Driver<Error>
     }
@@ -43,13 +43,11 @@ struct AlphabetViewModel: ViewModelType {
                 .share()
         
         let playTriggerAction = input.playTrigger.asObservable()
-            .flatMapLatest { return self.playTypeRepository.setTextToPlay($0) }
-            .flatMapLatest { _ in return Observable<Void>.just(Void())}
         
         let pairs = selectedAlphabetAction.flatMapLatest { return Observable<[Pair]>.just($0?.pairs ?? []) }
         
         let alphabetDriver = selectedAlphabetAction.asDriver(onErrorJustReturn: nil)
-        let playReadyDriver = playTriggerAction.asDriver(onErrorJustReturn: Void())
+        let playReadyDriver = playTriggerAction.asDriver(onErrorJustReturn: "")
         let pairsDriver = pairs.asDriver(onErrorJustReturn: [])
         let errorDriver = error.asObservable().asDriver(onErrorRecover: { return Driver.just($0) })
   

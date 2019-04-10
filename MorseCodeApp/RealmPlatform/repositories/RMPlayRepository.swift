@@ -25,20 +25,6 @@ struct RMPlayRepository: PlayRepositoryProtocol {
         //        self.createPlayTypes() // TEMPORARY
     }
     
-    func setTextToPlay(_ text: String) -> Observable<Void> {
-        return self.realm.rx.save(entity: Play(id: RMPlayRepository.playDefaultId,
-                                               text: text),
-                                  update: true)
-    }
-    
-    func getTextToPlay() -> Observable<String> {
-        let object = self.realm.objects(Play.RealmType.self)
-        return Observable.changeset(from: object)
-            .flatMapLatest({ items -> Observable<String> in
-                return .just(items.0.first?.text ?? "")
-            })
-    }
-    
     func selectPlayType(_ playType: PlayType) -> Observable<Void> {
         return Observable.create({ observable in
             let disposable = Disposables.create()

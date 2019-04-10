@@ -64,8 +64,6 @@
 		6FECA51D2240217700E944E7 /* NSErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FECA51C2240217700E944E7 /* NSErrorExtension.swift */; };
 		6FF04D6522552302000DA017 /* PlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF04D6422552302000DA017 /* PlayController.swift */; };
 		6FF04D6722552313000DA017 /* PlayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF04D6622552313000DA017 /* PlayViewModel.swift */; };
-		6FF04D6922552B93000DA017 /* Play.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF04D6822552B93000DA017 /* Play.swift */; };
-		6FF04D6B22552C54000DA017 /* RMPlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF04D6A22552C54000DA017 /* RMPlay.swift */; };
 		71AE6685E4523E4C26E45E08 /* Pods_MorseCodeApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B11D4B85239F4494C75CAA /* Pods_MorseCodeApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -153,8 +151,6 @@
 		6FECA51C2240217700E944E7 /* NSErrorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSErrorExtension.swift; sourceTree = "<group>"; };
 		6FF04D6422552302000DA017 /* PlayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayController.swift; sourceTree = "<group>"; };
 		6FF04D6622552313000DA017 /* PlayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewModel.swift; sourceTree = "<group>"; };
-		6FF04D6822552B93000DA017 /* Play.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Play.swift; sourceTree = "<group>"; };
-		6FF04D6A22552C54000DA017 /* RMPlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMPlay.swift; sourceTree = "<group>"; };
 		702B351FC567503A52FF3441 /* Pods-MorseCodeAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorseCodeAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MorseCodeAppUITests/Pods-MorseCodeAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		725373BCE135DCD1FE35647C /* Pods_MorseCodeAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MorseCodeAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8994739D8D9112D55B50F7D4 /* Pods-MorseCodeAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorseCodeAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MorseCodeAppTests/Pods-MorseCodeAppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -316,7 +312,6 @@
 			children = (
 				6F86CD522242C5BE009EF40E /* RMAlphabet.swift */,
 				6F86CD552242C5FA009EF40E /* RMPair.swift */,
-				6FF04D6A22552C54000DA017 /* RMPlay.swift */,
 				6FD79B65224FD21F00EF64DE /* RMPlayType.swift */,
 			);
 			path = model;
@@ -453,7 +448,6 @@
 		6FD79B60224FCCA100EF64DE /* models */ = {
 			isa = PBXGroup;
 			children = (
-				6FF04D6822552B93000DA017 /* Play.swift */,
 				6FD79B61224FCCB100EF64DE /* PlayType.swift */,
 				6FE6D623225A5C6500A9A0BD /* SectionData.swift */,
 			);
@@ -955,7 +949,6 @@
 				6F86CD562242C5FA009EF40E /* RMPair.swift in Sources */,
 				6F86CD532242C5BE009EF40E /* RMAlphabet.swift in Sources */,
 				6FE6D61E225A483700A9A0BD /* BaseView.swift in Sources */,
-				6FF04D6922552B93000DA017 /* Play.swift in Sources */,
 				6FBC6E3E2247E01900DD3326 /* EmptyView.swift in Sources */,
 				6FE6D615225A447900A9A0BD /* RMPlayRepository.swift in Sources */,
 				6FBC6E412247E51F00DD3326 /* Label.swift in Sources */,
@@ -969,7 +962,6 @@
 				6F8041E3224C051700848C81 /* AlphabetSelectionViewModel.swift in Sources */,
 				6FF04D6722552313000DA017 /* PlayViewModel.swift in Sources */,
 				6FCFC403223EC4CF00ABD9FB /* UIImageExtension.swift in Sources */,
-				6FF04D6B22552C54000DA017 /* RMPlay.swift in Sources */,
 				6F86CD482242BC47009EF40E /* Spacing.swift in Sources */,
 				6FD79B66224FD21F00EF64DE /* RMPlayType.swift in Sources */,
 				6FEC0C9E224AA78700E946B9 /* TranslateViewModel.swift in Sources */,

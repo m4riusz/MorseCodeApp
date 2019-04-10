@@ -63,13 +63,19 @@ struct DependencyContainer {
         container.register(PlayViewModel.self) { resolver in
             return PlayViewModel(playTypeRepository: resolver.resolve(PlayRepositoryProtocol.self)!)
         }
-        container.register(PlayController.self) { resolver in
-            return PlayController(viewModel: resolver.resolve(PlayViewModel.self)!)
+        container.register(PlayController.self) { (resolver, text: String)  in
+            let controller = PlayController(viewModel: resolver.resolve(PlayViewModel.self)!)
+            controller.textToPlay = text
+            return controller
         }
         return container
     }
     
     static func resolve<Service>(_ serviceType: Service.Type) -> Service {
         return DependencyContainer.container.resolve(serviceType)!
+    }
+    
+    static func resolve<Service, Argument>(_ serviceType: Service.Type, _ argument: Argument) -> Service {
+        return DependencyContainer.container.resolve(serviceType, argument: argument)!
     }
 }
