@@ -18,6 +18,7 @@ struct TranslateViewModel: ViewModelType {
     
     struct Output {
         let text: Driver<String>
+        let errorText: Driver<String>
         let alphabets: Driver<[Alphabet]>
     }
     
@@ -41,14 +42,19 @@ struct TranslateViewModel: ViewModelType {
         }
         
         let outputText = input.text.asObservable().withLatestFrom(pairs) { text, pairs -> String in
-            let mapped = text.map { character in pairs.first(where: { pair in pair.key == String(character) })?.value ?? ""}
+            let mapped = text
+                .uppercased()
+                .map { character in pairs.first(where: { pair in pair.key == String(character) })?.value ?? ""}
             return mapped.joined()
         }
         
         let outputTextDriver = outputText.asDriver(onErrorJustReturn: "")
+        let errorTextDriver = Observable<String>.just("Some error").asDriver(onErrorJustReturn: "")
         let alphabetsDriver = alphabets.asDriver(onErrorJustReturn: [])
         
+        
         return Output(text: outputTextDriver,
+                      errorText: errorTextDriver,
                       alphabets: alphabetsDriver)
     }
 }

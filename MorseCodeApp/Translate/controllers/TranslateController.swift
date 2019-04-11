@@ -12,9 +12,14 @@ import RxCocoa
 
 class TranslateController: BaseViewController<TranslateViewModel> {
     
+    fileprivate var errorLabel: Label?
     fileprivate var inputTextView: UITextView?
     fileprivate var outputTextView: UITextView?
     fileprivate let bag = DisposeBag()
+    
+    fileprivate struct Sizes {
+        static let infoLabelFontSize: CGFloat = 16
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,9 +27,22 @@ class TranslateController: BaseViewController<TranslateViewModel> {
     }
     
     override func initialize() {
+        self.initErrorLabel()
         self.initInputTextView()
         self.initOutputTextView()
         self.initBindings()
+    }
+    
+    fileprivate func initErrorLabel() {
+        self.errorLabel = Label(.semiBold(size: Sizes.infoLabelFontSize, color: .white), textAligment: .center)
+        self.errorLabel?.backgroundColor = .global(.red)
+        self.view.addSubview(self.errorLabel!)
+        
+        self.errorLabel?.snp.makeConstraints({ make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+        })
     }
     
     fileprivate func initInputTextView() {
@@ -32,7 +50,7 @@ class TranslateController: BaseViewController<TranslateViewModel> {
         self.view.addSubview(self.inputTextView!)
         
         self.inputTextView?.snp.makeConstraints({ [unowned self] make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(Spacing.normal)
+            make.top.equalTo(self.errorLabel!.snp.bottom).offset(Spacing.normal)
             make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).offset(Spacing.normal)
             make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).offset(-Spacing.normal)
         })
@@ -60,6 +78,10 @@ class TranslateController: BaseViewController<TranslateViewModel> {
         
         output.text
             .drive(self.outputTextView!.rx.text)
+            .disposed(by: self.bag)
+        
+        output.errorText
+            .drive(self.errorLabel!.rx.text)
             .disposed(by: self.bag)
     }
 }

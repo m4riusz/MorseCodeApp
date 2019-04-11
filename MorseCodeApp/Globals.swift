@@ -20,6 +20,7 @@ enum Colors: String {
     case black = "color_black"
     case gray = "color_gray"
     case grayLight = "color_light_gray"
+    case red = "color_red"
 }
 
 enum Images: String {
