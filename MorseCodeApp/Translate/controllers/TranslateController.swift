@@ -20,6 +20,9 @@ class TranslateController: BaseViewController<TranslateViewModel> {
     
     fileprivate struct Sizes {
         static let infoLabelFontSize: CGFloat = 16
+        static let letterSpacing: Double = 1.5
+        static let inputTextFontSize: CGFloat = 16
+        static let outputTextFontSie: CGFloat = 16
     }
     
     override func viewDidLoad() {
@@ -48,7 +51,7 @@ class TranslateController: BaseViewController<TranslateViewModel> {
     
     fileprivate func initInputTextView() {
         self.inputTextView = UITextView()
-        self.inputTextView?.font = UIFont.systemFont(ofSize: 16)
+        self.inputTextView?.font = UIFont.systemFont(ofSize: Sizes.inputTextFontSize)
         self.view.addSubview(self.inputTextView!)
         
         self.inputTextView?.snp.makeConstraints({ [unowned self] make in
@@ -80,11 +83,16 @@ class TranslateController: BaseViewController<TranslateViewModel> {
         
         output.text
             .flatMapLatest({ pairs -> Driver<[NSAttributedString]> in
-                return .just(pairs.map { NSAttributedString(text: $0.value, textColor: $0.color )})
+                return .just(pairs.map { NSAttributedString(text: $0.value,
+                                                            textColor: $0.color,
+                                                            fontSize: Sizes.outputTextFontSie)})
             })
             .flatMapLatest({ attributedTexts -> Driver<NSAttributedString> in
-                let mutableAttributedString = NSMutableAttributedString(string: "")
+                let mutableAttributedString = NSMutableAttributedString()
                 attributedTexts.forEach { mutableAttributedString.append($0)}
+                mutableAttributedString.addAttribute(.kern,
+                                                     value: Sizes.letterSpacing,
+                                                     range: mutableAttributedString.all())
                 return .just(mutableAttributedString)
             })
             .drive(self.outputTextView!.rx.attributedText)

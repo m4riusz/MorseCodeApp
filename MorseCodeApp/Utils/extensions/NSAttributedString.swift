@@ -10,8 +10,12 @@ import Foundation
 import UIKit
 
 extension NSAttributedString {
-    convenience init(text: String, textColor: UIColor) {
+    convenience init(text: String, textColor: UIColor, fontSize: CGFloat) {
         self.init(string: text, attributes: [NSAttributedString.Key.backgroundColor : textColor,
-                                             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
+                                             NSAttributedString.Key.font: UIFont.systemFont(ofSize: fontSize)])
+    }
+    
+    func all() -> NSRange {
+        return NSRange(location: 0, length: self.length)
     }
 }
