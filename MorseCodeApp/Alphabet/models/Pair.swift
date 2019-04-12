@@ -7,9 +7,12 @@
 //
 
 import Foundation
+import UIKit
 
 struct Pair {
     let id: Int
     let key: String
     let value: String
+    let isVisible: Bool
+    let color: UIColor
 }

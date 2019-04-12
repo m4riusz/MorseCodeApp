@@ -44,8 +44,10 @@ struct AlphabetViewModel: ViewModelType {
         
         let playTriggerAction = input.playTrigger.asObservable()
         
-        let pairs = selectedAlphabetAction.flatMapLatest { return Observable<[Pair]>.just($0?.pairs ?? []) }
-        
+        let pairs = selectedAlphabetAction.flatMapLatest { optionalPairs -> Observable<[Pair]> in
+            let pairs = optionalPairs?.pairs.filter { $0.isVisible } ?? []
+            return .just(pairs)
+        }
         let alphabetDriver = selectedAlphabetAction.asDriver(onErrorJustReturn: nil)
         let playReadyDriver = playTriggerAction.asDriver(onErrorJustReturn: "")
         let pairsDriver = pairs.asDriver(onErrorJustReturn: [])

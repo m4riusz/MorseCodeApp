@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Foundation
 
 class TranslateController: BaseViewController<TranslateViewModel> {
     
@@ -47,6 +48,7 @@ class TranslateController: BaseViewController<TranslateViewModel> {
     
     fileprivate func initInputTextView() {
         self.inputTextView = UITextView()
+        self.inputTextView?.font = UIFont.systemFont(ofSize: 16)
         self.view.addSubview(self.inputTextView!)
         
         self.inputTextView?.snp.makeConstraints({ [unowned self] make in
@@ -77,7 +79,15 @@ class TranslateController: BaseViewController<TranslateViewModel> {
         let output = self.viewModel.transform(input: input)
         
         output.text
-            .drive(self.outputTextView!.rx.text)
+            .flatMapLatest({ pairs -> Driver<[NSAttributedString]> in
+                return .just(pairs.map { NSAttributedString(text: $0.value, textColor: $0.color )})
+            })
+            .flatMapLatest({ attributedTexts -> Driver<NSAttributedString> in
+                let mutableAttributedString = NSMutableAttributedString(string: "")
+                attributedTexts.forEach { mutableAttributedString.append($0)}
+                return .just(mutableAttributedString)
+            })
+            .drive(self.outputTextView!.rx.attributedText)
             .disposed(by: self.bag)
         
         output.errorText

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5E04492A6F726DCE2ADEA25C /* Pods_MorseCodeAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 725373BCE135DCD1FE35647C /* Pods_MorseCodeAppUITests.framework */; };
 		6AFB3E10318106A02A151C62 /* Pods_MorseCodeAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D806F7B2AC18E551D1320261 /* Pods_MorseCodeAppTests.framework */; };
+		6F0CE4B02261237000605031 /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0CE4AF2261237000605031 /* NSAttributedString.swift */; };
 		6F66AA97223C39E90069FEE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F66AA96223C39E90069FEE4 /* AppDelegate.swift */; };
 		6F66AA9E223C39EA0069FEE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F66AA9D223C39EA0069FEE4 /* Assets.xcassets */; };
 		6F66AAA1223C39EA0069FEE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F66AA9F223C39EA0069FEE4 /* LaunchScreen.storyboard */; };
@@ -87,6 +88,7 @@
 /* Begin PBXFileReference section */
 		26B11D4B85239F4494C75CAA /* Pods_MorseCodeApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MorseCodeApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F7A5C27751665066446B41D /* Pods-MorseCodeAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorseCodeAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MorseCodeAppUITests/Pods-MorseCodeAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		6F0CE4AF2261237000605031 /* NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
 		6F66AA93223C39E90069FEE4 /* MorseCodeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MorseCodeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F66AA96223C39E90069FEE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6F66AA9D223C39EA0069FEE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -433,6 +435,7 @@
 				6F94F2A9224581B30094ACCE /* UICollectionViewExtension.swift */,
 				6F94F2AD224583030094ACCE /* UICollectionViewCellExtension.swift */,
 				6FBC6E3A2247DE4C00DD3326 /* StringExtension.swift */,
+				6F0CE4AF2261237000605031 /* NSAttributedString.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -979,6 +982,7 @@
 				6FD79B64224FCD4600EF64DE /* PlayRepository.swift in Sources */,
 				6FECA51122401A1A00E944E7 /* Alphabet.swift in Sources */,
 				6FCFC3F5223EBA3300ABD9FB /* AboutController.swift in Sources */,
+				6F0CE4B02261237000605031 /* NSAttributedString.swift in Sources */,
 				6F94F2A822457F550094ACCE /* AlphabetCell.swift in Sources */,
 				6F86CD402242B819009EF40E /* PairCell.swift in Sources */,
 			);

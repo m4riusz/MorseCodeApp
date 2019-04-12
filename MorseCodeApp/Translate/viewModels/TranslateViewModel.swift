@@ -17,7 +17,7 @@ struct TranslateViewModel: ViewModelType {
     }
     
     struct Output {
-        let text: Driver<String>
+        let text: Driver<[Pair]>
         let errorText: Driver<String>
         let alphabets: Driver<[Alphabet]>
     }
@@ -30,27 +30,47 @@ struct TranslateViewModel: ViewModelType {
     
     func transform(input: TranslateViewModel.Input) -> TranslateViewModel.Output {
     
-        let alphabets = self.alphabetRepository.getAll()
+        let alphabetsAction = self.alphabetRepository.getAll()
         
-        let selectedAlphabet = alphabets.flatMapLatest { items -> Observable<Alphabet?> in
+        let selectedAlphabetAction = alphabetsAction.flatMapLatest { items -> Observable<Alphabet?> in
             return .just(items.first(where: { $0.isSelected }))
             }
             .unwrap()
-        let pairs = selectedAlphabet
+        
+        let pairsAction = selectedAlphabetAction
             .flatMapLatest { alphabet -> Observable<[Pair]> in
                 return .just(alphabet.pairs)
         }
         
-        let outputText = input.text.asObservable().withLatestFrom(pairs) { text, pairs -> String in
-            let mapped = text
-                .uppercased()
-                .map { character in pairs.first(where: { pair in pair.key == String(character) })?.value ?? ""}
-            return mapped.joined()
+         let outputTextAction = Observable.combineLatest(input.text.asObservable(), pairsAction) { text, pairs -> [Pair] in
+            return text.uppercased()
+                .map { character -> Pair in
+                    guard let foundPair = pairs.first(where: { pair in pair.key == String(character) }) else {
+                        return Pair(id: -1,
+                                    key: String(character),
+                                    value: "",
+                                    isVisible: true,
+                                    color: UIColor(hexString: "#FF0000")!)
+                    }
+                    return foundPair
+            }
         }
         
-        let outputTextDriver = outputText.asDriver(onErrorJustReturn: "")
-        let errorTextDriver = Observable<String>.just("Some error").asDriver(onErrorJustReturn: "")
-        let alphabetsDriver = alphabets.asDriver(onErrorJustReturn: [])
+        let unknownCharactersAction = outputTextAction
+            .flatMapLatest { pairs -> Observable<Int> in
+                return .just(pairs.filter({ $0.value.isEmpty }).count)
+            }
+            .flatMapLatest { invalidCharacters -> Observable<String> in
+                guard invalidCharacters == 0 else {
+                    return .just("Found \(invalidCharacters) problems");
+                }
+                return .just("")
+            }
+        
+        
+        let outputTextDriver = outputTextAction.asDriver(onErrorJustReturn: [])
+        let errorTextDriver = unknownCharactersAction.asDriver(onErrorJustReturn: "")
+        let alphabetsDriver = alphabetsAction.asDriver(onErrorJustReturn: [])
         
         
         return Output(text: outputTextDriver,

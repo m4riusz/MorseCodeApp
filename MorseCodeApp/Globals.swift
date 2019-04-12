@@ -9,7 +9,7 @@
 import Foundation
 
 struct AppDefaults {
-    static let schemeVersion: UInt64 = 5
+    static let schemeVersion: UInt64 = 8
 }
 
 enum Colors: String {
