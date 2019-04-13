@@ -18,7 +18,7 @@ default_platform(:ios)
 platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
-    reset_git_repo
+    reset_git_repo(force: true)
     git_pull
     increment_build_number
     increment_version_number
