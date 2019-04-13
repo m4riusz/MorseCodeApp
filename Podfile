@@ -14,7 +14,7 @@ target 'MorseCodeApp' do
   pod 'Fabric', '~> 1.9.0'
   pod 'Crashlytics', '~> 3.12.0'
   pod 'SwiftLint'
-  pod 'SwifterSwift/UIKit', '~> 4.6.0'
+  pod 'SwifterSwift/UIKit'
   pod 'RxSwiftExt'
   pod 'RxDataSources'
   pod 'Swinject'
