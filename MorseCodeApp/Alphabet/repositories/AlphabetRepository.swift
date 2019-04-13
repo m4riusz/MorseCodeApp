@@ -16,4 +16,5 @@ protocol AlphabetRepositoryProtocol {
     func getAll() -> Observable<[Alphabet]>
     func getAll(with predicate: NSPredicate) -> Observable<[Alphabet]>
     func delete(_ alphabet: Alphabet) -> Observable<Void>
+    func reset()
 }

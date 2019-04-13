@@ -18,7 +18,6 @@ struct RMAlphabetRepository: AlphabetRepositoryProtocol {
     
     init(configuration: Realm.Configuration) {
         self.configuration = configuration
-//        self.createAlphabets()
     }
     
     func select(_ alphabet: Alphabet) -> Completable {
@@ -45,7 +44,7 @@ struct RMAlphabetRepository: AlphabetRepositoryProtocol {
         }
     }
     
-     func createAlphabets() {
+     func reset() {
         let polishPairs = [Pair(id: 100, key: "A", value: "•—", isVisible: true, color: UIColor(hexString: "#FAC7FF")!),
                            Pair(id: 101, key: "Ą", value: "•—•—", isVisible: true, color: UIColor(hexString: "#FFCF94")!),
                            Pair(id: 102, key: "B", value: "—•••", isVisible: true, color: UIColor(hexString: "#FFEBC2")!),
@@ -162,7 +161,7 @@ struct RMAlphabetRepository: AlphabetRepositoryProtocol {
                             Pair(id: 157, key: "(", value: "—•——•", isVisible: true, color: UIColor(hexString: "#FFFE85")!),
                             Pair(id: 158, key: ")", value: "—•——•—", isVisible: true, color: UIColor(hexString: "#AEFFD4")!),
                             Pair(id: 159, key: "=", value: "—•••—", isVisible: true, color: UIColor(hexString: "#99FFC8")!),
-                            Pair(id: 160, key: "@", value: "•——•—•", isVisible: true,  color: UIColor(hexString:"#85E7FF")!),
+                            Pair(id: 160, key: "@", value: "•——•—•", isVisible: true, color: UIColor(hexString:"#85E7FF")!),
                             Pair(id: 170, key: " ", value: " ", isVisible: false, color: UIColor(hexString: "#FFFFFF")!)
         ]
         let englishAlphabet = Alphabet(id: 2, countryCode: "GB", name: "English", pairs: engilshPairs, isSelected: false)
