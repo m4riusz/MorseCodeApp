@@ -14,12 +14,14 @@ struct TranslateViewModel: ViewModelType {
     
     struct Input {
         let text: Driver<String>
+        let removeUnknownCharacters: Driver<Void>
     }
     
     struct Output {
         let text: Driver<[Pair]>
-        let errorText: Driver<String>
         let alphabets: Driver<[Alphabet]>
+        let unknownCharactersDriver: Driver<[String]>
+        let fixedText: Driver<String>
     }
     
     fileprivate let alphabetRepository: AlphabetRepositoryProtocol
@@ -33,7 +35,7 @@ struct TranslateViewModel: ViewModelType {
         let alphabetsAction = self.alphabetRepository.getAll()
         
         let selectedAlphabetAction = alphabetsAction.flatMapLatest { items -> Observable<Alphabet?> in
-            return .just(items.first(where: { $0.isSelected }))
+                return .just(items.first(where: { $0.isSelected }))
             }
             .unwrap()
         
@@ -42,39 +44,56 @@ struct TranslateViewModel: ViewModelType {
                 return .just(alphabet.pairs)
         }
         
-         let outputTextAction = Observable.combineLatest(input.text.asObservable(), pairsAction) { text, pairs -> [Pair] in
+        let mappedText = Observable.combineLatest(input.text.asObservable(), pairsAction) { text, pairs -> [PairSearchResult] in
             return text.uppercased()
-                .map { character -> Pair in
-                    guard let foundPair = pairs.first(where: { pair in pair.key == String(character) }) else {
-                        return Pair(id: -1,
-                                    key: String(character),
-                                    value: "",
-                                    isVisible: true,
-                                    color: UIColor(hexString: "#FF0000")!)
+                .map({ character -> PairSearchResult in
+                    guard let pair = pairs.first(where: { pair in pair.key == String(character) }) else {
+                        return .notFount(String(character))
                     }
-                    return foundPair
+                    return .found(pair)
+                })
             }
+            .share()
+        
+        
+        let outputTextAction = mappedText
+            .flatMapLatest { pairSearchResults -> Observable<[Pair]> in
+                let pairs = pairSearchResults.compactMap({ pairSearchResult -> Pair? in
+                    switch pairSearchResult {
+                    case .found(let pair):
+                        return pair
+                    case .notFount:
+                        return nil
+                    }
+                })
+                return .just(pairs)
+            }
+        
+        let unknownCharactersPositionsAction = mappedText
+            .flatMapLatest { pairSearchResults -> Observable<[String]> in
+                let unknownCharacters = pairSearchResults.compactMap({ pairSearchResult -> String? in
+                    switch pairSearchResult {
+                    case .found:
+                        return nil
+                    case .notFount(let key):
+                        return key
+                    }
+                })
+                return .just(Array(Set(unknownCharacters)))
         }
         
-        let unknownCharactersAction = outputTextAction
-            .flatMapLatest { pairs -> Observable<Int> in
-                return .just(pairs.filter({ $0.value.isEmpty }).count)
-            }
-            .flatMapLatest { invalidCharacters -> Observable<String> in
-                guard invalidCharacters == 0 else {
-                    return .just("Found \(invalidCharacters) problems");
-                }
-                return .just("")
-            }
-        
+        let fixedTextAction = input.removeUnknownCharacters.asObservable().withLatestFrom(outputTextAction) { _, outputText -> String in
+            return outputText.map { $0.key }.joined()
+        }
         
         let outputTextDriver = outputTextAction.asDriver(onErrorJustReturn: [])
-        let errorTextDriver = unknownCharactersAction.asDriver(onErrorJustReturn: "")
         let alphabetsDriver = alphabetsAction.asDriver(onErrorJustReturn: [])
-        
+        let unknownCharactersDriver = unknownCharactersPositionsAction.asDriver(onErrorJustReturn: [])
+        let fixedTextDriver = fixedTextAction.asDriver(onErrorJustReturn: "")
         
         return Output(text: outputTextDriver,
-                      errorText: errorTextDriver,
-                      alphabets: alphabetsDriver)
+                      alphabets: alphabetsDriver,
+                      unknownCharactersDriver: unknownCharactersDriver,
+                      fixedText: fixedTextDriver)
     }
 }

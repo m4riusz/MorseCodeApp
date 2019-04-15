@@ -11,8 +11,8 @@ import UIKit
 
 extension NSAttributedString {
     convenience init(text: String, textColor: UIColor, fontSize: CGFloat) {
-        self.init(string: text, attributes: [NSAttributedString.Key.backgroundColor : textColor,
-                                             NSAttributedString.Key.font: UIFont.systemFont(ofSize: fontSize)])
+        self.init(string: text, attributes: [.backgroundColor : textColor,
+                                             .font: UIFont.systemFont(ofSize: fontSize)])
     }
     
     func all() -> NSRange {

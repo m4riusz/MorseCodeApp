@@ -76,8 +76,14 @@ class TranslateController: BaseViewController<TranslateViewModel> {
     
     fileprivate func initBindings() {
         let inputTextDriver = self.inputTextView!.rx.text.orEmpty.changed.asDriver()
+        let errorClickDriver = self.errorLabel!.rx
+            .tapGesture()
+            .flatMapLatest { _ in return Observable<Void>.just(Void()) }
+            .asDriver(onErrorJustReturn: Void())
         
-        let input = TranslateViewModel.Input(text: inputTextDriver)
+        
+        let input = TranslateViewModel.Input(text: inputTextDriver,
+                                             removeUnknownCharacters: errorClickDriver)
         
         let output = self.viewModel.transform(input: input)
         
@@ -98,8 +104,20 @@ class TranslateController: BaseViewController<TranslateViewModel> {
             .drive(self.outputTextView!.rx.attributedText)
             .disposed(by: self.bag)
         
-        output.errorText
-            .drive(self.errorLabel!.rx.text)
+        output.unknownCharactersDriver
+            .drive(onNext: { [weak self] characters in
+                guard !characters.isEmpty else {
+                    self?.errorLabel?.text = ""
+                    return
+                }
+                self?.errorLabel?.text = "Not supported characters: \(characters.joined(separator: ", "))"
+            })
+            .disposed(by: self.bag)
+        
+        output.fixedText
+            .drive(onNext: { [weak self] fixedText in
+                self?.inputTextView?.text = fixedText
+            })
             .disposed(by: self.bag)
     }
 }
