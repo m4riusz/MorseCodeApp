@@ -32,64 +32,64 @@ struct TranslateViewModel: ViewModelType {
     
     func transform(input: TranslateViewModel.Input) -> TranslateViewModel.Output {
     
-        let alphabetsAction = self.alphabetRepository.getAll()
+        let inputTextObservable = input.text
+            .asObservable()
+            .debug("TEXT")
+            .share()
         
-        let selectedAlphabetAction = alphabetsAction.flatMapLatest { items -> Observable<Alphabet?> in
+        let inputRemoveUnknownCharacters = input.removeUnknownCharacters
+            .asObservable()
+            .share()
+        
+        let alphabetsObservable = self.alphabetRepository.getAll()
+            .asObservable()
+            .share()
+        
+        let selectedAlphabetObservable = alphabetsObservable.flatMapLatest { items -> Observable<Alphabet?> in
                 return .just(items.first(where: { $0.isSelected }))
             }
             .unwrap()
         
-        let pairsAction = selectedAlphabetAction
+        let pairsObservable = selectedAlphabetObservable
             .flatMapLatest { alphabet -> Observable<[Pair]> in
                 return .just(alphabet.pairs)
-        }
-        
-        let mappedText = Observable.combineLatest(input.text.asObservable(), pairsAction) { text, pairs -> [PairSearchResult] in
-            return text.uppercased()
-                .map({ character -> PairSearchResult in
-                    guard let pair = pairs.first(where: { pair in pair.key == String(character) }) else {
-                        return .notFount(String(character))
-                    }
-                    return .found(pair)
-                })
             }
             .share()
         
-        
-        let outputTextAction = mappedText
-            .flatMapLatest { pairSearchResults -> Observable<[Pair]> in
-                let pairs = pairSearchResults.compactMap({ pairSearchResult -> Pair? in
-                    switch pairSearchResult {
-                    case .found(let pair):
-                        return pair
-                    case .notFount:
-                        return nil
-                    }
+        let outputTextObservable = Observable.combineLatest(inputTextObservable, pairsObservable) { text, pairs -> [Pair] in
+            return text
+                .uppercased()
+                .map { String($0) }
+                .compactMap({ character -> Pair? in
+                    return pairs.first(where: { pair in pair.key == character })
                 })
-                return .just(pairs)
             }
+            .share()
+
+        let unknownCharactersPositionsObservable = inputTextObservable.withLatestFrom(pairsObservable) { text, pairs -> [String] in
+            return text
+                .map { String($0) }
+                .filter { character -> Bool in
+                    return !pairs.contains(where: { pair in pair.key == character.uppercased() })
+                }
+        }
+            .debug("UNKNOW")
+        .share()
         
-        let unknownCharactersPositionsAction = mappedText
-            .flatMapLatest { pairSearchResults -> Observable<[String]> in
-                let unknownCharacters = pairSearchResults.compactMap({ pairSearchResult -> String? in
-                    switch pairSearchResult {
-                    case .found:
-                        return nil
-                    case .notFount(let key):
-                        return key
-                    }
-                })
-                return .just(Array(Set(unknownCharacters)))
+        let cleanTextObservable = Observable.combineLatest(inputTextObservable, unknownCharactersPositionsObservable,
+                                                           resultSelector: { text, unsuported -> String in
+            let unsuportedUpperCased = unsuported.map { $0.uppercased() }
+            return text.filter { unsuportedUpperCased.contains(String($0).uppercased()) }
+        })
+        
+        let fixedTextObservable = inputRemoveUnknownCharacters.withLatestFrom(cleanTextObservable) { _, outputText -> String in
+            return outputText
         }
         
-        let fixedTextAction = input.removeUnknownCharacters.asObservable().withLatestFrom(outputTextAction) { _, outputText -> String in
-            return outputText.map { $0.key }.joined()
-        }
-        
-        let outputTextDriver = outputTextAction.asDriver(onErrorJustReturn: [])
-        let alphabetsDriver = alphabetsAction.asDriver(onErrorJustReturn: [])
-        let unknownCharactersDriver = unknownCharactersPositionsAction.asDriver(onErrorJustReturn: [])
-        let fixedTextDriver = fixedTextAction.asDriver(onErrorJustReturn: "")
+        let outputTextDriver = outputTextObservable.asDriver(onErrorJustReturn: [])
+        let alphabetsDriver = alphabetsObservable.asDriver(onErrorJustReturn: [])
+        let unknownCharactersDriver = unknownCharactersPositionsObservable.asDriver(onErrorJustReturn: [])
+        let fixedTextDriver = fixedTextObservable.asDriver(onErrorJustReturn: "")
         
         return Output(text: outputTextDriver,
                       alphabets: alphabetsDriver,

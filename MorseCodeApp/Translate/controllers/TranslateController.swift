@@ -14,6 +14,7 @@ import Foundation
 class TranslateController: BaseViewController<TranslateViewModel> {
     
     fileprivate var errorLabel: Label?
+    fileprivate var containerView: UIView?
     fileprivate var inputTextView: UITextView?
     fileprivate var outputTextView: UITextView?
     fileprivate let bag = DisposeBag()
@@ -25,25 +26,38 @@ class TranslateController: BaseViewController<TranslateViewModel> {
         static let outputTextFontSie: CGFloat = 16
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.title = "TranslateTitle".localized()
-    }
-    
     override func initialize() {
+        self.title = "TranslateTitle".localized()
+        self.initContainerView()
         self.initErrorLabel()
         self.initInputTextView()
         self.initOutputTextView()
         self.initBindings()
     }
     
+    fileprivate func initContainerView() {
+        self.containerView = UIView()
+        self.view.addSubview(self.containerView!)
+        
+        self.initContainerViewConstraints()
+    }
+    
+    fileprivate func initContainerViewConstraints(bottomOffset: CGFloat = 0) {
+        self.containerView?.snp.remakeConstraints({ make in
+            make.top.equalToSuperview()
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.bottom.equalToSuperview().offset(bottomOffset)
+        })
+    }
+    
     fileprivate func initErrorLabel() {
         self.errorLabel = Label(.semiBold(size: Sizes.infoLabelFontSize, color: .white), textAligment: .center)
         self.errorLabel?.backgroundColor = .global(.red)
-        self.view.addSubview(self.errorLabel!)
+        self.containerView?.addSubview(self.errorLabel!)
         
         self.errorLabel?.snp.makeConstraints({ make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            make.top.equalTo(self.containerView!.safeAreaLayoutGuide.snp.top)
             make.left.equalToSuperview()
             make.right.equalToSuperview()
         })
@@ -51,26 +65,31 @@ class TranslateController: BaseViewController<TranslateViewModel> {
     
     fileprivate func initInputTextView() {
         self.inputTextView = UITextView()
+        self.inputTextView?.borderColor = .global(.grayLight)
+        self.inputTextView?.borderWidth = 0.5
         self.inputTextView?.font = UIFont.systemFont(ofSize: Sizes.inputTextFontSize)
-        self.view.addSubview(self.inputTextView!)
+        self.containerView?.addSubview(self.inputTextView!)
         
         self.inputTextView?.snp.makeConstraints({ [unowned self] make in
             make.top.equalTo(self.errorLabel!.snp.bottom).offset(Spacing.normal)
-            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).offset(Spacing.normal)
-            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).offset(-Spacing.normal)
+            make.left.equalTo(self.containerView!.safeAreaLayoutGuide.snp.left).offset(Spacing.normal)
+            make.right.equalTo(self.containerView!.safeAreaLayoutGuide.snp.right).offset(-Spacing.normal)
         })
     }
     
     fileprivate func initOutputTextView() {
         self.outputTextView = UITextView()
-        self.view.addSubview(self.outputTextView!)
+        self.outputTextView?.isEditable = false
+        self.outputTextView?.borderColor = .global(.grayLight)
+        self.outputTextView?.borderWidth = 0.5
+        self.containerView?.addSubview(self.outputTextView!)
         
         self.outputTextView?.snp.makeConstraints({ [unowned self] make in
             make.top.equalTo(self.inputTextView!.snp.bottom).offset(Spacing.normal)
-            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.left).offset(Spacing.normal)
-            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.right).offset(-Spacing.normal)
+            make.left.equalTo(self.containerView!.safeAreaLayoutGuide.snp.left).offset(Spacing.normal)
+            make.right.equalTo(self.containerView!.safeAreaLayoutGuide.snp.right).offset(-Spacing.normal)
             make.height.equalTo(self.inputTextView!.snp.height)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-Spacing.normal)
+            make.bottom.equalTo(self.containerView!.safeAreaLayoutGuide.snp.bottom).offset(-Spacing.normal)
         })
     }
     
@@ -80,7 +99,6 @@ class TranslateController: BaseViewController<TranslateViewModel> {
             .tapGesture()
             .flatMapLatest { _ in return Observable<Void>.just(Void()) }
             .asDriver(onErrorJustReturn: Void())
-        
         
         let input = TranslateViewModel.Input(text: inputTextDriver,
                                              removeUnknownCharacters: errorClickDriver)
@@ -110,7 +128,7 @@ class TranslateController: BaseViewController<TranslateViewModel> {
                     self?.errorLabel?.text = ""
                     return
                 }
-                self?.errorLabel?.text = "Not supported characters: \(characters.joined(separator: ", "))"
+                self?.errorLabel?.text = "TranslateUnknownCharacters".localized(characters.sorted().joined(separator: ", "))
             })
             .disposed(by: self.bag)
         
@@ -119,5 +137,35 @@ class TranslateController: BaseViewController<TranslateViewModel> {
                 self?.inputTextView?.text = fixedText
             })
             .disposed(by: self.bag)
+        
+        output.alphabets
+            .drive()
+            .disposed(by: self.bag)
+        
+        self.containerView?.rx.tapGesture()
+            .subscribe(onNext: { [weak self] _ in
+                self?.view.endEditing(true)
+            })
+            .disposed(by: self.bag)
+    }
+    
+    override func keyboardOpened(notification: Notification) {
+        guard let height = notification.getKeyboardHeight(), let duration = notification.getKeyboardDuration() else {
+            return
+        }
+        UIView.animate(withDuration: duration) { [weak self] in
+            self?.initContainerViewConstraints(bottomOffset: -height)
+            self?.view.layoutIfNeeded()
+        }
+    }
+    
+    override func keyboardHidden(notification: Notification) {
+        guard let duration = notification.getKeyboardDuration() else {
+            return
+        }
+        UIView.animate(withDuration: duration) { [weak self] in
+            self?.initContainerViewConstraints()
+            self?.view.layoutIfNeeded()
+        }
     }
 }

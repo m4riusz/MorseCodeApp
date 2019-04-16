@@ -19,3 +19,6 @@
 
 /* AlphabetSelection */
 "AlphabetChoose" = "Wybierz alfabet";
+
+/* Translate */
+"TranslateUnknownCharacters" = "Nieobsługiwane znaki: %@";

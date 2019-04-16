@@ -23,8 +23,10 @@ class BaseViewController<T: ViewModelType>: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        self.registerForKeyboard()
         self.initialize()
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -36,6 +38,19 @@ class BaseViewController<T: ViewModelType>: UIViewController {
     }
     
     open func loadScreenData() {
+        
+    }
+    
+    fileprivate func registerForKeyboard() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardOpened(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+          NotificationCenter.default.addObserver(self, selector: #selector(keyboardHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc open func keyboardOpened(notification: Notification) {
+        
+    }
+    
+    @objc open func keyboardHidden(notification: Notification) {
         
     }
 }
