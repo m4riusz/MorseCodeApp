@@ -132,9 +132,10 @@ class TranslateController: BaseViewController<TranslateViewModel> {
         
         output.text
             .flatMapLatest({ pairs -> Driver<[NSAttributedString]> in
-                return .just(pairs.map { NSAttributedString(text: $0.value,
-                                                            textColor: $0.color,
-                                                            fontSize: Sizes.outputTextFontSie)})
+                return .just(pairs.enumerated()
+                    .map { NSAttributedString(text: $1.value,
+                                              textColor: .global($0.isMultiple(of: 2) ? .white: .clear),
+                                              fontSize: Sizes.outputTextFontSie)})
             })
             .flatMapLatest({ attributedTexts -> Driver<NSAttributedString> in
                 let mutableAttributedString = NSMutableAttributedString()

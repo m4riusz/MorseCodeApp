@@ -49,7 +49,7 @@ struct TranslateViewModel: ViewModelType {
                 return .just(alphabet?.pairs ?? [])
             }
         
-        let outputTextObservable = inputTextObservable.withLatestFrom(pairsObservable) { text, pairs -> [Pair] in
+        let outputTextObservable = Observable.combineLatest(inputTextObservable, pairsObservable) { text, pairs -> [Pair]in
             return text
                 .uppercased()
                 .map { String($0) }
@@ -58,15 +58,15 @@ struct TranslateViewModel: ViewModelType {
                 })
             }
 
-        let unknownCharactersPositionsObservable = inputTextObservable.withLatestFrom(pairsObservable) { text, pairs -> [String] in
-            return text
-                .map { String($0) }
-                .filter { character -> Bool in
-                    return !pairs.contains(where: { pair in pair.key == character.uppercased() })
-                }
+        let unknownCharactersPositionsObservable = Observable.combineLatest(inputTextObservable, pairsObservable) { text, pairs -> [String] in
+            return Array(Set(text
+                    .map { String($0) }
+                    .filter { character -> Bool in
+                        return !pairs.contains(where: { pair in pair.key == character.uppercased() })
+                    }))
         }
     
-        let cleanTextObservable = inputTextObservable.withLatestFrom(unknownCharactersPositionsObservable) { text, unsuported -> String in
+        let cleanTextObservable = Observable.combineLatest(inputTextObservable, unknownCharactersPositionsObservable) { text, unsuported -> String in
             let unsuportedUpperCased = unsuported.map { $0.uppercased() }
             return text.filter { !unsuportedUpperCased.contains(String($0).uppercased()) }
         }
