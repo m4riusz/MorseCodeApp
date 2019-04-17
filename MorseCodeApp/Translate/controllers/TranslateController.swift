@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Foundation
+import FlagKit
 
 class TranslateController: BaseViewController<TranslateViewModel> {
     
@@ -32,6 +33,7 @@ class TranslateController: BaseViewController<TranslateViewModel> {
         self.initErrorLabel()
         self.initInputTextView()
         self.initOutputTextView()
+        self.initNavigationBarButton()
         self.initBindings()
     }
     
@@ -93,7 +95,20 @@ class TranslateController: BaseViewController<TranslateViewModel> {
         })
     }
     
+    fileprivate func initNavigationBarButton() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: nil, style: .plain, target: nil, action: nil)
+    }
+    
     fileprivate func initBindings() {
+        
+        self.navigationItem.rightBarButtonItem?.rx.tap
+            .asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                let controller = UINavigationController(rootViewController: DependencyContainer.resolve(AlphabetSelectionController.self))
+                self?.navigationController?.present(controller, animated: true)
+            })
+            .disposed(by: self.bag)
+        
         let inputTextDriver = self.inputTextView!.rx.text.orEmpty.changed.asDriver()
         let errorClickDriver = self.errorLabel!.rx
             .tapGesture()
@@ -104,6 +119,16 @@ class TranslateController: BaseViewController<TranslateViewModel> {
                                              removeUnknownCharacters: errorClickDriver)
         
         let output = self.viewModel.transform(input: input)
+        
+        output.unknownCharactersDriver
+            .drive(onNext: { [weak self] characters in
+                guard !characters.isEmpty else {
+                    self?.errorLabel?.text = ""
+                    return
+                }
+                self?.errorLabel?.text = "TranslateUnknownCharacters".localized(characters.sorted().joined(separator: ", "))
+            })
+            .disposed(by: self.bag)
         
         output.text
             .flatMapLatest({ pairs -> Driver<[NSAttributedString]> in
@@ -138,8 +163,16 @@ class TranslateController: BaseViewController<TranslateViewModel> {
             })
             .disposed(by: self.bag)
         
-        output.alphabets
-            .drive()
+        output.alphabet
+            .drive(onNext: { [weak self] alphabet in
+                guard let countryCode = alphabet?.countryCode, let flagImage = Flag(countryCode: countryCode) else {
+                    self?.navigationItem.rightBarButtonItem?.image = nil
+                    self?.navigationItem.rightBarButtonItem?.title = "Choose".localized()
+                    return
+                }
+                self?.navigationItem.rightBarButtonItem?.image = flagImage.image(style: .roundedRect).withRenderingMode(.alwaysOriginal)
+                self?.navigationItem.rightBarButtonItem?.title = nil
+            })
             .disposed(by: self.bag)
         
         self.containerView?.rx.tapGesture()

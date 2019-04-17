@@ -45,6 +45,7 @@ struct RMAlphabetRepository: AlphabetRepositoryProtocol {
     }
     
      func reset() {
+        return
         let polishPairs = [Pair(id: 100, key: "A", value: "•—", isVisible: true, color: UIColor(hexString: "#FAC7FF")!),
                            Pair(id: 101, key: "Ą", value: "•—•—", isVisible: true, color: UIColor(hexString: "#FFCF94")!),
                            Pair(id: 102, key: "B", value: "—•••", isVisible: true, color: UIColor(hexString: "#FFEBC2")!),
