@@ -31,6 +31,9 @@ struct DependencyContainer {
         container.register(PlayRepositoryProtocol.self) { resolver in
             return RMPlayRepository(configuration: resolver.resolve(Realm.Configuration.self)!)
         }
+        container.register(TranslateRepositoryProtocol.self) { resolver in
+            return RMTranslateRepository(configuration: resolver.resolve(Realm.Configuration.self)!)
+        }
         // MARK: Alphabet
         container.register(AlphabetViewModel.self) { resolver in
             return AlphabetViewModel(alphabetRepository: resolver.resolve(AlphabetRepositoryProtocol.self)!,
@@ -41,7 +44,8 @@ struct DependencyContainer {
         }
         // MARK: Translate
         container.register(TranslateViewModel.self) { resolver in
-            return TranslateViewModel(alphabetRepository: resolver.resolve(AlphabetRepositoryProtocol.self)!)
+            return TranslateViewModel(translateRepository: resolver.resolve(TranslateRepositoryProtocol.self)!,
+                                      alphabetRepository: resolver.resolve(AlphabetRepositoryProtocol.self)!)
         }
         container.register(TranslateController.self) { resolver in
             return TranslateController(viewModel: resolver.resolve(TranslateViewModel.self)!)

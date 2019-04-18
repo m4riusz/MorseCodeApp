@@ -22,7 +22,6 @@ struct RMPlayRepository: PlayRepositoryProtocol {
     
     init(configuration: Realm.Configuration) {
         self.configuration = configuration
-        //        self.createPlayTypes() // TEMPORARY
     }
     
     func selectPlayType(_ playType: PlayType) -> Observable<Void> {
@@ -50,8 +49,8 @@ struct RMPlayRepository: PlayRepositoryProtocol {
         return self.realm.rx.save(entity: playType, update: update)
     }
     
-    // to remove
-    func createPlayTypes() {
+    
+    func reset() {
         let screen = PlayType(id: 1,
                               name: "Screen",
                               image: .phone,
@@ -68,9 +67,13 @@ struct RMPlayRepository: PlayRepositoryProtocol {
                              name: "Flash",
                              image: .flash,
                              isSelected: false)
-        self.createOrUpdatePlayType(screen, update: true).subscribe()
-        self.createOrUpdatePlayType(sound, update: true).subscribe()
-        self.createOrUpdatePlayType(vibration, update: true).subscribe()
-        self.createOrUpdatePlayType(flash, update: true).subscribe()
+        let playTypesObjects = self.realm.objects(PlayType.RealmType.self)
+        self.realm.beginWrite()
+        self.realm.delete(playTypesObjects)
+        self.realm.add(screen.asRealm())
+        self.realm.add(sound.asRealm())
+        self.realm.add(vibration.asRealm())
+        self.realm.add(flash.asRealm())
+        try! self.realm.commitWrite()
     }
 }

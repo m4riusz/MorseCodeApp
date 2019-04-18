@@ -13,4 +13,5 @@ protocol PlayRepositoryProtocol {
     func selectPlayType(_ playType: PlayType) -> Observable<Void>
     func createOrUpdatePlayType(_ playType: PlayType, update: Bool) -> Observable<Void>
     func getPlayTypes() -> Observable<[PlayType]>
+    func reset()
 }

@@ -15,6 +15,7 @@ struct TranslateViewModel: ViewModelType {
     struct Input {
         let text: Driver<String>
         let removeUnknownCharacters: Driver<Void>
+        let toggleMode: Driver<Void>
     }
     
     struct Output {
@@ -22,11 +23,15 @@ struct TranslateViewModel: ViewModelType {
         let alphabet: Driver<Alphabet?>
         let unknownCharactersDriver: Driver<[String]>
         let fixedText: Driver<String>
+        let translateModes: Driver<[TranslateMode]>
     }
     
+    fileprivate let translateRepository: TranslateRepositoryProtocol
     fileprivate let alphabetRepository: AlphabetRepositoryProtocol
     
-    init(alphabetRepository: AlphabetRepositoryProtocol) {
+    init(translateRepository: TranslateRepositoryProtocol,
+         alphabetRepository: AlphabetRepositoryProtocol) {
+        self.translateRepository = translateRepository
         self.alphabetRepository = alphabetRepository
     }
     
@@ -35,7 +40,7 @@ struct TranslateViewModel: ViewModelType {
         let inputTextObservable = input.text
             .asObservable()
         
-        let inputRemoveUnknownCharacters = input.removeUnknownCharacters
+        let inputRemoveUnknownCharactersObservable = input.removeUnknownCharacters
             .asObservable()
             .share()
         
@@ -48,6 +53,17 @@ struct TranslateViewModel: ViewModelType {
             .flatMapLatest { alphabet -> Observable<[Pair]> in
                 return .just(alphabet?.pairs ?? [])
             }
+        
+        let translateModes = self.translateRepository.getAll()
+        
+        let toggleModeObservable = input.toggleMode.asObservable().withLatestFrom(translateModes) {  _ , translateModes -> Void in
+            guard let translateMode = translateModes.filter({ !$0.isSelected }).first else {
+                return Void()
+            }
+            self.translateRepository.select(translateMode)
+            return Void()
+        }
+        .subscribe()
         
         let outputTextObservable = Observable.combineLatest(inputTextObservable, pairsObservable) { text, pairs -> [Pair]in
             return text
@@ -71,7 +87,7 @@ struct TranslateViewModel: ViewModelType {
             return text.filter { !unsuportedUpperCased.contains(String($0).uppercased()) }
         }
         
-        let fixedTextObservable = inputRemoveUnknownCharacters.withLatestFrom(cleanTextObservable) { _, outputText -> String in
+        let fixedTextObservable = inputRemoveUnknownCharactersObservable.withLatestFrom(cleanTextObservable) { _, outputText -> String in
             return outputText
         }
         
@@ -79,10 +95,11 @@ struct TranslateViewModel: ViewModelType {
         let selectedAlphabetDriver = selectedAlphabetObservable.asDriver(onErrorJustReturn: nil)
         let unknownCharactersPositionsDriver = unknownCharactersPositionsObservable.asDriver(onErrorJustReturn: [])
         let fixedTextDriver = fixedTextObservable.asDriver(onErrorJustReturn: "")
-        
+        let translateModesDriver = translateModes.asDriver(onErrorJustReturn: [])
         return Output(text: outputTextDriver,
                       alphabet: selectedAlphabetDriver,
                       unknownCharactersDriver: unknownCharactersPositionsDriver,
-                      fixedText: fixedTextDriver)
+                      fixedText: fixedTextDriver,
+                      translateModes: translateModesDriver)
     }
 }

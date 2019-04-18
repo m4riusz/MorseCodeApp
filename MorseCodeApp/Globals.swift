@@ -9,7 +9,7 @@
 import Foundation
 
 struct AppDefaults {
-    static let schemeVersion: UInt64 = 8
+    static let schemeVersion: UInt64 = 9
 }
 
 enum Colors: String {
@@ -35,4 +35,6 @@ enum Images: String {
     case sound = "ic_volume"
     case play = "ic_play"
     case pause = "ic_pause"
+    case text = "ic_text"
+    case morseCode = "ic_morse_code"
 }

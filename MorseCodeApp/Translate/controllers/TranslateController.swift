@@ -97,6 +97,7 @@ class TranslateController: BaseViewController<TranslateViewModel> {
     
     fileprivate func initNavigationBarButton() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: nil, style: .plain, target: nil, action: nil)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: nil, style: .plain, target: nil, action: nil)
     }
     
     fileprivate func initBindings() {
@@ -114,9 +115,13 @@ class TranslateController: BaseViewController<TranslateViewModel> {
             .tapGesture()
             .flatMapLatest { _ in return Observable<Void>.just(Void()) }
             .asDriver(onErrorJustReturn: Void())
+        let toggleModeDriver = self.navigationItem.leftBarButtonItem!.rx.tap
+            .flatMapLatest { _ in return Observable<Void>.just(Void()) }
+            .asDriver(onErrorJustReturn: Void())
         
         let input = TranslateViewModel.Input(text: inputTextDriver,
-                                             removeUnknownCharacters: errorClickDriver)
+                                             removeUnknownCharacters: errorClickDriver,
+                                             toggleMode: toggleModeDriver)
         
         let output = self.viewModel.transform(input: input)
         
@@ -173,6 +178,20 @@ class TranslateController: BaseViewController<TranslateViewModel> {
                 }
                 self?.navigationItem.rightBarButtonItem?.image = flagImage.image(style: .roundedRect).withRenderingMode(.alwaysOriginal)
                 self?.navigationItem.rightBarButtonItem?.title = nil
+            })
+            .disposed(by: self.bag)
+        
+        output.translateModes
+            .drive(onNext: { [weak self] translateModes in
+                guard let selectedMode = translateModes.first(where: { $0.isSelected }) else {
+                    return
+                }
+                switch selectedMode.mode {
+                case .morseToText:
+                    self?.navigationItem.leftBarButtonItem?.image = .global(.text)
+                case .textToMorse:
+                    self?.navigationItem.leftBarButtonItem?.image = .global(.morseCode)
+                }
             })
             .disposed(by: self.bag)
         

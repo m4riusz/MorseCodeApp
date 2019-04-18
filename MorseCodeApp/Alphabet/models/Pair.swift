@@ -14,5 +14,4 @@ struct Pair {
     let key: String
     let value: String
     let isVisible: Bool
-    let color: UIColor
 }

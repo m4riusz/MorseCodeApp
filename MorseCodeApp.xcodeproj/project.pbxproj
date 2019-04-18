@@ -50,6 +50,10 @@
 		6FD79B62224FCCB100EF64DE /* PlayType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD79B61224FCCB100EF64DE /* PlayType.swift */; };
 		6FD79B64224FCD4600EF64DE /* PlayRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD79B63224FCD4600EF64DE /* PlayRepository.swift */; };
 		6FD79B66224FD21F00EF64DE /* RMPlayType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD79B65224FD21F00EF64DE /* RMPlayType.swift */; };
+		6FE627C62268F2AD00EA35B1 /* TranslateMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE627C52268F2AD00EA35B1 /* TranslateMode.swift */; };
+		6FE627C92268F3AA00EA35B1 /* TranslateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE627C82268F3AA00EA35B1 /* TranslateRepository.swift */; };
+		6FE627CB2268F3E600EA35B1 /* RMTranslateMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE627CA2268F3E600EA35B1 /* RMTranslateMode.swift */; };
+		6FE627CD2268F56700EA35B1 /* RMTranslateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE627CC2268F56700EA35B1 /* RMTranslateRepository.swift */; };
 		6FE6D615225A447900A9A0BD /* RMPlayRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6D614225A447900A9A0BD /* RMPlayRepository.swift */; };
 		6FE6D617225A448B00A9A0BD /* RMAlphabetRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6D616225A448B00A9A0BD /* RMAlphabetRepository.swift */; };
 		6FE6D61C225A47DA00A9A0BD /* PlayHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6D61B225A47DA00A9A0BD /* PlayHeaderCell.swift */; };
@@ -142,6 +146,10 @@
 		6FD79B61224FCCB100EF64DE /* PlayType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayType.swift; sourceTree = "<group>"; };
 		6FD79B63224FCD4600EF64DE /* PlayRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayRepository.swift; sourceTree = "<group>"; };
 		6FD79B65224FD21F00EF64DE /* RMPlayType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMPlayType.swift; sourceTree = "<group>"; };
+		6FE627C52268F2AD00EA35B1 /* TranslateMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateMode.swift; sourceTree = "<group>"; };
+		6FE627C82268F3AA00EA35B1 /* TranslateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateRepository.swift; sourceTree = "<group>"; };
+		6FE627CA2268F3E600EA35B1 /* RMTranslateMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMTranslateMode.swift; sourceTree = "<group>"; };
+		6FE627CC2268F56700EA35B1 /* RMTranslateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMTranslateRepository.swift; sourceTree = "<group>"; };
 		6FE6D614225A447900A9A0BD /* RMPlayRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMPlayRepository.swift; sourceTree = "<group>"; };
 		6FE6D616225A448B00A9A0BD /* RMAlphabetRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMAlphabetRepository.swift; sourceTree = "<group>"; };
 		6FE6D61B225A47DA00A9A0BD /* PlayHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayHeaderCell.swift; sourceTree = "<group>"; };
@@ -327,6 +335,7 @@
 				6F86CD522242C5BE009EF40E /* RMAlphabet.swift */,
 				6F86CD552242C5FA009EF40E /* RMPair.swift */,
 				6FD79B65224FD21F00EF64DE /* RMPlayType.swift */,
+				6FE627CA2268F3E600EA35B1 /* RMTranslateMode.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -403,8 +412,9 @@
 		6FCFC3EC223EB94E00ABD9FB /* Translate */ = {
 			isa = PBXGroup;
 			children = (
-				6FE6D619225A45E700A9A0BD /* utils */,
+				6FE627C42268F29A00EA35B1 /* model */,
 				6FEC0C9A224AA74400E946B9 /* controllers */,
+				6FE627C72268F32B00EA35B1 /* repositories */,
 				6FEC0C9C224AA76600E946B9 /* viewModels */,
 			);
 			path = Translate;
@@ -470,20 +480,30 @@
 			path = models;
 			sourceTree = "<group>";
 		};
+		6FE627C42268F29A00EA35B1 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				6FE627C52268F2AD00EA35B1 /* TranslateMode.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		6FE627C72268F32B00EA35B1 /* repositories */ = {
+			isa = PBXGroup;
+			children = (
+				6FE627C82268F3AA00EA35B1 /* TranslateRepository.swift */,
+			);
+			path = repositories;
+			sourceTree = "<group>";
+		};
 		6FE6D613225A446200A9A0BD /* repositories */ = {
 			isa = PBXGroup;
 			children = (
 				6FE6D614225A447900A9A0BD /* RMPlayRepository.swift */,
 				6FE6D616225A448B00A9A0BD /* RMAlphabetRepository.swift */,
+				6FE627CC2268F56700EA35B1 /* RMTranslateRepository.swift */,
 			);
 			path = repositories;
-			sourceTree = "<group>";
-		};
-		6FE6D619225A45E700A9A0BD /* utils */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = utils;
 			sourceTree = "<group>";
 		};
 		6FE6D61A225A47C400A9A0BD /* views */ = {
@@ -945,17 +965,20 @@
 				6FE6D617225A448B00A9A0BD /* RMAlphabetRepository.swift in Sources */,
 				6FCFC401223EBF9B00ABD9FB /* UIColorExtension.swift in Sources */,
 				6FD79B62224FCCB100EF64DE /* PlayType.swift in Sources */,
+				6FE627C62268F2AD00EA35B1 /* TranslateMode.swift in Sources */,
 				6FECA51422401AE300E944E7 /* Pair.swift in Sources */,
 				6F86CD562242C5FA009EF40E /* RMPair.swift in Sources */,
 				6F86CD532242C5BE009EF40E /* RMAlphabet.swift in Sources */,
 				6FE6D61E225A483700A9A0BD /* BaseView.swift in Sources */,
 				6FBC6E3E2247E01900DD3326 /* EmptyView.swift in Sources */,
 				6FE6D615225A447900A9A0BD /* RMPlayRepository.swift in Sources */,
+				6FE627CB2268F3E600EA35B1 /* RMTranslateMode.swift in Sources */,
 				6FBC6E412247E51F00DD3326 /* Label.swift in Sources */,
 				6FCFC3F7223EBA5B00ABD9FB /* TranslateController.swift in Sources */,
 				6F86CD462242B974009EF40E /* UITableViewExtension.swift in Sources */,
 				6FECA51D2240217700E944E7 /* NSErrorExtension.swift in Sources */,
 				6F86CD5B2242C68E009EF40E /* RealmRepresentable.swift in Sources */,
+				6FE627C92268F3AA00EA35B1 /* TranslateRepository.swift in Sources */,
 				6F86CD4A2242C022009EF40E /* BaseViewController.swift in Sources */,
 				6F86CD4C2242C296009EF40E /* BaseViewModel.swift in Sources */,
 				6FBC6E222247CBAD00DD3326 /* DependencyContainer.swift in Sources */,
@@ -970,6 +993,7 @@
 				6F94F2AE224583030094ACCE /* UICollectionViewCellExtension.swift in Sources */,
 				6F94F2AA224581B30094ACCE /* UICollectionViewExtension.swift in Sources */,
 				6FF04D6522552302000DA017 /* PlayController.swift in Sources */,
+				6FE627CD2268F56700EA35B1 /* RMTranslateRepository.swift in Sources */,
 				6F66AA97223C39E90069FEE4 /* AppDelegate.swift in Sources */,
 				6FCFC3FC223EBC2700ABD9FB /* Globals.swift in Sources */,
 				6F8041E0224C04EB00848C81 /* AlphabetSelectionController.swift in Sources */,
