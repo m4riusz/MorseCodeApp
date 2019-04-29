@@ -19,7 +19,7 @@ struct TranslateViewModel: ViewModelType {
     }
     
     struct Output {
-        let text: Driver<[Pair]>
+        let text: Driver<(pairsResults: [Pair], translateMode: TranslateMode)>
         let alphabet: Driver<Alphabet?>
         let unknownCharactersDriver: Driver<[String]>
         let fixedText: Driver<String>
@@ -66,7 +66,7 @@ struct TranslateViewModel: ViewModelType {
             .unwrap()
             .flatMapLatest { return self.translateRepository.select($0) }
   
-        let outputTextObservable = Observable.combineLatest(inputTextObservable, pairsObservable, selectedTranslateMode) { text, pairs, translateMode -> [Pair] in
+        let outputTextObservable = Observable.combineLatest(inputTextObservable, pairsObservable, selectedTranslateMode) { text, pairs, translateMode -> (pairsResults: [Pair], translateMode: TranslateMode) in
                 switch translateMode.mode {
                 case .textToMorse:
                     let mapResult = text
@@ -75,16 +75,19 @@ struct TranslateViewModel: ViewModelType {
                         .compactMap({ character -> Pair? in
                             return pairs.first(where: { pair in pair.key == character })
                         })
-                    return Array(mapResult.map { [$0] }.joined(separator: [Pair.divider()]))
+                    return (pairsResults: Array(mapResult.map { [$0] }.joined(separator: [Pair.divider()])),
+                            translateMode: translateMode)
                 case .morseToText:
-                    return text
+                    let pairsResult = text
                         .split(separator: Pair.dividerSymbol)
                         .map { String($0) }
                         .compactMap({ character -> Pair? in
                             return pairs.first(where: { pair in pair.value == character })
                         })
-                }
+                        return (pairsResults: pairsResult,
+                                translateMode: translateMode)
             }
+        }
 
         let unknownCharactersPositionsObservable = Observable.combineLatest(inputTextObservable, pairsObservable) { text, pairs -> [String] in
             return Array(Set(text
@@ -103,7 +106,7 @@ struct TranslateViewModel: ViewModelType {
             return outputText
         }
         
-        let outputTextDriver = outputTextObservable.asDriver(onErrorJustReturn: [])
+        let outputTextDriver = outputTextObservable.asDriver(onErrorRecover: { fatalError($0.localizedDescription) })
         let selectedAlphabetDriver = selectedAlphabetObservable.asDriver(onErrorJustReturn: nil)
         let unknownCharactersPositionsDriver = unknownCharactersPositionsObservable.asDriver(onErrorJustReturn: [])
         let fixedTextDriver = fixedTextObservable.asDriver(onErrorJustReturn: "")

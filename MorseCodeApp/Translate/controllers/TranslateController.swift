@@ -136,11 +136,19 @@ class TranslateController: BaseViewController<TranslateViewModel> {
             .disposed(by: self.bag)
         
         output.text
-            .flatMapLatest({ pairs -> Driver<[NSAttributedString]> in
-                return .just(pairs.enumerated()
-                    .map { NSAttributedString(text: $1.value,
-                                              textColor: .global($0.isMultiple(of: 2) ? .white: .clear),
-                                              fontSize: Sizes.outputTextFontSie)})
+            .flatMapLatest({ output -> Driver<[NSAttributedString]> in
+                switch output.translateMode.mode {
+                case .textToMorse:
+                    return .just(output.pairsResults.enumerated()
+                        .map { NSAttributedString(text: $1.value,
+                                                  textColor: .global($0.isMultiple(of: 2) ? .white: .clear),
+                                                  fontSize: Sizes.outputTextFontSie)})
+                case .morseToText:
+                    return .just(output.pairsResults.enumerated()
+                        .map { NSAttributedString(text: $1.key,
+                                                  textColor: .global($0.isMultiple(of: 2) ? .white: .clear),
+                                                  fontSize: Sizes.outputTextFontSie)})
+                }
             })
             .flatMapLatest({ attributedTexts -> Driver<NSAttributedString> in
                 let mutableAttributedString = NSMutableAttributedString()
