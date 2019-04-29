@@ -21,12 +21,14 @@ struct RMTranslateRepository: TranslateRepositoryProtocol {
         self.configuration = configuration
     }
     
-    func select(_ translateMode: TranslateMode) -> Completable {
-        return Completable.create(subscribe: { completable in
+    func select(_ translateMode: TranslateMode) -> Observable<Void> {
+        return Observable.create({ observable in
             let allObjects = self.realm.objects(TranslateMode.RealmType.self)
             self.realm.beginWrite()
             allObjects.forEach { $0.isSelected = $0.id == translateMode.id }
             try! self.realm.commitWrite()
+            observable.onNext(Void())
+            observable.onCompleted()
             return Disposables.create()
         })
     }

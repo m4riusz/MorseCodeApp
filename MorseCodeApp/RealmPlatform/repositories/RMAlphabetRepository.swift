@@ -106,7 +106,8 @@ struct RMAlphabetRepository: AlphabetRepositoryProtocol {
                            Pair(id: 158, key: ")", value: "—•——•—", isVisible: true),
                            Pair(id: 159, key: "=", value: "—•••—", isVisible: true),
                            Pair(id: 160, key: "@", value: "•——•—•", isVisible: true),
-                           Pair(id: 170, key: " ", value: " ", isVisible: false)
+                           Pair(id: 170, key: " ", value: " ", isVisible: false),
+                           Pair.divider()
         ]
         let engilshPairs = [Pair(id: 301, key: "A", value: "•—", isVisible: true),
                             Pair(id: 302, key: "B", value: "—•••", isVisible: true),
@@ -160,7 +161,8 @@ struct RMAlphabetRepository: AlphabetRepositoryProtocol {
                             Pair(id: 358, key: ")", value: "—•——•—", isVisible: true),
                             Pair(id: 359, key: "=", value: "—•••—", isVisible: true),
                             Pair(id: 360, key: "@", value: "•——•—•", isVisible: true),
-                            Pair(id: 370, key: " ", value: " ", isVisible: false)
+                            Pair(id: 370, key: " ", value: " ", isVisible: false),
+                            Pair.divider()
         ]
         let alphabetsObjects = self.realm.objects(Alphabet.RealmType.self)
         let pairsObjects = self.realm.objects(Pair.RealmType.self)

@@ -195,6 +195,10 @@ class TranslateController: BaseViewController<TranslateViewModel> {
             })
             .disposed(by: self.bag)
         
+        output.empty
+            .drive()
+            .disposed(by: self.bag)
+        
         self.containerView?.rx.tapGesture()
             .subscribe(onNext: { [weak self] _ in
                 self?.view.endEditing(true)

@@ -11,7 +11,7 @@ import RxSwift
 import RealmSwift
 
 protocol TranslateRepositoryProtocol {
-    func select(_ alphabet: TranslateMode) -> Completable
+    func select(_ alphabet: TranslateMode) -> Observable<Void>
     func getAll() -> Observable<[TranslateMode]>
     func reset()
 }
