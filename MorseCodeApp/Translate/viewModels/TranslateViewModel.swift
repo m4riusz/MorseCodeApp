@@ -43,7 +43,6 @@ struct TranslateViewModel: ViewModelType {
         
         let inputRemoveUnknownCharactersObservable = input.removeUnknownCharacters
             .asObservable()
-            .share()
         
         let selectedAlphabetObservable = self.alphabetRepository.getAll()
             .flatMapLatest { items -> Observable<Alphabet?> in
@@ -57,7 +56,8 @@ struct TranslateViewModel: ViewModelType {
         
         let translateModes = self.translateRepository.getAll()
         let selectedTranslateMode = translateModes.flatMapLatest { modes -> Observable<TranslateMode> in
-            return .just(modes.filter({ !$0.isSelected }).first!) }
+            return .just(modes.filter({ $0.isSelected }).first!)
+        }
         
         let toggleModeObservable = input.toggleMode.asObservable()
             .withLatestFrom(translateModes) {  _, translateModes -> TranslateMode? in

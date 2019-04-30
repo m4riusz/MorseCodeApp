@@ -18,6 +18,7 @@ class TranslateController: BaseViewController<TranslateViewModel> {
     fileprivate var containerView: UIView?
     fileprivate var inputTextView: UITextView?
     fileprivate var outputTextView: UITextView?
+    fileprivate var morseKeyboardView: MorseKeyboardView?
     fileprivate let bag = DisposeBag()
     
     fileprivate struct Sizes {
@@ -25,6 +26,7 @@ class TranslateController: BaseViewController<TranslateViewModel> {
         static let letterSpacing: Double = 1.5
         static let inputTextFontSize: CGFloat = 16
         static let outputTextFontSie: CGFloat = 16
+        static let morseCodeKeyboardHeight: CGFloat = 50
     }
     
     override func initialize() {
@@ -33,6 +35,7 @@ class TranslateController: BaseViewController<TranslateViewModel> {
         self.initErrorLabel()
         self.initInputTextView()
         self.initOutputTextView()
+        self.initMorseKeyboardView()
         self.initNavigationBarButton()
         self.initBindings()
     }
@@ -91,7 +94,23 @@ class TranslateController: BaseViewController<TranslateViewModel> {
             make.left.equalTo(self.containerView!.safeAreaLayoutGuide.snp.left).offset(Spacing.normal)
             make.right.equalTo(self.containerView!.safeAreaLayoutGuide.snp.right).offset(-Spacing.normal)
             make.height.equalTo(self.inputTextView!.snp.height)
-            make.bottom.equalTo(self.containerView!.safeAreaLayoutGuide.snp.bottom).offset(-Spacing.normal)
+        })
+    }
+    
+    fileprivate func initMorseKeyboardView() {
+        self.morseKeyboardView = MorseKeyboardView()
+        self.containerView?.addSubview(self.morseKeyboardView!)
+        
+        self.initMorseKeyboardViewConstraints()
+    }
+    
+    fileprivate func initMorseKeyboardViewConstraints(_ height: CGFloat = 0) {
+        self.morseKeyboardView?.snp.remakeConstraints({ [unowned self] make in
+            make.top.equalTo(self.outputTextView!.snp.bottom).offset(Spacing.normal)
+            make.left.equalTo(self.containerView!.safeAreaLayoutGuide.snp.left)
+            make.right.equalTo(self.containerView!.safeAreaLayoutGuide.snp.right)
+            make.bottom.equalTo(self.containerView!.safeAreaLayoutGuide.snp.bottom)
+            make.height.equalTo(height)
         })
     }
     
@@ -102,14 +121,15 @@ class TranslateController: BaseViewController<TranslateViewModel> {
     
     fileprivate func initBindings() {
         
-        self.navigationItem.rightBarButtonItem?.rx.tap
-            .asObservable()
-            .subscribe(onNext: { [weak self] _ in
-                let controller = UINavigationController(rootViewController: DependencyContainer.resolve(AlphabetSelectionController.self))
-                self?.navigationController?.present(controller, animated: true)
-            })
-            .disposed(by: self.bag)
-        
+        let input = self.initInputBindings()
+        let output = self.viewModel.transform(input: input)
+        self.initOutputBindings(output)
+        self.initNavigationBarBinding()
+        self.initTapToDissmissKeyboardBinding()
+        self.initMorseKeyboardBindings()
+    }
+    
+    fileprivate func initInputBindings() -> TranslateViewModel.Input {
         let inputTextDriver = self.inputTextView!.rx.text.orEmpty.changed.asDriver()
         let errorClickDriver = self.errorLabel!.rx
             .tapGesture()
@@ -119,12 +139,12 @@ class TranslateController: BaseViewController<TranslateViewModel> {
             .flatMapLatest { _ in return Observable<Void>.just(Void()) }
             .asDriver(onErrorJustReturn: Void())
         
-        let input = TranslateViewModel.Input(text: inputTextDriver,
-                                             removeUnknownCharacters: errorClickDriver,
-                                             toggleMode: toggleModeDriver)
-        
-        let output = self.viewModel.transform(input: input)
-        
+        return TranslateViewModel.Input(text: inputTextDriver,
+                                        removeUnknownCharacters: errorClickDriver,
+                                        toggleMode: toggleModeDriver)
+    }
+    
+    fileprivate func initOutputBindings(_ output: TranslateViewModel.Output) {
         output.unknownCharactersDriver
             .drive(onNext: { [weak self] characters in
                 guard !characters.isEmpty else {
@@ -196,9 +216,9 @@ class TranslateController: BaseViewController<TranslateViewModel> {
                 }
                 switch selectedMode.mode {
                 case .morseToText:
-                    self?.navigationItem.leftBarButtonItem?.image = .global(.text)
+                    self?.setMorseToTextView()
                 case .textToMorse:
-                    self?.navigationItem.leftBarButtonItem?.image = .global(.morseCode)
+                    self?.setTextToMorseView()
                 }
             })
             .disposed(by: self.bag)
@@ -206,12 +226,85 @@ class TranslateController: BaseViewController<TranslateViewModel> {
         output.empty
             .drive()
             .disposed(by: self.bag)
-        
+    }
+    
+    fileprivate func initNavigationBarBinding() {
+        self.navigationItem.rightBarButtonItem?.rx.tap
+            .asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                let controller = UINavigationController(rootViewController: DependencyContainer.resolve(AlphabetSelectionController.self))
+                self?.navigationController?.present(controller, animated: true)
+            })
+            .disposed(by: self.bag)
+    }
+    
+    fileprivate func initTapToDissmissKeyboardBinding() {
         self.containerView?.rx.tapGesture()
             .subscribe(onNext: { [weak self] _ in
                 self?.view.endEditing(true)
             })
             .disposed(by: self.bag)
+    }
+    
+    fileprivate func initMorseKeyboardBindings() {
+        self.morseKeyboardView?.dotButton.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                self?.inputTextView?.text.append("•")
+            })
+            .disposed(by: self.bag)
+        
+        self.morseKeyboardView?.dashButton.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                self?.inputTextView?.text.append("—")
+            })
+            .disposed(by: self.bag)
+        
+        self.morseKeyboardView?.characterSpaceButton.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                self?.inputTextView?.text.append(Pair.dividerSymbol)
+            })
+            .disposed(by: self.bag)
+        
+        self.morseKeyboardView?.spaceButton.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                self?.inputTextView?.text.append(" ")
+            })
+            .disposed(by: self.bag)
+        
+        self.morseKeyboardView?.deleteButton.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                guard let text = self?.inputTextView?.text.dropLast() else {
+                    return
+                }
+                self?.inputTextView?.text = String(text)
+            })
+            .disposed(by: self.bag)
+    }
+    
+    fileprivate func setMorseToTextView() {
+        self.navigationItem.leftBarButtonItem?.image = .global(.text)
+        self.inputTextView?.isEditable = false
+        self.inputTextView?.resignFirstResponder()
+        self.inputTextView?.text = ""
+        UIView.animate(withDuration: 0.3) {
+            self.initMorseKeyboardViewConstraints(Sizes.morseCodeKeyboardHeight)
+            self.inputTextView?.superview?.layoutIfNeeded()
+        }
+    }
+    
+    fileprivate func setTextToMorseView() {
+        self.navigationItem.leftBarButtonItem?.image = .global(.morseCode)
+        self.inputTextView?.isEditable = true
+        self.inputTextView?.text = ""
+        UIView.animate(withDuration: 0.3) {
+            self.initMorseKeyboardViewConstraints()
+            self.inputTextView?.superview?.layoutIfNeeded()
+        }
     }
     
     override func keyboardOpened(notification: Notification) {

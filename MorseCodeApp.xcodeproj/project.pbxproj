@@ -68,6 +68,7 @@
 		6FECA51D2240217700E944E7 /* NSErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FECA51C2240217700E944E7 /* NSErrorExtension.swift */; };
 		6FF04D6522552302000DA017 /* PlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF04D6422552302000DA017 /* PlayController.swift */; };
 		6FF04D6722552313000DA017 /* PlayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF04D6622552313000DA017 /* PlayViewModel.swift */; };
+		6FFE3BD0227795E100B51D6D /* MorseKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFE3BCF227795E100B51D6D /* MorseKeyboardView.swift */; };
 		937A2E0E7ED59B25C9E3AAA1 /* Pods_MorseCodeApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B21B2A786BAAC7BE84BE2F /* Pods_MorseCodeApp.framework */; };
 		95E6A9F3D60117690054190B /* Pods_MorseCodeAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B105960616E672D066A8730A /* Pods_MorseCodeAppUITests.framework */; };
 		C3135B6803C3AC0B1E46AAAE /* Pods_MorseCodeAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36464D5709E67FA14D8A7BFE /* Pods_MorseCodeAppTests.framework */; };
@@ -164,6 +165,7 @@
 		6FECA51C2240217700E944E7 /* NSErrorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSErrorExtension.swift; sourceTree = "<group>"; };
 		6FF04D6422552302000DA017 /* PlayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayController.swift; sourceTree = "<group>"; };
 		6FF04D6622552313000DA017 /* PlayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewModel.swift; sourceTree = "<group>"; };
+		6FFE3BCF227795E100B51D6D /* MorseKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorseKeyboardView.swift; sourceTree = "<group>"; };
 		7E3D11DF531206448DA1362B /* Pods-MorseCodeAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorseCodeAppTests.release.xcconfig"; path = "Target Support Files/Pods-MorseCodeAppTests/Pods-MorseCodeAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		8318B00EBF29B56E1667A1A1 /* Pods-MorseCodeAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorseCodeAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-MorseCodeAppUITests/Pods-MorseCodeAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8FE01B55CAD691FED4EC16A1 /* Pods-MorseCodeAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorseCodeAppUITests.release.xcconfig"; path = "Target Support Files/Pods-MorseCodeAppUITests/Pods-MorseCodeAppUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -412,6 +414,7 @@
 		6FCFC3EC223EB94E00ABD9FB /* Translate */ = {
 			isa = PBXGroup;
 			children = (
+				6FFE3BCE2277958000B51D6D /* views */,
 				6FE627C42268F29A00EA35B1 /* model */,
 				6FEC0C9A224AA74400E946B9 /* controllers */,
 				6FE627C72268F32B00EA35B1 /* repositories */,
@@ -588,6 +591,14 @@
 				6FF04D6622552313000DA017 /* PlayViewModel.swift */,
 			);
 			path = viewModels;
+			sourceTree = "<group>";
+		};
+		6FFE3BCE2277958000B51D6D /* views */ = {
+			isa = PBXGroup;
+			children = (
+				6FFE3BCF227795E100B51D6D /* MorseKeyboardView.swift */,
+			);
+			path = views;
 			sourceTree = "<group>";
 		};
 		D3AEBA0C42936BF5F506EFAF /* Pods */ = {
@@ -965,6 +976,7 @@
 				6FE6D617225A448B00A9A0BD /* RMAlphabetRepository.swift in Sources */,
 				6FCFC401223EBF9B00ABD9FB /* UIColorExtension.swift in Sources */,
 				6FD79B62224FCCB100EF64DE /* PlayType.swift in Sources */,
+				6FFE3BD0227795E100B51D6D /* MorseKeyboardView.swift in Sources */,
 				6FE627C62268F2AD00EA35B1 /* TranslateMode.swift in Sources */,
 				6FECA51422401AE300E944E7 /* Pair.swift in Sources */,
 				6F86CD562242C5FA009EF40E /* RMPair.swift in Sources */,
