@@ -36,6 +36,12 @@ struct TranslateViewModel: ViewModelType {
         self.alphabetRepository = alphabetRepository
     }
     
+    func normalizeTextToMorse(_ text: String) -> String {
+        var normalizedText = text.replacingOccurrences(of: "[\\s]+", with: " ", options: .regularExpression, range: nil)
+        normalizedText = text.replacingOccurrences(of: "[\(Pair.dividerSymbol)]+", with: "", options: .regularExpression, range: nil)
+        return normalizedText
+    }
+    
     func transform(input: TranslateViewModel.Input) -> TranslateViewModel.Output {
     
         let inputTextObservable = input.text
@@ -89,12 +95,23 @@ struct TranslateViewModel: ViewModelType {
             }
         }
 
-        let unknownCharactersPositionsObservable = Observable.combineLatest(inputTextObservable, pairsObservable) { text, pairs -> [String] in
-            return Array(Set(text
+        let unknownCharactersPositionsObservable = Observable.combineLatest(inputTextObservable, pairsObservable, selectedTranslateMode) { text, pairs, translateMode -> [String] in
+            switch translateMode.mode {
+            case .textToMorse:
+                let items = Array(Set(text
                     .map { String($0) }
                     .filter { character -> Bool in
                         return !pairs.contains(where: { pair in pair.key == character.uppercased() })
-                    }))
+                }))
+                return items
+            case .morseToText:
+                let items = Array(Set(text
+                    .map { String($0) }
+                    .filter { character -> Bool in
+                        return !pairs.contains(where: { pair in pair.value == character.uppercased() || !pair.isVisible })
+                }))
+                return items
+            }
         }
     
         let cleanTextObservable = Observable.combineLatest(inputTextObservable, unknownCharactersPositionsObservable) { text, unsuported -> String in
@@ -106,10 +123,14 @@ struct TranslateViewModel: ViewModelType {
             return outputText
         }
         
+        let normalizedTextObservable = inputTextObservable.flatMapLatest { text -> Observable<String> in
+            return .just(self.normalizeTextToMorse(text))
+        }
+        
         let outputTextDriver = outputTextObservable.asDriver(onErrorRecover: { fatalError($0.localizedDescription) })
         let selectedAlphabetDriver = selectedAlphabetObservable.asDriver(onErrorJustReturn: nil)
         let unknownCharactersPositionsDriver = unknownCharactersPositionsObservable.asDriver(onErrorJustReturn: [])
-        let fixedTextDriver = fixedTextObservable.asDriver(onErrorJustReturn: "")
+        let fixedTextDriver = Observable.merge(fixedTextObservable, normalizedTextObservable).asDriver(onErrorJustReturn: "")
         let translateModesDriver = translateModes.asDriver(onErrorJustReturn: [])
         let emptyDriver = toggleModeObservable.asDriver(onErrorRecover: { fatalError($0.localizedDescription) })
         
